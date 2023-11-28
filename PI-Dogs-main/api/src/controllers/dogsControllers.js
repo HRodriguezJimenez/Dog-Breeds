@@ -38,8 +38,7 @@ const getDogByName = async (name) => {
     const allDogs = await getAllDogs();
   
     const breedByName = allDogs.filter((breed) => {
-      return breed.name.toLowerCase().includes(name.toLowerCase());
-      
+      return breed.name.toLowerCase().includes(name.toLowerCase());      
     });
   
     if (!breedByName.length) throw new Error(`No existe la raza con el nombre: ${name}`);
@@ -69,7 +68,17 @@ const createDogDB = async (
     life_span_min,
     life_span_max,
     temperaments,) => {
-        return await Dog.create({
+
+        const allDogs = await getAllDogs();
+
+        const breedByName = allDogs.find((dog) => 
+            dog.name.toLowerCase() === name.toLowerCase()
+        );
+
+        if (breedByName) {
+            throw new Error(`Ya existe la raza con el nombre: ${name}`);
+        }    
+        const newDog = await Dog.create({
             image,
             name,
             weight_min,
@@ -78,7 +87,11 @@ const createDogDB = async (
             height_max,
             life_span_min,
             life_span_max,
-            temperaments,})
+        })
+
+        newDog.addTemperaments(temperaments)
+
+        return newDog;
     }
 
 

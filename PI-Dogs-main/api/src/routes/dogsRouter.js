@@ -1,5 +1,5 @@
 const { Router } = require("express")
-const {getDogsHandler, getDetailHandler, createDogHandler} = require("../handlers/dogsHandlers")
+const {getDogsHandler, getDetailHandler, createDogHandler} = require("../handlers/dogsHandlers") // Requerimos los Handlers para que manejen la información.
 
 const dogsRouter = Router()
 

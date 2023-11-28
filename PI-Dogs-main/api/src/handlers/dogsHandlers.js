@@ -1,10 +1,10 @@
-const {getAllDogs, getDogById, getDogByName, createDogDB} = require("../controllers/dogsControllers")
-const validateCreate = require("../utils/functions")
+const {getAllDogs, getDogById, getDogByName, createDogDB} = require("../controllers/dogsControllers") // Requerimos los Controllers que son las funciones encargadas de solicitar la información. 
+const validateCreate = require("../utils/functions") // Función para validar los datos que envian para crear un nuevo "dog".
 
-// .query
+// .query este Handler manejara la información dependiendo si viene algo por query(name) mostrara solo el que conincida con el "name" o todos los dogs si no envian nada por query.
 const getDogsHandler = async (req, res) => {
     const { name } = req.query;
-    try {
+    try { 
         if (name) {
             const dogByName = await getDogByName(name)
             res.status(200).json(dogByName) 
@@ -17,6 +17,7 @@ const getDogsHandler = async (req, res) => {
     }
 }
 
+// .params Este Handler mostrara el detaller de un elemento buscando por su "id" especifico.
 const getDetailHandler = async (req, res) => {
     const {id} = req.params;
     
@@ -28,6 +29,7 @@ const getDetailHandler = async (req, res) => {
     }
 }
 
+// .body Este Handler creara un nuevo "dog" con la información que envian en la solicitud por "body".
 const createDogHandler = async (req, res) => {
     const {
         image,
@@ -41,7 +43,7 @@ const createDogHandler = async (req, res) => {
         temperaments,
     } = req.body
     
-    try {
+    try { // Creamos una función para que valide si la información que llega en el body es correcta.
         validateCreate({
             image,
             name,

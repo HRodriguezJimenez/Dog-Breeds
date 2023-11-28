@@ -8,7 +8,6 @@ module.exports = (sequelize) => {
       type: DataTypes.UUID,
         primaryKey: true,
         defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
     },
     image: {
       type: DataTypes.TEXT,
@@ -52,7 +51,6 @@ module.exports = (sequelize) => {
     created : {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-      allowNull: false,
     }
   },{timestamps: false},
   );

@@ -59,10 +59,32 @@ const getDogById = async (id) => {
     return breedById;
 }
 
+const createDogDB = async (
+    image,
+    name,
+    weight_min,
+    weight_max,
+    height_min,
+    height_max,
+    life_span_min,
+    life_span_max,
+    temperaments,) => {
+        return await Dog.create({
+            image,
+            name,
+            weight_min,
+            weight_max,
+            height_min,
+            height_max,
+            life_span_min,
+            life_span_max,
+            temperaments,})
+    }
+
 
 module.exports = {
     getAllDogs,
     getDogById,
     getDogByName,
-
+    createDogDB,
 }

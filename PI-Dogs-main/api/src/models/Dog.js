@@ -19,12 +19,12 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
     },
-    weigth_min: {
+    weight_min: {
       type: DataTypes.INTEGER,
       validate: { min: 1, max: 100 },
       allowNull: false,
     },
-    weigth_max: {
+    weight_max: {
       type: DataTypes.INTEGER,
       validate: { min: 1, max: 100 },
       allowNull: false,

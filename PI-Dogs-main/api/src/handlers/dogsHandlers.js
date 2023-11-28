@@ -1,9 +1,30 @@
-const getDogsHandler = (req, res) => {
-    res.status(200).send("Aqui estan todos los perros.")
+const {getAllDogs, getDogById, getDogByName} = require("../controllers/dogsControllers")
+
+// .query
+const getDogsHandler = async (req, res) => {
+    const { name } = req.query;
+    try {
+        if (name) {
+            const dogByName = await getDogByName(name)
+            res.status(200).json(dogByName) 
+        } else {
+            const allDogs = await getAllDogs()
+            res.status(200).json(allDogs)
+        }
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
-const getDetailHandler = (req, res) => {
-    res.status(200).send("Detalle de un perro.")
+const getDetailHandler = async (req, res) => {
+    const {id} = req.params;
+    
+    try {
+        const response = await getDogById(id)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 const createDogHandler = (req, res) => {

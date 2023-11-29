@@ -91,7 +91,11 @@ const createDogDB = async (
 
         newDog.addTemperaments(temperaments)
 
-        return newDog;
+        const dogDB = await Dog.findByPk(newDog.id)
+        const temperamentsDogDB = await dogDB.getTemperaments() // Función que crea sequelize en el momento que creamos la relación muchos a muchos entre los modelos.
+        const temperamentsByName = temperamentsDogDB.map((temp) => temp.name)
+
+        return {...dogDB.toJSON(), temperaments: temperamentsByName }
     }
 
 

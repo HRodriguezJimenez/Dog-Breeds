@@ -2,7 +2,7 @@ require("dotenv").config();
 const axios = require("axios");
 const { API_KEY } = process.env;
 const URL = `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`;
-const { Temperament } = require("../db");
+const { Temperaments } = require("../db");
 
 const temperamentsDB = async (res, req) => {
     try {
@@ -17,7 +17,7 @@ const temperamentsDB = async (res, req) => {
 
                 // Guardamos los temperamentos únicos en la base de datos
                 uniqueTemperaments.forEach(async (temp) => {
-                    await Temperament.findOrCreate({
+                    await Temperaments.findOrCreate({
                         where: {
                             name: temp,
                         },
@@ -33,7 +33,7 @@ const temperamentsDB = async (res, req) => {
 temperamentsDB();
 
 const getAllTemperaments = async () => {
-    return await Temperament.findAll();
+    return await Temperaments.findAll();
 };
 
 module.exports = getAllTemperaments;

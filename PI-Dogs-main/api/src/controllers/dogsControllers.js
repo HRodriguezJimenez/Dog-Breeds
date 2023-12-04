@@ -1,18 +1,11 @@
 require("dotenv").config();
 const axios = require("axios")
-const {Dog, Temperament} = require("../db")
+const {Dog, Temperaments} = require("../db")
 const { API_KEY } = process.env;
 const URL = `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
 
 
 const getAllDogs = async () => {
-    const dogsDB = await Dog.findAll({
-        include: {
-            model: Temperament,
-            attributes: ["name"],
-            through: {attributes: []},
-        }
-    })
 
     const dataApi = (await axios.get(URL)).data;
     
@@ -27,9 +20,17 @@ const getAllDogs = async () => {
         minLifeSpan: parseInt(dog.life_span.split("-")[0]),
         maxLifeSpan: parseInt(dog.life_span.split("-")[1]),
         Temperaments: dog.temperament?.split(", "),
-        breed_group: dog.breed_group,
         created: false,
     }))
+
+    const dogsDB = await Dog.findAll({
+        include: {
+            model: Temperaments,
+            attributes: ["name"],
+            through: {attributes: []},
+        }
+    })
+
     const allDogs = [...dogsDB, ...dogsApi]
     return allDogs;
 }

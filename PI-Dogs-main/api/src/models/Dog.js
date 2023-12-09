@@ -18,36 +18,54 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: true,
     },
-    weight_min: {
+    minHeight: {
       type: DataTypes.INTEGER,
-      validate: { min: 1, max: 100 },
+      validate: {
+        min: { args: 1, msg: "La altura mínima debe ser mayor o igual a 1" },
+        max: { args: 100, msg: "La altura mínima debe ser menor o igual a 100" },
+      },
       allowNull: false,
     },
-    weight_max: {
+    maxHeight: {
       type: DataTypes.INTEGER,
-      validate: { min: 1, max: 100 },
+      validate: {
+        min: { args: 1, msg: "La altura máxima debe ser mayor o igual a 1" },
+        max: { args: 100, msg: "La altura máxima debe ser menor o igual a 100" },
+      },
       allowNull: false,
     },
-    height_min: {
+    minWeight: {
       type: DataTypes.INTEGER,
-      validate: { min: 1, max: 100 },
+      validate: {
+        min: { args: 1, msg: "El peso mínimo debe ser mayor o igual a 1" },
+        max: { args: 100, msg: "El peso mínimo debe ser menor o igual a 100" },
+      },
       allowNull: false,
     },
-    height_max: {
+    maxWeight: {
       type: DataTypes.INTEGER,
-      validate: { min: 1, max: 100 },
+      validate: {
+        min: { args: 1, msg: "El peso máximo debe ser mayor o igual a 1" },
+        max: { args: 100, msg: "El peso máximo debe ser menor o igual a 100" },
+      },
       allowNull: false,
     },
-    life_span_min : {
+    minLifeSpan: {
       type: DataTypes.INTEGER,
-      validate: { min: 1, max: 20 },
+      validate: {
+        min: { args: 1, msg: "La duración mínima de la vida debe ser mayor o igual a 1" },
+        max: { args: 20, msg: "La duración mínima de la vida debe ser menor o igual a 20" },
+      },
       allowNull: false,
     },
-    life_span_max : {
+    maxLifeSpan: {
       type: DataTypes.INTEGER,
-      validate: { min: 1, max: 20 },
+      validate: {
+        min: { args: 1, msg: "La duración máxima de la vida debe ser mayor o igual a 1" },
+        max: { args: 20, msg: "La duración máxima de la vida debe ser menor o igual a 20" },
+      },
       allowNull: false,
-    }, 
+    },
     created : {
       type: DataTypes.BOOLEAN,
       defaultValue: true,

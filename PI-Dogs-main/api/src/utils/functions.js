@@ -1,32 +1,33 @@
 const validateCreate = ({
-    image,
     name,
-    weight_min,
-    weight_max,
-    height_min,
-    height_max,
-    life_span_min,
-    life_span_max,
-}) => {
-    if (!image ||
-        !name ||
-        !weight_min ||
-        !weight_max ||
-        !height_min ||
-        !height_max ||
-        !life_span_min ||
-        !life_span_max) {
-        throw new Error("Faltan datos para completar la creación.");
+    image,
+    minHeight,
+    maxHeight,
+    minWeight,
+    maxWeight,
+    minLifeSpan,
+    maxLifeSpan,
+    }) => {
+    if (!name || !image || !minHeight || !maxHeight || !minWeight || !maxWeight || !minLifeSpan || !maxLifeSpan) {
+        throw new Error("Debe completar toda la información requerida");
     }
-    if (weight_min < 0 || weight_max > 100) {
-        throw new Error("Ingrese un número entre 1 - 100.");
-    } 
-    if (height_min < 0 || height_max > 100) {
-        throw new Error("Ingrese un número entre 1 - 100.");
-    } 
-    if (life_span_min < 0 || life_span_max > 20) {
-        throw new Error("Ingrese un número entre 1 - 20.");
+
+    if (minHeight <= 0 || maxHeight <= 0 || minWeight <= 0 || maxWeight <= 0 || minLifeSpan <= 0 || maxLifeSpan <= 0) {
+        throw new Error("La altura, peso o duración de la vida no puede ser negativa");
+    }
+
+    if (minHeight >= maxHeight) {
+        throw new Error("La altura mínima es mayor o igual a la altura máxima, por favor valide los datos");
+    }
+
+    if (minWeight >= maxWeight) {
+        throw new Error("El peso mínimo es mayor o igual al peso máximo, por favor valide los datos");
+    }
+
+    if (minLifeSpan >= maxLifeSpan) {
+        throw new Error("La duración mínima de la vida es mayor o igual a la duración máxima, por favor valide los datos");
     }
 };
 
 module.exports = validateCreate;
+  

@@ -32,37 +32,38 @@ const getDetailHandler = async (req, res) => {
 // .body Este Handler creara un nuevo "dog" con la información que envian en la solicitud por "body".
 const createDogHandler = async (req, res) => {
     const {
-        image,
-        name,
-        weight_min,
-        weight_max,
-        height_min,
-        height_max,
-        life_span_min,
-        life_span_max,
-        temperaments,
+      name,
+      image,
+      minHeight,
+      maxHeight,
+      minWeight,
+      maxWeight,
+      minLifeSpan,
+      maxLifeSpan,
+      temperaments,
     } = req.body
     
     try { // Creamos una función para que valide si la información que llega en el body es correcta.
         validateCreate({
-            image,
             name,
-            weight_min,
-            weight_max,
-            height_min,
-            height_max,
-            life_span_min,
-            life_span_max
+            image,
+            minHeight,
+            maxHeight,
+            minWeight,
+            maxWeight,
+            minLifeSpan,
+            maxLifeSpan,
+      
         });
         const newDog = await createDogDB(
-            image,
             name,
-            weight_min,
-            weight_max,
-            height_min,
-            height_max,
-            life_span_min,
-            life_span_max,
+            image,
+            minHeight,
+            maxHeight,
+            minWeight,
+            maxWeight,
+            minLifeSpan,
+            maxLifeSpan,
             temperaments,)
         res.status(200).json(newDog)    
     } catch (error) {

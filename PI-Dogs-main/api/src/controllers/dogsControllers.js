@@ -60,14 +60,14 @@ const getDogById = async (id) => {
 }
 
 const createDogDB = async (
-    image,
     name,
-    weight_min,
-    weight_max,
-    height_min,
-    height_max,
-    life_span_min,
-    life_span_max,
+    image,
+    minHeight,
+    maxHeight,
+    minWeight,
+    maxWeight,
+    minLifeSpan,
+    maxLifeSpan,
     temperaments,) => {
 
         const allDogs = await getAllDogs();
@@ -80,14 +80,14 @@ const createDogDB = async (
             throw new Error(`Ya existe la raza con el nombre: ${name}`);
         }    
         const newDog = await Dog.create({
-            image,
             name,
-            weight_min,
-            weight_max,
-            height_min,
-            height_max,
-            life_span_min,
-            life_span_max,
+            image,
+            minHeight,
+            maxHeight,
+            minWeight,
+            maxWeight,
+            minLifeSpan,
+            maxLifeSpan,
         })
 
         newDog.addTemperaments(temperaments)

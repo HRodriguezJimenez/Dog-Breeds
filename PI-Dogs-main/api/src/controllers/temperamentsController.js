@@ -33,7 +33,9 @@ const temperamentsDB = async (res, req) => {
 temperamentsDB();
 
 const getAllTemperaments = async () => {
-    return await Temperaments.findAll();
+    return await Temperaments.findAll({
+        order: [['id', 'ASC']], // Ordenar por ID en orden ascendente
+    });
 };
 
 module.exports = getAllTemperaments;

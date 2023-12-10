@@ -24,7 +24,6 @@ const CardsContainer = ({ allDogs }) => {
 
   const dogsByPage = 8;
   const totalPage = Math.ceil(dogs.length / dogsByPage);
-
   const start = (page - 1) * dogsByPage;
   const end = start + dogsByPage;
   const pagin = dogs.slice(start, end);
@@ -49,12 +48,8 @@ const CardsContainer = ({ allDogs }) => {
             id={dog.id}
             name={dog.name}
             image={dog.image}
-            minHeight={dog.minHeight}
-            maxHeight={dog.maxHeight}
             minWeight={dog.minWeight}
             maxWeight={dog.maxWeight}
-            minLifeSpan={dog.minLifeSpan}
-            maxLifeSpan={dog.maxLifeSpan}
             Temperaments={dog.Temperaments}
           />
         );

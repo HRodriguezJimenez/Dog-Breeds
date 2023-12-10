@@ -8,7 +8,6 @@ const URL = `https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`
 const getAllDogs = async () => {
 
     const dataApi = (await axios.get(URL)).data;
-    
     const dogsApi = dataApi.map((dog) => ({
         id: dog.id,
         name: dog.name,

@@ -1,11 +1,10 @@
-import { GET_DOGS, GET_TEMPERAMETS } from "./actionsTypes";
+import { GET_DOGS, GET_TEMPERAMETS, PAGIN_DOGS } from "./actionsTypes";
 import axios from "axios";
 
 export const getDogs = () => {
     return async function (dispatch) {
         const response = await axios.get("http://localhost:3001/dogs/");
         const allDogs = response.data;
-        console.log(allDogs);
         return dispatch({
             type: GET_DOGS,
             payload: allDogs,
@@ -23,3 +22,23 @@ export const getTemperaments = () => {
         })
     }
 }
+
+export const paginDogs = (value) => {
+    return async function (dispatch, getState) {
+        const state = getState();
+        const { page, allDogs } = state;
+
+        let newPage = page;
+
+        if (value === "next" && page < Math.ceil(allDogs.length / 8)) {
+            newPage += 1;
+        } else if (value === "prev" && page > 1) {
+            newPage -= 1;
+        }
+
+        dispatch({
+            type: PAGIN_DOGS,
+            payload: newPage,
+        });
+    }
+};

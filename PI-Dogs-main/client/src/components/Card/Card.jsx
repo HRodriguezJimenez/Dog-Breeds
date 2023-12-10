@@ -3,7 +3,6 @@ import { renderDogInfo } from "../../utils/functions";
 
 const Card = (props) => {
   const dogInfo = renderDogInfo(props);
-  console.log(dogInfo);
 
   return (
     <div className={style.cardContainer}>

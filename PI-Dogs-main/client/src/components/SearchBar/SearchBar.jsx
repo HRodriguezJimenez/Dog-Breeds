@@ -1,8 +1,8 @@
 export default function SearchBar({ handleChange, handleSubmit }) {
   return (
     <div>
-      <form onChange={handleChange}>
-        <input type="search" placeholder="Busqueda" />
+      <form>
+        <input type="search" placeholder="Busqueda" onChange={handleChange} />
         <button type="submit" onClick={handleSubmit}>
           Buscar
         </button>

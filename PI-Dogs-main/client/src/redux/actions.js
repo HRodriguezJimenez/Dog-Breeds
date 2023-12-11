@@ -1,4 +1,9 @@
-import { GET_DOGS, GET_TEMPERAMETS, PAGIN_DOGS } from "./actionsTypes";
+import { 
+    GET_DOGS,
+    GET_TEMPERAMETS,
+    PAGIN_DOGS,
+    GET_DOGS_BY_NAME,
+} from "./actionsTypes";
 import axios from "axios";
 
 export const getDogs = () => {
@@ -42,3 +47,19 @@ export const paginDogs = (value) => {
         });
     }
 };
+
+export const getDogByName = (name) => {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(`http://localhost:3001/dogs/?name=${name}`)
+            const dogByName = response.data;
+            console.log(dogByName);
+            dispatch({
+                type: GET_DOGS_BY_NAME,
+                payload: dogByName,
+            })
+        } catch (error) {
+            throw Error(error.message)
+        }
+    }
+}

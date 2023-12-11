@@ -1,4 +1,4 @@
-import { GET_DOGS, GET_TEMPERAMETS, PAGIN_DOGS } from "./actionsTypes";
+import { GET_DOGS, GET_DOGS_BY_NAME, GET_TEMPERAMETS, PAGIN_DOGS } from "./actionsTypes";
 
 const initialState = {
     allDogs: [],
@@ -19,7 +19,13 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 allTempetaments: action.payload,
             }  
-        
+
+        case GET_DOGS_BY_NAME:
+            return {
+                ...state,
+                allDogs: action.payload,
+            }
+    
         case PAGIN_DOGS:
             return {
                 ...state,

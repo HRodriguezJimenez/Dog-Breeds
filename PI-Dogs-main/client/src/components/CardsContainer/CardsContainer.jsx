@@ -5,14 +5,16 @@ import Card from "../Card/Card";
 import style from "./cardsContainer.module.css";
 import { paginDogs } from "../../redux/actions";
 
-const CardsContainer = ({ allDogs }) => {
+const CardsContainer = ({ allDogs, isSearching }) => {
   const dispatch = useDispatch();
   const page = useSelector((state) => state.page);
   const dogs = allDogs;
 
   useEffect(() => {
-    !dogs.lenght && dispatch(paginDogs(page));
-  }, [dogs.lenght, dispatch, page]);
+    if (!isSearching) {
+      dispatch(paginDogs(page));
+    }
+  }, [isSearching, dispatch, page]);
 
   const nextPage = () => {
     dispatch(paginDogs("next"));

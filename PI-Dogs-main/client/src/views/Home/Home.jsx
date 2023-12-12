@@ -22,7 +22,9 @@ const Home = () => {
   }
 
   useEffect(() => {
-    dispatch(getDogs());
+    if (!isSearching) {
+      dispatch(getDogs());
+    }
   }, [dispatch, isSearching]);
 
   const handleResetSearch = () => {
@@ -37,7 +39,7 @@ const Home = () => {
         handleSubmit={handleSubmit}
         handleResetSearch={handleResetSearch}
       />
-      <CardsContainer allDogs={allDogs} />
+      <CardsContainer allDogs={allDogs} isSearching={isSearching} />
     </>
   );
 };

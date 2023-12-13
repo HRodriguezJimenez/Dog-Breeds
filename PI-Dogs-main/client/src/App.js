@@ -7,7 +7,7 @@ import './App.css';
 
 function App() {
 
-  const location = useLocation();  
+  const location = useLocation(); // Nos permite acceder al objeto de la unbicación que contiene información sobre la URL actual.
 
   return (
     <div className="App">

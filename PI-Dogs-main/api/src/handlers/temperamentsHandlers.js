@@ -1,4 +1,4 @@
-const getAllTemperaments = require("../controllers/temperamentsController")
+const getAllTemperaments = require("../controllers/temperamentsController"); // Requerimos el controller encargado de solicitar la información.
 
 const getTemperamentsHandler = async (req, res) => {
     try {

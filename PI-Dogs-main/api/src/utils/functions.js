@@ -1,3 +1,5 @@
+// Función que usamos para validar los datos que vienen en la solicitud para crear un nuevo Dog y agregarlo en la base de datos.
+
 const validateCreate = ({
     name,
     image,

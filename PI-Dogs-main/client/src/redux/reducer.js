@@ -24,7 +24,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allDogs: action.payload,
-                page: 1,
+                page: 1, // Reiniciamos la página a 1.
             }
     
         case PAGIN_DOGS:

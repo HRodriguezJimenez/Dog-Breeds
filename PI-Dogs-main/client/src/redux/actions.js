@@ -6,17 +6,19 @@ import {
 } from "./actionsTypes";
 import axios from "axios";
 
+// Con esta action realizamos una solicitud a nuestro servidor para obtener todos los dogs.
 export const getDogs = () => {
     return async function (dispatch) {
         const response = await axios.get("http://localhost:3001/dogs/");
         const allDogs = response.data;
-        return dispatch({
+        return dispatch({ // Despachamos la action con el resultado de la búsqueda en payload.
             type: GET_DOGS,
             payload: allDogs,
         })
     }
 }
 
+// Con esta action realizamos una solicitud a nuestro servidor para obtener todos los temperaments.
 export const getTemperaments = () => {
     return async function (dispatch) {
         const response = await axios.get("http://localhost:3001/temperaments/");
@@ -28,9 +30,10 @@ export const getTemperaments = () => {
     }
 }
 
+// Con esta action controlamos la paginación de la app en el momento de mostrar los dogs. Recibe un valor que puede ser "next" o "prev", que determina si se debe avanazar o retroceder.
 export const paginDogs = (value) => {
     return async function (dispatch, getState) {
-        const state = getState();
+        const state = getState(); // getState es una función que devuelve el estado actual del store. Nos permite acceder al estado actual antes de realizar los cambios.
         const { page, allDogs } = state;
 
         let newPage = page;
@@ -48,12 +51,12 @@ export const paginDogs = (value) => {
     }
 };
 
+// Action que nos permite realizar una solicitud al servidor de un dog en específico por su nombre.
 export const getDogByName = (name) => {
     return async function (dispatch) {
         try {
             const response = await axios.get(`http://localhost:3001/dogs/?name=${name}`)
             const dogByName = response.data;
-            console.log(dogByName);
             dispatch({
                 type: GET_DOGS_BY_NAME,
                 payload: dogByName,

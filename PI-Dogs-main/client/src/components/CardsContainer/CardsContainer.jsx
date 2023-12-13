@@ -1,21 +1,24 @@
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux"; // "useSelector" nos permite seleccionar un estado en específico del estado de Redux y "useDispatch" no permite despachar actions al reducer.
+import { useEffect } from "react"; // Manejamos los efectos secundarios en el componente.
 
 import Card from "../Card/Card";
 import style from "./cardsContainer.module.css";
-import { paginDogs } from "../../redux/actions";
+import { paginDogs } from "../../redux/actions"; // Actions para controlar al paginado de la app.
 
 const CardsContainer = ({ allDogs, isSearching }) => {
+  // "allDogs" contiene el resultado de la búsqueda y "isSearching" indica si se esta realizando una búsqueda.
   const dispatch = useDispatch();
   const page = useSelector((state) => state.page);
   const dogs = allDogs;
 
+  // Inicia un efecto que se ejecuta cuando "isSearching" cambia o cuando el componente se monta. Despacha una actions con el número de página actual si no estamos realizando una búsqueda.
   useEffect(() => {
     if (!isSearching) {
       dispatch(paginDogs(page));
     }
   }, [isSearching, dispatch, page]);
 
+  // Con estas funciones despachamos la actions con el argumento correspondiente para cambiar la página.
   const nextPage = () => {
     dispatch(paginDogs("next"));
   };
@@ -25,14 +28,15 @@ const CardsContainer = ({ allDogs, isSearching }) => {
   };
 
   const dogsByPage = 8;
-  const totalPage = Math.ceil(dogs.length / dogsByPage);
+  const totalPage = Math.ceil(dogs.length / dogsByPage); // Con el método .ceil redondeamos hacia arriba el resultado de la operación.
   const start = (page - 1) * dogsByPage;
   const end = start + dogsByPage;
-  const pagin = dogs.slice(start, end);
+  const pagin = dogs.slice(start, end); // Determinamos la cantidad de dogs que se muestra en la página actual.
 
   return (
     <div className={style.CardsContainer}>
       <div>
+        {/*disabled lo usamos para deshabilitar los botones dependiende de el número en el que se encuentre la página.*/}
         <button onClick={prevPage} disabled={page === 1}>
           Anterior
         </button>

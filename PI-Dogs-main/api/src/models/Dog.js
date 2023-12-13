@@ -20,7 +20,7 @@ module.exports = (sequelize) => {
     },
     minHeight: {
       type: DataTypes.INTEGER,
-      validate: {
+      validate: { // Estas validaciones aseguran que los valores esten entre los rangos especificos y generan mensajes personalizados si no se cumple la condición.
         min: { args: 1, msg: "La altura mínima debe ser mayor o igual a 1" },
         max: { args: 100, msg: "La altura mínima debe ser menor o igual a 100" },
       },

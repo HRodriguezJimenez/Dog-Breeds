@@ -11,16 +11,22 @@ const Home = () => {
   const [isSearching, setIsSearching] = useState(false); // Estado local donde indicamos si actualmente se esta realizando una busqueda.
 
   function handleChange(e) {
-    // Esta función se activa en el momento que el usuario escribe en el campo de busqueda y actualiza el estado.
+    // Esta función se activa en el momento que el usuario escribe en el campo de búsqueda y actualiza el estado.
     e.preventDefault();
-    setSearchName(e.target.value);
+    const { value } = e.target;
+    if (isNaN(value)) {
+      setSearchName(value);
+    } else {
+      alert("No ingresar números.");
+    }
   }
 
   function handleSubmit(e) {
-    // Se activa en el momento que se envía la busqueda configuramos "isSearching" como true y despacha una actions para buscar un dog por su nombre.
+    // Se activa en el momento que se envía la búsqueda configuramos "isSearching" como true y despacha una actions para buscar un dog por su nombre.
     e.preventDefault();
     setIsSearching(true);
     dispatch(getDogByName(searchName));
+    setSearchName(""); // limpiamos el input despues de la búsqueda.
   }
 
   useEffect(() => {
@@ -41,6 +47,7 @@ const Home = () => {
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         handleResetSearch={handleResetSearch}
+        searchName={searchName}
       />
       <CardsContainer allDogs={allDogs} isSearching={isSearching} />
     </>

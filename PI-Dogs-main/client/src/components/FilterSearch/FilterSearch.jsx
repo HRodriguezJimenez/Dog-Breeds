@@ -5,11 +5,16 @@ export default function FilterSearch({
   handleChange,
   handleSubmit,
   handleResetSearch,
+  searchName,
 }) {
   return (
     <div>
       <h1>Aqui van los filtros</h1>
-      <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} />
+      <SearchBar
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        searchName={searchName}
+      />
       {handleResetSearch && ( // Realizamos un renderizado condicional si la función "handleResetSearch" esta presente/activa.
         <button onClick={handleResetSearch}>Mostrar Todos.</button>
       )}

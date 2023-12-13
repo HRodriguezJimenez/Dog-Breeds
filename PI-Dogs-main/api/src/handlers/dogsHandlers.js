@@ -20,9 +20,11 @@ const getDogsHandler = async (req, res) => {
 // ".params" Este Handler mostrara el detalle de un elemento buscando por su "id" especifico.
 const getDetailHandler = async (req, res) => {
     const {id} = req.params;
+    const source = isNaN(id) ? "bdd" : "api"; // Creamos una validación que nos ayude a verificar si lo que viene es un Number o String.
+
     
     try {
-        const response = await getDogById(id)
+        const response = await getDogById(id, source)
         res.status(200).json(response)
     } catch (error) {
         res.status(400).json({error: error.message})

@@ -1,8 +1,9 @@
 import { 
     GET_DOGS,
-    GET_TEMPERAMETS,
+    GET_TEMPERAMENTS,
     PAGIN_DOGS,
     GET_DOGS_BY_NAME,
+    GET_DOG_BY_ID,
 } from "./actionsTypes";
 import axios from "axios";
 
@@ -24,7 +25,7 @@ export const getTemperaments = () => {
         const response = await axios.get("http://localhost:3001/temperaments/");
         const allTempetaments = response.data;
         return dispatch({
-            type: GET_TEMPERAMETS,
+            type: GET_TEMPERAMENTS,
             payload: allTempetaments,
         })
     }
@@ -57,12 +58,31 @@ export const getDogByName = (name) => {
         try {
             const response = await axios.get(`http://localhost:3001/dogs/?name=${name}`)
             const dogByName = response.data;
+            if (!dogByName) {
+                window.alert("No existen razas con ese nombre.")
+            }
             dispatch({
                 type: GET_DOGS_BY_NAME,
                 payload: dogByName,
             })
         } catch (error) {
-            throw Error(error.message)
+            window.alert(error.response.data.error);
+        }
+    }
+}
+
+// Esta action nos permite realizar la solicitud para buscar un dog por su id.
+export const getDogById = (id) => {
+    return async function (dispatch) {
+        try {
+            const response = await axios.get(`http://localhost:3001/dogs/${id}`)
+            const dogById = response.data;
+            dispatch({
+                type: GET_DOG_BY_ID,
+                payload: dogById,
+            })
+        } catch (error) {
+            Error(error.message)
         }
     }
 }

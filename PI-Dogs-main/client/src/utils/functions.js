@@ -26,5 +26,5 @@ export const renderDogInfo = (dog) => {
         temperaments: dog.Temperaments ? dog.Temperaments.map(temp => (typeof temp === 'object' ? temp.name : temp)).join(", ") : "", // Verificamos la propiedad "Temperaments" y confirmamos si es un objeto antes de extraer el nombre.
       };
     }
-  };
+};
   

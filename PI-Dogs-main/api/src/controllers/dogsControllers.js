@@ -50,7 +50,7 @@ const getDogByName = async (name) => {
 };
 
 //* Controller para buscar un Dog en especifico por su id.
-const getDogById = async (id, so) => {
+const getDogById = async (id) => {
     const allDogs = await getAllDogs();
 
     const dogById = allDogs.filter((dog) => {

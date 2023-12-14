@@ -36,7 +36,7 @@ const CardsContainer = ({ allDogs, isSearching }) => {
   return (
     <div className={style.CardsContainer}>
       <div>
-        {/*disabled lo usamos para deshabilitar los botones dependiende de el número en el que se encuentre la página.*/}
+        {/*disabled lo usamos para deshabilitar los botones dependiendo de el número en el que se encuentre la página.*/}
         <button onClick={prevPage} disabled={page === 1}>
           Anterior
         </button>

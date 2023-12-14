@@ -42,7 +42,6 @@ const Home = () => {
 
   return (
     <>
-      <h1>Esta es la vista de Home</h1>
       <FilterSearch
         handleChange={handleChange}
         handleSubmit={handleSubmit}

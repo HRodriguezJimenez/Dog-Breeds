@@ -5,50 +5,65 @@ import {
     GET_DOGS_BY_NAME,
     GET_DOG_BY_ID,
 } from "./actionsTypes";
+
+import { handleAsyncError } from "./utilsRedux/handleAsyncError";
+
 import axios from "axios";
 
 // Con esta action realizamos una solicitud a nuestro servidor para obtener todos los dogs.
 export const getDogs = () => {
     return async function (dispatch) {
-        const response = await axios.get("http://localhost:3001/dogs/");
-        const allDogs = response.data;
-        return dispatch({ // Despachamos la action con el resultado de la búsqueda en payload.
-            type: GET_DOGS,
-            payload: allDogs,
-        })
+        try {
+            const response = await axios.get("http://localhost:3001/dogs/");
+            const allDogs = response.data;
+            return dispatch({ // Despachamos la action con el resultado de la búsqueda en payload.
+                type: GET_DOGS,
+                payload: allDogs,
+            })
+        } catch (error) {
+            handleAsyncError(error)
+        }
     }
 }
 
 // Con esta action realizamos una solicitud a nuestro servidor para obtener todos los temperaments.
 export const getTemperaments = () => {
     return async function (dispatch) {
-        const response = await axios.get("http://localhost:3001/temperaments/");
-        const allTempetaments = response.data;
-        return dispatch({
-            type: GET_TEMPERAMENTS,
-            payload: allTempetaments,
-        })
+        try {
+            const response = await axios.get("http://localhost:3001/temperaments/");
+            const allTempetaments = response.data;
+            return dispatch({
+                type: GET_TEMPERAMENTS,
+                payload: allTempetaments,
+            })
+        } catch (error) {
+            handleAsyncError(error)
+        }
     }
 }
 
 // Con esta action controlamos la paginación de la app en el momento de mostrar los dogs. Recibe un valor que puede ser "next" o "prev", que determina si se debe avanazar o retroceder.
 export const paginDogs = (value) => {
     return async function (dispatch, getState) {
-        const state = getState(); // getState es una función que devuelve el estado actual del store. Nos permite acceder al estado actual antes de realizar los cambios.
-        const { page, allDogs } = state;
-
-        let newPage = page;
-
-        if (value === "next" && page < Math.ceil(allDogs.length / 8)) {
-            newPage += 1;
-        } else if (value === "prev" && page > 1) {
-            newPage -= 1;
+        try {
+            const state = getState(); // getState es una función que devuelve el estado actual del store. Nos permite acceder al estado actual antes de realizar los cambios.
+            const { page, allDogs } = state;
+    
+            let newPage = page;
+    
+            if (value === "next" && page < Math.ceil(allDogs.length / 8)) {
+                newPage += 1;
+            } else if (value === "prev" && page > 1) {
+                newPage -= 1;
+            }
+    
+            dispatch({
+                type: PAGIN_DOGS,
+                payload: newPage,
+            });
+        } catch (error) {
+            handleAsyncError(error)
         }
-
-        dispatch({
-            type: PAGIN_DOGS,
-            payload: newPage,
-        });
     }
 };
 
@@ -66,7 +81,7 @@ export const getDogByName = (name) => {
                 payload: dogByName,
             })
         } catch (error) {
-            window.alert(error.response.data.error);
+            handleAsyncError(error)
         }
     }
 }
@@ -82,7 +97,7 @@ export const getDogById = (id) => {
                 payload: dogById,
             })
         } catch (error) {
-            Error(error.message)
+            handleAsyncError(error)
         }
     }
 }

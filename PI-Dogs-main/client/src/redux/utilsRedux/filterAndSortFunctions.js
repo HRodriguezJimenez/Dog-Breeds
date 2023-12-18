@@ -1,9 +1,10 @@
 export const filterByTemperament = (dogs, temperament) => {
+    console.log(dogs);
     return temperament === "all"
       ? dogs
       : dogs.filter((dog) =>
-          dog.temperaments.some((temp) => temperament.includes(temp))
-        );
+          dog.temperaments.some((temp) => temperament.includes(temp)) || false
+        ) || [];      
 }
 
 export const filterByOrigin = (dogs, filter) => {
@@ -34,38 +35,38 @@ export const orderByWeight = (dogs, order) => {
     if (order === "LessOrMore") {
       return dogs
         .filter((dog) => dog.minWeight !== null)
-        .sort((a, b) => b.minWeight - a.minWeight);
+        .sort((a, b) => a.minWeight - b.minWeight);
     }
   
     if (order === "MoreOrLess") {
       return dogs
         .filter((dog) => dog.minWeight !== null)
-        .sort((a, b) => a.minWeight - b.minWeight);
+        .sort((a, b) => b.minWeight - a.minWeight);
     }
   
     return dogs;
 }
 
-export const dogsSortedAndFiltered = (dogs, newConfig) => {
-  const [filteredTemperaments, filteredOrigins, order] = newConfig;
+export default function dogsSortedAndFiltered(dogs, configs) {
+  const { temperamentsFilter, originFilter, order } = configs;
+  console.log(configs);
 
   let filteredAndOrdered = dogs;
 
-  if (filteredTemperaments.active) {
-    filteredAndOrdered = filterByTemperament(filteredAndOrdered, filteredTemperaments.value)
+  if (temperamentsFilter && temperamentsFilter.active) {
+    filteredAndOrdered = filterByTemperament(filteredAndOrdered, temperamentsFilter.value);
   }
 
-  if (filteredOrigins.active) {
-    filteredAndOrdered = filterByOrigin(filteredAndOrdered, filteredOrigins.value)
+  if (originFilter && originFilter.active) {
+    filteredAndOrdered = filterByOrigin(filteredAndOrdered, originFilter.value);
   }
 
-  if (order.active) {
+  if (order && order.active) {
     if (order.type === "weight") {
-      filteredAndOrdered = orderByWeight(filteredAndOrdered, order.value)
+      filteredAndOrdered = orderByWeight(filteredAndOrdered, order.value);
     } else {
-      filteredAndOrdered = orderAlphabetically(filteredAndOrdered, order.value)
+      filteredAndOrdered = orderAlphabetically(filteredAndOrdered, order.value);
     }
   } 
   return filteredAndOrdered;
-
 }

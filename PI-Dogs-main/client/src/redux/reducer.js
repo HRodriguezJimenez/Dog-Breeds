@@ -1,10 +1,20 @@
-import { GET_DOGS, GET_DOGS_BY_NAME, GET_TEMPERAMENTS, PAGIN_DOGS, GET_DOG_BY_ID } from "./actionsTypes";
+import { 
+    GET_DOGS, 
+    GET_DOGS_BY_NAME, 
+    GET_TEMPERAMENTS, 
+    PAGIN_DOGS, 
+    GET_DOG_BY_ID,
+    SORTED_AND_FILTERED
+} from "./actionsTypes";
+
+import dogsSortedAndFiltered from "./utilsRedux/filterAndSortFunctions";
 
 const initialState = {
     allDogs: [],
-    allTempetaments: [],
+    allTemperaments: [],
     dogById: [],
     page: 1,
+    sortedAndFiltered: [],
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -18,7 +28,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_TEMPERAMENTS:
             return {
                 ...state,
-                allTempetaments: action.payload,
+                allTemperaments: action.payload,
             }  
 
         case GET_DOGS_BY_NAME:
@@ -39,6 +49,13 @@ const rootReducer = (state = initialState, action) => {
                 ...state,
                 page: action.payload,
             };
+
+        case SORTED_AND_FILTERED:
+            console.log(state);
+            return {
+                ...state,
+                sortedAndFiltered: dogsSortedAndFiltered(state.allDogs, action.payload)
+            }
     
         default:
             return { ...state };

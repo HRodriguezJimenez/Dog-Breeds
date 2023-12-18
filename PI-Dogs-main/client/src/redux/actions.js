@@ -4,9 +4,16 @@ import {
     PAGIN_DOGS,
     GET_DOGS_BY_NAME,
     GET_DOG_BY_ID,
+    FILTER_BY_TEMPERAMENT,
+    FILTERED_BY_ORIGIN,
+    DOGS_FILTERED_ALPHABETICALLY,
+    DOGS_FILTERED_BY_WEIGHT,
+    SORTED_AND_FILTERED,
 } from "./actionsTypes";
 
 import { handleAsyncError } from "./utilsRedux/handleAsyncError";
+
+import dogsSortedAndFiltered from "./utilsRedux/filterAndSortFunctions"
 
 import axios from "axios";
 
@@ -16,7 +23,7 @@ export const getDogs = () => {
         try {
             const response = await axios.get("http://localhost:3001/dogs/");
             const allDogs = response.data;
-            return dispatch({ // Despachamos la action con el resultado de la búsqueda en payload.
+            dispatch({ // Despachamos la action con el resultado de la búsqueda en payload.
                 type: GET_DOGS,
                 payload: allDogs,
             })
@@ -31,8 +38,12 @@ export const getTemperaments = () => {
     return async function (dispatch) {
         try {
             const response = await axios.get("http://localhost:3001/temperaments/");
-            const allTempetaments = response.data;
-            return dispatch({
+            const allTempetaments = response.data.map((temp) => ({
+                id: temp.id,
+                name: temp.name,
+              }))
+              .sort((a, b) => a.name.localeCompare(b.name));
+            dispatch({
                 type: GET_TEMPERAMENTS,
                 payload: allTempetaments,
             })
@@ -73,9 +84,6 @@ export const getDogByName = (name) => {
         try {
             const response = await axios.get(`http://localhost:3001/dogs/?name=${name}`)
             const dogByName = response.data;
-            if (!dogByName) {
-                window.alert("No existen razas con ese nombre.")
-            }
             dispatch({
                 type: GET_DOGS_BY_NAME,
                 payload: dogByName,
@@ -99,5 +107,58 @@ export const getDogById = (id) => {
         } catch (error) {
             handleAsyncError(error)
         }
+    }
+}
+
+
+export const filterByTemperaments = (value) => {
+    return function (dispatch) {
+        dispatch({
+            type: FILTER_BY_TEMPERAMENT,
+            payload: value,
+        })
+    }
+}
+
+export const filteredByOrigin = (value) => {
+    return function (dispatch) {
+        dispatch({
+            type: FILTERED_BY_ORIGIN,
+            payload: value,
+        })
+    }
+}
+
+export const dogsFilteredAlphabetically = (value) => {
+    return function (dispatch) {
+        dispatch({
+            type: DOGS_FILTERED_ALPHABETICALLY,
+            payload: value,
+        })
+    }
+}
+
+export const dogsFilteredByWeight = (value) => {
+    return function (dispatch) {
+        dispatch({
+            type: DOGS_FILTERED_BY_WEIGHT,
+            payload: value,
+        })
+    }
+}
+
+export const sortedAndFiltered = (configs) => {
+    return function (dispatch, getState) {
+        const state = getState(); // Obtén el estado actual del store
+        const allDogs = state.allDogs || []; // Asegúrate de que allDogs no sea undefined
+
+        // Llama a la función dogsSortedAndFiltered con los datos necesarios
+        const filteredAndOrdered = dogsSortedAndFiltered(allDogs, configs);
+
+        // Despacha la acción con los datos procesados
+        dispatch({
+            type: SORTED_AND_FILTERED,
+            payload: filteredAndOrdered
+        });
     }
 }

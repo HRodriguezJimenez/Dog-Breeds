@@ -38,14 +38,14 @@ export const getTemperaments = () => {
     return async function (dispatch) {
         try {
             const response = await axios.get("http://localhost:3001/temperaments/");
-            const allTempetaments = response.data.map((temp) => ({
+            const allTemperaments = response.data.map((temp) => ({
                 id: temp.id,
                 name: temp.name,
               }))
               .sort((a, b) => a.name.localeCompare(b.name));
             dispatch({
                 type: GET_TEMPERAMENTS,
-                payload: allTempetaments,
+                payload: allTemperaments,
             })
         } catch (error) {
             handleAsyncError(error)

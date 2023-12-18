@@ -3,7 +3,7 @@ import { useEffect } from "react"; // Manejamos los efectos secundarios en el co
 
 import Card from "../Card/Card";
 import style from "./cardsContainer.module.css";
-import { paginDogs } from "../../redux/actions"; // Actions para controlar al paginado de la app.
+import { paginDogs, sortedAndFiltered } from "../../redux/actions"; // Actions para controlar al paginado de la app.
 
 const CardsContainer = ({ allDogs, isSearching }) => {
   // "allDogs" contiene el resultado de la búsqueda y "isSearching" indica si se esta realizando una búsqueda.
@@ -14,6 +14,7 @@ const CardsContainer = ({ allDogs, isSearching }) => {
   // Inicia un efecto que se ejecuta cuando "isSearching" cambia o cuando el componente se monta. Despacha una actions con el número de página actual si no estamos realizando una búsqueda.
   useEffect(() => {
     if (!isSearching) {
+      dispatch(sortedAndFiltered({}));
       dispatch(paginDogs(page));
     }
   }, [isSearching, dispatch, page]);

@@ -1,34 +1,39 @@
-export const filterByTemperament = (dogs, temperament) => {
-    console.log(dogs);
-    return temperament === "all"
-      ? dogs
-      : dogs.filter((dog) =>
-          dog.temperaments.some((temp) => temperament.includes(temp)) || false
-        ) || [];      
+export const filterByTemperament = (dogs, temperaments) => {
+    //console.log(temperaments);
+    let temperamentDogs = [];
+  temperaments === "all"
+    ? (temperamentDogs = dogs)
+    : (temperamentDogs = dogs?.filter((dog) =>
+        dog.Temperaments?.some((temp) => temperaments.includes(temp))
+      ));
+  console.log(temperamentDogs);
+  return temperamentDogs;     
 }
 
 export const filterByOrigin = (dogs, filter) => {
+    let dogsByOrigin = [];
     if (filter === "Dogs BDD") {
-      return dogs.filter((dog) => dog.created === true);
+      dogsByOrigin = dogs.filter((dog) => dog.created === true);
     }
   
     if (filter === "Dogs API") {
-      return dogs.filter((dog) => dog.created === false);
+      dogsByOrigin = dogs.filter((dog) => dog.created === false);
     }
-  
-    return dogs;
+    //console.log(dogsByOrigin);
+    return dogsByOrigin;
 }
 
 export const orderAlphabetically = (dogs, order) => {
+    let dogsByAlphabetically = [];
     if (order === "A-Z") {
-      return dogs.sort((a, b) => a.name.localeCompare(b.name));
+      dogsByAlphabetically = dogs.sort((a, b) => a.name.localeCompare(b.name));
     }
   
     if (order === "Z-A") {
-      return dogs.sort((a, b) => b.name.localeCompare(a.name));
+      dogsByAlphabetically = dogs.sort((a, b) => b.name.localeCompare(a.name));
     }
-  
-    return dogs;
+    //console.log(dogsByAlphabetically);
+    return dogsByAlphabetically;
 }
 
 export const orderByWeight = (dogs, order) => {
@@ -43,13 +48,12 @@ export const orderByWeight = (dogs, order) => {
         .filter((dog) => dog.minWeight !== null)
         .sort((a, b) => b.minWeight - a.minWeight);
     }
-  
+    //console.log(dogs);
     return dogs;
 }
 
 export default function dogsSortedAndFiltered(dogs, configs) {
   const { temperamentsFilter, originFilter, order } = configs;
-  console.log(configs);
 
   let filteredAndOrdered = dogs;
 
@@ -68,5 +72,6 @@ export default function dogsSortedAndFiltered(dogs, configs) {
       filteredAndOrdered = orderAlphabetically(filteredAndOrdered, order.value);
     }
   } 
+  //console.log(filteredAndOrdered);
   return filteredAndOrdered;
 }

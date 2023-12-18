@@ -45,7 +45,6 @@ export default function FilterSearch({
       auxConfigs[filterKey] = { active: false, value: "" };
     }
     setConfigs(auxConfigs);
-    console.log(auxConfigs);
     dispatch(action(auxConfigs));
     dispatch(paginDogs(value));
     setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));
@@ -65,6 +64,7 @@ export default function FilterSearch({
     });
 
     dispatch(getDogs());
+    dispatch(sortedAndFiltered({}));
   };
 
   return (

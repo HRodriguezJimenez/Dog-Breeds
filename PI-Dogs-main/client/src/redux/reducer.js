@@ -51,7 +51,6 @@ const rootReducer = (state = initialState, action) => {
             };
 
         case SORTED_AND_FILTERED:
-            console.log(state);
             return {
                 ...state,
                 sortedAndFiltered: dogsSortedAndFiltered(state.allDogs, action.payload)

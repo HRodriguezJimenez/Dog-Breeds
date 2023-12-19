@@ -7,14 +7,16 @@ import {
     SORTED_AND_FILTERED
 } from "./actionsTypes";
 
-import dogsSortedAndFiltered from "./utilsRedux/filterAndSortFunctions";
+//import dogsSortedAndFiltered from "./utilsRedux/filterAndSortFunctions";
 
 const initialState = {
     allDogs: [],
     allTemperaments: [],
     dogById: [],
+    dogByName: [],
     page: 1,
     sortedAndFiltered: [],
+    configs: {},
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -23,6 +25,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allDogs: action.payload,
+                sortedAndFiltered: action.payload,
             }
 
         case GET_TEMPERAMENTS:
@@ -34,7 +37,7 @@ const rootReducer = (state = initialState, action) => {
         case GET_DOGS_BY_NAME:
             return {
                 ...state,
-                allDogs: action.payload,
+                sortedAndFiltered: action.payload,
                 page: 1, // Reiniciamos la página a 1.
             }
 
@@ -53,7 +56,8 @@ const rootReducer = (state = initialState, action) => {
         case SORTED_AND_FILTERED:
             return {
                 ...state,
-                sortedAndFiltered: dogsSortedAndFiltered(state.allDogs, action.payload)
+                sortedAndFiltered: action.payload,
+                configs: action.configs,
             }
     
         default:

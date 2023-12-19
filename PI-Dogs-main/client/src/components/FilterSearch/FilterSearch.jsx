@@ -17,51 +17,50 @@ export default function FilterSearch({
   searchName,
 }) {
   const dispatch = useDispatch();
+  const allDogs = useSelector((state) => state.sortedAndFiltered);
   const allTemperaments = useSelector((state) => state.allTemperaments);
 
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
 
-  const [filter, setFilter] = useState({
+  const initialFilterState = {
     temperament: "select one",
     order: "all",
     origin: "all",
-  });
+  };
 
-  const [configs, setConfigs] = useState({
+  const [filter, setFilter] = useState(initialFilterState);
+
+  const initialConfigsState = {
     temperamentsFilter: { active: false, value: "" },
     originFilter: { active: false, value: "" },
-    order: { active: false, type: "", value: "" },
-  });
+    order: { active: true, type: "", value: "" },
+  };
 
-  const handleChangeFilter = (e, filterKey, action) => {
-    const value = e.target.value;
-    let auxConfigs = { ...configs };
+  const [configs, setConfigs] = useState(initialConfigsState);
 
-    if (value !== "select one" && value !== "all") {
-      auxConfigs[filterKey] = { active: true, value: value };
-    } else {
-      auxConfigs[filterKey] = { active: false, value: "" };
-    }
+  const handleChangeFilter = (event, filterKey, action) => {
+    const value = event.target.value;
+    const auxConfigs = {
+      ...configs,
+      [filterKey]:
+        value !== "select one" && value !== "all"
+          ? { active: true, value: value }
+          : { active: false, value: "" },
+    };
+
     setConfigs(auxConfigs);
+    dispatch(sortedAndFiltered(auxConfigs, allDogs));
     dispatch(action(auxConfigs));
+    console.log("Configs after dispatch:", auxConfigs);
     dispatch(paginDogs(value));
     setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));
   };
 
   const resetFilters = () => {
-    setFilter({
-      temperament: "Select one or more typical temperaments of the breed",
-      order: "All",
-      origin: "Select Origin",
-    });
-
-    setConfigs({
-      temperamentsFilter: { active: false, value: "" },
-      originFilter: { active: false, value: "" },
-      order: { active: false, type: "", value: "" },
-    });
+    setFilter(initialFilterState);
+    setConfigs(initialConfigsState);
 
     dispatch(getDogs());
     dispatch(sortedAndFiltered({}));

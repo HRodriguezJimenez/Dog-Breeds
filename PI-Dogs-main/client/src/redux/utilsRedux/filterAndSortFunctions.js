@@ -7,7 +7,7 @@ export const filterByTemperament = (dogs, temperaments) => {
         dog.Temperaments?.some((temp) => temperaments.includes(temp))
       ));
   console.log(temperamentDogs);
-  return temperamentDogs;     
+  return temperamentDogs || [];     
 }
 
 export const filterByOrigin = (dogs, filter) => {
@@ -37,35 +37,36 @@ export const orderAlphabetically = (dogs, order) => {
 }
 
 export const orderByWeight = (dogs, order) => {
+    let dogsByWeight = []
     if (order === "LessOrMore") {
-      return dogs
-        .filter((dog) => dog.minWeight !== null)
+      dogsByWeight = dogs
+        ?.filter((dog) => dog.minWeight !== null)
         .sort((a, b) => a.minWeight - b.minWeight);
     }
   
     if (order === "MoreOrLess") {
-      return dogs
-        .filter((dog) => dog.minWeight !== null)
+      dogsByWeight = dogs
+        ?.filter((dog) => dog.minWeight !== null)
         .sort((a, b) => b.minWeight - a.minWeight);
     }
-    console.log(dogs);
-    return dogs;
+    console.log(dogsByWeight);
+    return dogsByWeight;
 }
 
-export default function dogsSortedAndFiltered(dogs, configs) {
-  const { temperamentsFilter, originFilter, order } = configs;
+export default function dogsSortedAndFiltered(dogs, configs = {}) {
+  const {  temperamentsFilter = {}, originFilter = {}, order = {}  } = configs;
 
-  let filteredAndOrdered = dogs;
+  let filteredAndOrdered = [ ...dogs ];
 
-  if (temperamentsFilter && temperamentsFilter.active) {
+  if (temperamentsFilter.active) {
     filteredAndOrdered = filterByTemperament(filteredAndOrdered, temperamentsFilter.value);
   }
 
-  if (originFilter && originFilter.active) {
+  if (originFilter.active) {
     filteredAndOrdered = filterByOrigin(filteredAndOrdered, originFilter.value);
   }
 
-  if (order && order.active) {
+  if (order.active) {
     if (order.type === "weight") {
       filteredAndOrdered = orderByWeight(filteredAndOrdered, order.value);
     } else {

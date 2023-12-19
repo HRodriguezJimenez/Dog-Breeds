@@ -6,7 +6,7 @@ import CardsContainer from "../../components/CardsContainer/CardsContainer";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.allDogs);
+  const allDogs = useSelector((state) => state.sortedAndFiltered);
   const [searchName, setSearchName] = useState(""); // Estado local que usamos para almacenar el nombre utilizado en la busqueda.
   const [isSearching, setIsSearching] = useState(false); // Estado local donde indicamos si actualmente se esta realizando una busqueda.
 

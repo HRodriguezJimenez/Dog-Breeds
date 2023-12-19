@@ -153,12 +153,14 @@ export const sortedAndFiltered = (configs) => {
         const allDogs = state.allDogs || []; // Asegúrate de que allDogs no sea undefined
 
         // Llama a la función dogsSortedAndFiltered con los datos necesarios
+        
         const filteredAndOrdered = dogsSortedAndFiltered(allDogs, configs);
 
         // Despacha la acción con los datos procesados
         dispatch({
             type: SORTED_AND_FILTERED,
-            payload: filteredAndOrdered
+            payload: filteredAndOrdered,
+            configs: configs,
         });
     }
 }

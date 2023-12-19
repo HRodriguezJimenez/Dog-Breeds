@@ -6,7 +6,7 @@ export const filterByTemperament = (dogs, temperaments) => {
     : (temperamentDogs = dogs?.filter((dog) =>
         dog.Temperaments?.some((temp) => temperaments.includes(temp))
       ));
-  console.log(temperamentDogs);
+  //console.log(temperamentDogs);
   return temperamentDogs;     
 }
 

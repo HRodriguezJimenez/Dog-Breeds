@@ -77,7 +77,7 @@ export default function FilterSearch({
             name="temperaments"
             value={filter.temperament}
             onChange={(e) =>
-              handleChangeFilter(e, "temperamentsFilter", sortedAndFiltered)
+              handleChangeFilter(e, "temperaments", sortedAndFiltered)
             }
           >
             <option name="all" value="all">
@@ -100,9 +100,7 @@ export default function FilterSearch({
           <select
             name="origin"
             value={filter.origin}
-            onChange={(e) =>
-              handleChangeFilter(e, "originFilter", sortedAndFiltered)
-            }
+            onChange={(e) => handleChangeFilter(e, "origin", sortedAndFiltered)}
           >
             <option value="all">All</option>
             <option name="Dogs BDD" value="Dogs BDD">
@@ -119,7 +117,7 @@ export default function FilterSearch({
           <select
             name="weight"
             value={filter.order}
-            onChange={(e) => handleChangeFilter(e, "weight", sortedAndFiltered)}
+            onChange={(e) => handleChangeFilter(e, "order", sortedAndFiltered)}
           >
             <option name="LessOrMore" value="LessOrMore">
               Low to High

@@ -72,15 +72,16 @@ export default function FilterSearch({
       <h1>Aqui van los filtros</h1>
       <div>
         <div>
-          <label>Temperaments: </label>
+          <label htmlFor="temperaments">Temperaments: </label>
           <select
+            id="temperaments"
             name="temperaments"
             value={filter.temperament}
             onChange={(e) =>
               handleChangeFilter(e, "temperament", sortedAndFiltered)
             }
           >
-            <option name="all" value="all">
+            <option id="allOption" name="all" value="all">
               All
             </option>
             {allTemperaments?.map((temperament) => (
@@ -96,42 +97,46 @@ export default function FilterSearch({
         </div>
 
         <div>
-          <label>Creation time: </label>
+          <label htmlFor="origin">Creation time: </label>
           <select
+            id="origin"
             name="origin"
             value={filter.origin}
             onChange={(e) => handleChangeFilter(e, "origin", sortedAndFiltered)}
           >
-            <option value="all">All</option>
-            <option name="Dogs BDD" value="Dogs BDD">
+            <option id="allOption" value="all">
+              All
+            </option>
+            <option id="DogsBDDOption" name="Dogs BDD" value="Dogs BDD">
               New breeds
             </option>
-            <option name="Dogs API" value="Dogs API">
+            <option id="DogsAPIOption" name="Dogs API" value="Dogs API">
               Other breeds
             </option>
           </select>
         </div>
 
         <div>
-          <label>Order:</label>
+          <label htmlFor="weight">Order:</label>
           <select
+            id="weight"
             name="weight"
             value={filter.order}
             onChange={(e) => handleChangeFilter(e, "order", sortedAndFiltered)}
           >
-            <option name="LessOrMore" value="LessOrMore">
-              Low to High
+            <option id="LessOrMoreOption" name="LessOrMore" value="LessOrMore">
+              Less to More
             </option>
             <option name="MoreOrLess" value="MoreOrLess">
-              High to Low
+              More to Less
             </option>
-            <option name="A-Z" value="A-Z">
+            <option id="MoreOrLessOption" name="A-Z" value="A-Z">
               A-Z
             </option>
-            <option name="Z-A" value="Z-A">
+            <option id="AZOption" name="Z-A" value="Z-A">
               Z-A
             </option>
-            <option name="All" value="All">
+            <option id="ZAOption" name="All" value="All">
               All
             </option>
           </select>

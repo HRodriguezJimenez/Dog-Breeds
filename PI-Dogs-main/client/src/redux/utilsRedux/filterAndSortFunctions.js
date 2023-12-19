@@ -1,12 +1,12 @@
 export const filterByTemperament = (dogs, temperaments) => {
-    //console.log(temperaments);
+    console.log(temperaments);
     let temperamentDogs = [];
   temperaments === "all"
     ? (temperamentDogs = dogs)
     : (temperamentDogs = dogs?.filter((dog) =>
         dog.Temperaments?.some((temp) => temperaments.includes(temp))
       ));
-  //console.log(temperamentDogs);
+  console.log(temperamentDogs);
   return temperamentDogs;     
 }
 
@@ -19,7 +19,7 @@ export const filterByOrigin = (dogs, filter) => {
     if (filter === "Dogs API") {
       dogsByOrigin = dogs.filter((dog) => dog.created === false);
     }
-    //console.log(dogsByOrigin);
+    console.log(dogsByOrigin);
     return dogsByOrigin;
 }
 
@@ -32,7 +32,7 @@ export const orderAlphabetically = (dogs, order) => {
     if (order === "Z-A") {
       dogsByAlphabetically = dogs.sort((a, b) => b.name.localeCompare(a.name));
     }
-    //console.log(dogsByAlphabetically);
+    console.log(dogsByAlphabetically);
     return dogsByAlphabetically;
 }
 
@@ -48,7 +48,7 @@ export const orderByWeight = (dogs, order) => {
         .filter((dog) => dog.minWeight !== null)
         .sort((a, b) => b.minWeight - a.minWeight);
     }
-    //console.log(dogs);
+    console.log(dogs);
     return dogs;
 }
 
@@ -72,6 +72,6 @@ export default function dogsSortedAndFiltered(dogs, configs) {
       filteredAndOrdered = orderAlphabetically(filteredAndOrdered, order.value);
     }
   } 
-  //console.log(filteredAndOrdered);
+  console.log(filteredAndOrdered);
   return filteredAndOrdered;
 }

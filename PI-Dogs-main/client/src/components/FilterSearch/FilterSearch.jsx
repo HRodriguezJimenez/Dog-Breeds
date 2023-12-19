@@ -77,7 +77,7 @@ export default function FilterSearch({
             name="temperaments"
             value={filter.temperament}
             onChange={(e) =>
-              handleChangeFilter(e, "temperaments", sortedAndFiltered)
+              handleChangeFilter(e, "temperament", sortedAndFiltered)
             }
           >
             <option name="all" value="all">

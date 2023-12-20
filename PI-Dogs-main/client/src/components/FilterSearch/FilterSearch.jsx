@@ -46,8 +46,15 @@ export default function FilterSearch({
       ...configs,
       [filterKey]:
         value !== "all"
-          ? { active: true, value }
-          : { active: false, value: "" },
+          ? {
+              active: true,
+              value,
+              type:
+                value === "LessOrMore" || value === "MoreOrLess"
+                  ? "weight"
+                  : "alphabet",
+            }
+          : { active: false, value: "", type: "" },
     };
 
     setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));

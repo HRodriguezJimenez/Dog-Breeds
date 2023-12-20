@@ -74,7 +74,7 @@ export default function dogsSortedAndFiltered(dogs, configs = {}) {
   if (order.active) {
     if (order.type === "weight") {
       filteredAndOrdered = orderByWeight(filteredAndOrdered, order.value);
-    } else {
+    } else if (order.type === "alphabet") {
       filteredAndOrdered = orderAlphabetically(filteredAndOrdered, order.value);
     }
   } 

@@ -17,7 +17,7 @@ export default function FilterSearch({
   searchName,
 }) {
   const dispatch = useDispatch();
-  const allDogs = useSelector((state) => state.sortedAndFiltered);
+  //const allDogs = useSelector((state) => state.sortedAndFiltered);
   const allTemperaments = useSelector((state) => state.allTemperaments);
 
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function FilterSearch({
     setConfigs(auxConfigs);
     console.log("Configs after dispatch:", auxConfigs);
 
-    dispatch(sortedAndFiltered(auxConfigs, allDogs));
+    dispatch(sortedAndFiltered(auxConfigs));
     dispatch(action(auxConfigs));
     dispatch(paginDogs(value));
   };
@@ -62,7 +62,7 @@ export default function FilterSearch({
   const resetFilters = () => {
     setFilter(initialFilterState);
     setConfigs(initialConfigsState);
-
+    dispatch(paginDogs(1));
     dispatch(getDogs());
     dispatch(sortedAndFiltered({}));
   };

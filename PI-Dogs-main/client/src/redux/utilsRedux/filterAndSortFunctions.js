@@ -59,16 +59,16 @@ export const orderByWeight = (dogs, order) => {
 }
 
 export default function dogsSortedAndFiltered(dogs, configs = {}) {
-  const {  temperamentsFilter = {}, originFilter = {}, order = {}} = configs;
+  const { temperament = {}, origin = {}, order = {}} = configs;
 
   let filteredAndOrdered = [ ...dogs ];
 
-  if (temperamentsFilter.active) {
-    filteredAndOrdered = filterByTemperament(filteredAndOrdered, temperamentsFilter.value);
+  if (temperament.active) {
+    filteredAndOrdered = filterByTemperament(filteredAndOrdered, temperament.value);
   }
 
-  if (originFilter.active) {
-    filteredAndOrdered = filterByOrigin(filteredAndOrdered, originFilter.value);
+  if (origin.active) {
+    filteredAndOrdered = filterByOrigin(filteredAndOrdered, origin.value);
   }
 
   if (order.active) {

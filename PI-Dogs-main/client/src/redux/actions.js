@@ -4,16 +4,12 @@ import {
     PAGIN_DOGS,
     GET_DOGS_BY_NAME,
     GET_DOG_BY_ID,
-    FILTER_BY_TEMPERAMENT,
-    FILTERED_BY_ORIGIN,
-    DOGS_FILTERED_ALPHABETICALLY,
-    DOGS_FILTERED_BY_WEIGHT,
     SORTED_AND_FILTERED,
 } from "./actionsTypes";
 
-import { handleAsyncError } from "./utilsRedux/handleAsyncError";
+import { handleAsyncError } from "./utilsRedux/handleAsyncError"; // Función creada para manejar los errores que puedan tener las solicitudes.
 
-import dogsSortedAndFiltered from "./utilsRedux/filterAndSortFunctions"
+import dogsSortedAndFiltered from "./utilsRedux/filterAndSortFunctions"; // Esta función la creamos para que realize un filtrado y ordenamiento de los dogs.
 
 import axios from "axios";
 
@@ -38,11 +34,10 @@ export const getTemperaments = () => {
     return async function (dispatch) {
         try {
             const response = await axios.get("http://localhost:3001/temperaments/");
-            const allTemperaments = response.data.map((temp) => ({
-                id: temp.id,
+            const allTemperaments = response.data.map((temp) => ({ // Mapeamos la data buscando los temperamentos.
                 name: temp.name,
               }))
-              .sort((a, b) => a.name.localeCompare(b.name));
+              .sort((a, b) => a.name.localeCompare(b.name)); // Ordenamos los temperamentos en orden alfabético.
             dispatch({
                 type: GET_TEMPERAMENTS,
                 payload: allTemperaments,
@@ -110,57 +105,21 @@ export const getDogById = (id) => {
     }
 }
 
-
-export const filterByTemperaments = (value) => {
-    return function (dispatch) {
-        dispatch({
-            type: FILTER_BY_TEMPERAMENT,
-            payload: value,
-        })
-    }
-}
-
-export const filteredByOrigin = (value) => {
-    return function (dispatch) {
-        dispatch({
-            type: FILTERED_BY_ORIGIN,
-            payload: value,
-        })
-    }
-}
-
-export const dogsFilteredAlphabetically = (value) => {
-    return function (dispatch) {
-        dispatch({
-            type: DOGS_FILTERED_ALPHABETICALLY,
-            payload: value,
-        })
-    }
-}
-
-export const dogsFilteredByWeight = (value) => {
-    return function (dispatch) {
-        dispatch({
-            type: DOGS_FILTERED_BY_WEIGHT,
-            payload: value,
-        })
-    }
-}
-
+// En esta action retornamos la información de los dogs ordenada y filtrada.
 export const sortedAndFiltered = (configs) => {
     return function (dispatch, getState) {
-        const state = getState(); // Obtén el estado actual del store
-        const allDogs = state.allDogs; // Asegúrate de que allDogs no sea undefined
+            const state = getState(); // getState es una función que devuelve el estado actual del store. Nos permite acceder al estado actual antes de realizar los cambios.
+            
+        const allDogs = state.allDogs; 
 
-        // Llama a la función dogsSortedAndFiltered con los datos necesarios
         
-        const filteredAndOrdered = dogsSortedAndFiltered(allDogs, configs);
+        
+        const filteredAndOrdered = dogsSortedAndFiltered(allDogs, configs); // llamamos a la función que realiza el filtrado y ordenamiento para que organize la información de acuerdo a los parametros de busqueda que llegan en configs.
 
-        // Despacha la acción con los datos procesados
+        
         dispatch({
             type: SORTED_AND_FILTERED,
             payload: filteredAndOrdered,
-            configs: configs,
         });
     }
 }

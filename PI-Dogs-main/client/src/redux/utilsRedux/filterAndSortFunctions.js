@@ -1,18 +1,17 @@
+// Esta función nos retorna un array con los perros que tengan el temperamento seleccionado para realizar el filtro.
 export function filterByTemperament(dogs, temperaments) {
-  console.log(temperaments);
     let temperamentDogs = [];
   temperaments === "all"
     ? (temperamentDogs = dogs)
-    : (temperamentDogs = dogs?.filter((dog) =>
+    : (temperamentDogs = dogs?.filter((dog) => // "?" Utilizamos un operador opcional para continuar evaluando el objeto incluso si sus propidades son "null" o "undefined".
         dog.Temperaments?.some((temp) => temperaments.includes(temp))
       ));
-  console.log(temperamentDogs);
+  
   return temperamentDogs;     
 }
 
+// En esta función realizamos un filtro que nos muestre los dogs basandose en la propiedad created.
 export const filterByOrigin = (dogs, filter) => {
-  console.log(dogs);
-  console.log(filter);
     let dogsByOrigin = [];
     if (filter === "Dogs BDD") {
       dogsByOrigin = dogs.filter((dog) => dog.created === true);
@@ -21,14 +20,15 @@ export const filterByOrigin = (dogs, filter) => {
     if (filter === "Dogs API") {
       dogsByOrigin = dogs.filter((dog) => dog.created === false);
     }
-    console.log(dogsByOrigin);
+    
     return dogsByOrigin;
 }
 
+// Función para ordenar los dogs en orden alfabético tomando como referencia su nombre.
 export const orderAlphabetically = (dogs, order) => {
   
     let dogsByAlphabetically = [];
-    if (order === "A-Z") {
+    if (order === "A-Z") { // Usamos el método sort para organizar los dogs junto con el método "localeCompare" para comparar las cadenas de "string" de los nombres.
       dogsByAlphabetically = dogs.sort((a, b) => a.name.localeCompare(b.name));
     }
   
@@ -39,9 +39,8 @@ export const orderAlphabetically = (dogs, order) => {
     return dogsByAlphabetically;
 }
 
+// Función en la realizamos un ordenamiento de menos a mas ó de mas a menos basandonos en el peso de los dogs.
 export const orderByWeight = (dogs, order) => {
-  console.log(dogs);
-  console.log(order);
     let dogsByWeight = []
     if (order === "LessOrMore") {
       dogsByWeight = dogs
@@ -54,14 +53,15 @@ export const orderByWeight = (dogs, order) => {
         ?.filter((dog) => dog.minWeight !== null)
         .sort((a, b) => b.minWeight - a.minWeight);
     }
-    console.log(dogsByWeight);
+    
     return dogsByWeight;
 }
 
+// En esta función incorporamos las funciones anteriores y es la  que vamos a usar para enviar la información filtrada y ordenada, recibe como parametros la lista de dogs para filtrar y un objeto de nombre configs que trae las propiedades específicas para realizar el filtrado y ordenamiento.
 export default function dogsSortedAndFiltered(dogs, configs = {}) {
   const { temperament = {}, origin = {}, order = {}} = configs;
 
-  let filteredAndOrdered = [ ...dogs ];
+  let filteredAndOrdered = [ ...dogs ]; // Creamos una copia del estado original.
 
   if (temperament.active) {
     filteredAndOrdered = filterByTemperament(filteredAndOrdered, temperament.value);
@@ -78,6 +78,6 @@ export default function dogsSortedAndFiltered(dogs, configs = {}) {
       filteredAndOrdered = orderAlphabetically(filteredAndOrdered, order.value);
     }
   } 
-  console.log(filteredAndOrdered);
+  
   return [ ...filteredAndOrdered ];
 }

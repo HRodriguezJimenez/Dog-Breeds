@@ -7,8 +7,6 @@ import {
     SORTED_AND_FILTERED
 } from "./actionsTypes";
 
-//import dogsSortedAndFiltered from "./utilsRedux/filterAndSortFunctions";
-
 const initialState = {
     allDogs: [],
     allTemperaments: [],
@@ -16,7 +14,6 @@ const initialState = {
     dogByName: [],
     page: 1,
     sortedAndFiltered: [],
-    configs: {},
 }
 
 const rootReducer = (state = initialState, action) => {
@@ -57,7 +54,6 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 sortedAndFiltered: action.payload,
-                configs: action.configs,
             }
     
         default:

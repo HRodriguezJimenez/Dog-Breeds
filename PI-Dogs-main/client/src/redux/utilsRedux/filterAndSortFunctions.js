@@ -1,5 +1,5 @@
-export const filterByTemperament = (dogs, temperaments) => {
-    console.log(temperaments);
+export function filterByTemperament(dogs, temperaments) {
+  console.log(temperaments);
     let temperamentDogs = [];
   temperaments === "all"
     ? (temperamentDogs = dogs)
@@ -7,10 +7,12 @@ export const filterByTemperament = (dogs, temperaments) => {
         dog.Temperaments?.some((temp) => temperaments.includes(temp))
       ));
   console.log(temperamentDogs);
-  return temperamentDogs || [];     
+  return temperamentDogs;     
 }
 
 export const filterByOrigin = (dogs, filter) => {
+  console.log(dogs);
+  console.log(filter);
     let dogsByOrigin = [];
     if (filter === "Dogs BDD") {
       dogsByOrigin = dogs.filter((dog) => dog.created === true);
@@ -24,6 +26,7 @@ export const filterByOrigin = (dogs, filter) => {
 }
 
 export const orderAlphabetically = (dogs, order) => {
+  
     let dogsByAlphabetically = [];
     if (order === "A-Z") {
       dogsByAlphabetically = dogs.sort((a, b) => a.name.localeCompare(b.name));
@@ -32,11 +35,13 @@ export const orderAlphabetically = (dogs, order) => {
     if (order === "Z-A") {
       dogsByAlphabetically = dogs.sort((a, b) => b.name.localeCompare(a.name));
     }
-    console.log(dogsByAlphabetically);
+    
     return dogsByAlphabetically;
 }
 
 export const orderByWeight = (dogs, order) => {
+  console.log(dogs);
+  console.log(order);
     let dogsByWeight = []
     if (order === "LessOrMore") {
       dogsByWeight = dogs
@@ -54,7 +59,7 @@ export const orderByWeight = (dogs, order) => {
 }
 
 export default function dogsSortedAndFiltered(dogs, configs = {}) {
-  const {  temperamentsFilter = {}, originFilter = {}, order = {}  } = configs;
+  const {  temperamentsFilter = {}, originFilter = {}, order = {}} = configs;
 
   let filteredAndOrdered = [ ...dogs ];
 
@@ -74,5 +79,5 @@ export default function dogsSortedAndFiltered(dogs, configs = {}) {
     }
   } 
   console.log(filteredAndOrdered);
-  return filteredAndOrdered;
+  return [ ...filteredAndOrdered ];
 }

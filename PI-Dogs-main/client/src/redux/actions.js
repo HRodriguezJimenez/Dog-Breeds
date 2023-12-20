@@ -150,7 +150,7 @@ export const dogsFilteredByWeight = (value) => {
 export const sortedAndFiltered = (configs) => {
     return function (dispatch, getState) {
         const state = getState(); // Obtén el estado actual del store
-        const allDogs = state.allDogs || []; // Asegúrate de que allDogs no sea undefined
+        const allDogs = state.allDogs; // Asegúrate de que allDogs no sea undefined
 
         // Llama a la función dogsSortedAndFiltered con los datos necesarios
         

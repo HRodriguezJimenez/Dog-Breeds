@@ -25,7 +25,7 @@ export default function FilterSearch({
   }, [dispatch]);
 
   const initialFilterState = {
-    temperament: "select one",
+    temperament: "all",
     order: "all",
     origin: "all",
   };
@@ -33,9 +33,9 @@ export default function FilterSearch({
   const [filter, setFilter] = useState(initialFilterState);
 
   const initialConfigsState = {
-    temperamentsFilter: { active: false, value: "" },
-    originFilter: { active: false, value: "" },
-    order: { active: true, type: "", value: "" },
+    temperament: { active: false, value: "" },
+    origin: { active: false, value: "" },
+    order: { active: false, type: "", value: "" },
   };
 
   const [configs, setConfigs] = useState(initialConfigsState);
@@ -45,17 +45,18 @@ export default function FilterSearch({
     const auxConfigs = {
       ...configs,
       [filterKey]:
-        value !== "select one" && value !== "all"
-          ? { active: true, value: value }
+        value !== "all"
+          ? { active: true, value }
           : { active: false, value: "" },
     };
 
+    setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));
     setConfigs(auxConfigs);
+    console.log("Configs after dispatch:", auxConfigs);
+
     dispatch(sortedAndFiltered(auxConfigs, allDogs));
     dispatch(action(auxConfigs));
-    console.log("Configs after dispatch:", auxConfigs);
     dispatch(paginDogs(value));
-    setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));
   };
 
   const resetFilters = () => {
@@ -124,18 +125,18 @@ export default function FilterSearch({
             onChange={(e) => handleChangeFilter(e, "order", sortedAndFiltered)}
           >
             <option id="LessOrMoreOption" name="LessOrMore" value="LessOrMore">
-              Less to More
+              Less or More
             </option>
-            <option name="MoreOrLess" value="MoreOrLess">
-              More to Less
+            <option id="MoreOrLessOption" name="MoreOrLess" value="MoreOrLess">
+              More or Less
             </option>
-            <option id="MoreOrLessOption" name="A-Z" value="A-Z">
+            <option id="AZOption" name="A-Z" value="A-Z">
               A-Z
             </option>
-            <option id="AZOption" name="Z-A" value="Z-A">
+            <option id="ZAOption" name="Z-A" value="Z-A">
               Z-A
             </option>
-            <option id="ZAOption" name="All" value="All">
+            <option id="allOption" name="all" value="all">
               All
             </option>
           </select>

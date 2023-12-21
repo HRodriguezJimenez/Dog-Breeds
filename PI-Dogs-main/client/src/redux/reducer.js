@@ -54,6 +54,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 sortedAndFiltered: action.payload,
+                page: 1,
             }
     
         default:

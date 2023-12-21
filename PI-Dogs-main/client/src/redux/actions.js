@@ -35,6 +35,7 @@ export const getTemperaments = () => {
         try {
             const response = await axios.get("http://localhost:3001/temperaments/");
             const allTemperaments = response.data.map((temp) => ({ // Mapeamos la data buscando los temperamentos.
+                id: temp.id,
                 name: temp.name,
               }))
               .sort((a, b) => a.name.localeCompare(b.name)); // Ordenamos los temperamentos en orden alfabético.

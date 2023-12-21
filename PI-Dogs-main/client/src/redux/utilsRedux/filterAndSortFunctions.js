@@ -1,11 +1,13 @@
 // Esta función nos retorna un array con los perros que tengan el temperamento seleccionado para realizar el filtro.
 export function filterByTemperament(dogs, temperaments) {
-    let temperamentDogs = [];
-  temperaments === "all"
-    ? (temperamentDogs = dogs)
-    : (temperamentDogs = dogs?.filter((dog) => // "?" Utilizamos un operador opcional para continuar evaluando el objeto incluso si sus propidades son "null" o "undefined".
-        dog.Temperaments?.some((temp) => temperaments.includes(temp))
-      ));
+  let temperamentDogs = [];
+  if (temperaments === "all") {
+    temperamentDogs = dogs;
+  } else {
+    temperamentDogs = dogs?.filter((dog) => {
+    return  dog.created || (dog.Temperaments && dog.Temperaments.length > 0 && dog.Temperaments.some((temp) => temperaments.includes(temp)));
+    });
+  }
   
   return temperamentDogs;     
 }
@@ -28,12 +30,16 @@ export const filterByOrigin = (dogs, filter) => {
 export const orderAlphabetically = (dogs, order) => {
   
     let dogsByAlphabetically = [];
-    if (order === "A-Z") { // Usamos el método sort para organizar los dogs junto con el método "localeCompare" para comparar las cadenas de "string" de los nombres.
-      dogsByAlphabetically = dogs.sort((a, b) => a.name.localeCompare(b.name));
+    if (order === "A-Z") {
+      dogsByAlphabetically = dogs
+        ?.filter((dog) => dog.created || (dog.name && dog.name.length > 0))
+        .sort((a, b) => a.name.localeCompare(b.name));
     }
   
     if (order === "Z-A") {
-      dogsByAlphabetically = dogs.sort((a, b) => b.name.localeCompare(a.name));
+      dogsByAlphabetically = dogs
+        ?.filter((dog) => dog.created || (dog.name && dog.name.length > 0))
+        .sort((a, b) => b.name.localeCompare(a.name));
     }
     
     return dogsByAlphabetically;
@@ -44,13 +50,13 @@ export const orderByWeight = (dogs, order) => {
     let dogsByWeight = []
     if (order === "LessOrMore") {
       dogsByWeight = dogs
-        ?.filter((dog) => dog.minWeight !== null)
+        ?.filter((dog) => dog.created || (dog.minWeight !== null))
         .sort((a, b) => a.minWeight - b.minWeight);
     }
   
     if (order === "MoreOrLess") {
       dogsByWeight = dogs
-        ?.filter((dog) => dog.minWeight !== null)
+        ?.filter((dog) => dog.created || (dog.minWeight !== null))
         .sort((a, b) => b.minWeight - a.minWeight);
     }
     

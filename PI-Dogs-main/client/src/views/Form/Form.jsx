@@ -1,10 +1,13 @@
-/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { validate } from "../../utils/functions";
+import { getTemperaments } from "../../redux/actions";
+import axios from "axios";
 
 const Form = () => {
   const allTemperaments = useSelector((state) => state.allTemperaments);
+
+  const dispatch = useDispatch();
 
   // Creamos un estado local para que almacene los valores ingresados en el input del formulario.
   const [input, setInput] = useState({
@@ -32,16 +35,67 @@ const Form = () => {
     temperaments: "Seleccione un temperamento.",
   });
 
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
+
   function handleChange(e) {
-    setInput({ ...input, [e.target.name]: e.target.value });
-    setErrors(validate({ ...input, [e.target.name]: e.target.value })); // Con esta función capturamos en tiempo real los cambios y errores que se vayan generando en el input.
+    const { name, value } = e.target;
+
+    if (name === "temperaments") {
+      // Para el campo de selección de temperamentos
+      setInput({ ...input, [name]: value });
+    } else {
+      // Para otros campos
+      setInput({ ...input, [name]: value });
+    }
+
+    setErrors(validate({ ...input, [name]: value }));
   }
+
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    const url = "http://localhost:3001/dogs";
+
+    try {
+      const response = await axios.post(url, {
+        ...input,
+        temperaments: input.temperaments,
+      });
+
+      if (response.status === 200) {
+        window.alert("¡Éxito! El formulario se ha enviado correctamente.");
+        setInput({
+          name: "",
+          image: "",
+          minHeight: "",
+          maxHeight: "",
+          minWeight: "",
+          maxWeight: "",
+          minLifeSpan: "",
+          maxLifeSpan: "",
+          temperaments: [],
+        });
+      } else {
+        console.log(
+          "Respuesta exitosa, pero con un código diferente:",
+          response
+        );
+      }
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        window.alert("Error: " + error.response.data.error);
+      } else {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <>
       <h1>Esta es la vista de Form</h1>
       <div>
-        <form action="http://localhost:3001/dogs/" method="post">
+        <form onSubmit={submitHandler}>
           <div>
             <label htmlFor="name">Nombre</label>
             <input
@@ -59,16 +113,16 @@ const Form = () => {
             <input
               type="text"
               value={input.value}
-              name="url"
+              name="image"
               onChange={handleChange}
-              id="url"
+              id="image"
               placeholder="Ingrese una URL"
               pattern="https?://.+"
             />
             {errors.image ? <p>{errors.image}</p> : null}
           </div>
           <div>
-            <label htmlFor="minHeight">Altura minima</label>
+            <label htmlFor="minHeight">Altura mínima</label>
             <input
               type="number"
               value={input.value}
@@ -79,6 +133,92 @@ const Form = () => {
             />
             {errors.minHeight ? <p>{errors.minHeight}</p> : null}
           </div>
+          <div>
+            <label htmlFor="maxHeight">Altura máxima</label>
+            <input
+              type="number"
+              value={input.value}
+              name="maxHeight"
+              onChange={handleChange}
+              id="maxHeight"
+              placeholder="1 - 100"
+            />
+            {errors.maxHeight ? <p>{errors.maxHeight}</p> : null}
+          </div>
+          <div>
+            <label htmlFor="minWeight">Peso mínimo</label>
+            <input
+              type="number"
+              value={input.value}
+              name="minWeight"
+              onChange={handleChange}
+              id="minWeight"
+              placeholder="1 - 100"
+            />
+            {errors.minWeight ? <p>{errors.minWeight}</p> : null}
+          </div>
+          <div>
+            <label htmlFor="maxWeight">Peso máximo</label>
+            <input
+              type="number"
+              value={input.value}
+              name="maxWeight"
+              onChange={handleChange}
+              id="maxWeight"
+              placeholder="1 - 100"
+            />
+            {errors.maxWeight ? <p>{errors.maxWeight}</p> : null}
+          </div>
+          <div>
+            <label htmlFor="minLifeSpan">Años de vida mínimo</label>
+            <input
+              type="number"
+              value={input.value}
+              name="minLifeSpan"
+              onChange={handleChange}
+              id="minLifeSpan"
+              placeholder="1 - 20"
+            />
+            {errors.minLifeSpan ? <p>{errors.minLifeSpan}</p> : null}
+          </div>
+          <div>
+            <label htmlFor="maxLifeSpan">Años de vida máximo</label>
+            <input
+              type="number"
+              value={input.value}
+              name="maxLifeSpan"
+              onChange={handleChange}
+              id="maxLifeSpan"
+              placeholder="1 - 20"
+            />
+            {errors.maxLifeSpan ? <p>{errors.maxLifeSpan}</p> : null}
+          </div>
+          <div>
+            <label htmlFor="temperaments">Temperamentos</label>
+            <select
+              id="temperaments"
+              name="temperaments"
+              value={input.temperaments}
+              onChange={handleChange}
+            >
+              {allTemperaments?.map((temperament) => (
+                <option key={temperament.id} value={temperament.id}>
+                  {temperament.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          {errors.name ||
+          errors.image ||
+          errors.minHeight ||
+          errors.maxHeight ||
+          errors.minWeight ||
+          errors.maxWeight ||
+          errors.minLifeSpan ||
+          errors.maxLifeSpan ||
+          errors.temperaments ? null : (
+            <button type="submit">Enviar</button>
+          )}
         </form>
       </div>
     </>

@@ -1,4 +1,4 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize')
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -65,6 +65,10 @@ module.exports = (sequelize) => {
         max: { args: 20, msg: "La duración máxima de la vida debe ser menor o igual a 20" },
       },
       allowNull: false,
+    },
+    temperaments: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
     created : {
       type: DataTypes.BOOLEAN,

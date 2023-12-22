@@ -10,7 +10,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const dogById = useSelector((state) => state.dogById);
   const { id } = useParams(); // "useParams" lo usamos para extraer el parámetro "id" de la URL.
-
+  console.log(dogById);
   // Llamamos a la función getDogById cuando el componente se monta o cuando el id cambia.
   useEffect(() => {
     dispatch(getDogById(id));

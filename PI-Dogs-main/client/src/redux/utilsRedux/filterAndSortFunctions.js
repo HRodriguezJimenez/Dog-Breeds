@@ -4,11 +4,17 @@ export function filterByTemperament(dogs, temperaments) {
   temperaments === "all"
     ? (temperamentDogs = dogs)
     : (temperamentDogs = dogs?.filter((dog) =>
-        dog.Temperaments?.some((temp) => temperaments.includes(temp))
+        dog.Temperaments?.some(
+          (temp) =>
+            typeof temp === 'string'
+              ? temperaments.includes(temp)
+              : temperaments.includes(temp.name)
+        )
       ));
 
   return temperamentDogs;
 }
+
 
 // En esta función realizamos un filtro que nos muestre los dogs basandose en la propiedad created.
 export const filterByOrigin = (dogs, filter) => {

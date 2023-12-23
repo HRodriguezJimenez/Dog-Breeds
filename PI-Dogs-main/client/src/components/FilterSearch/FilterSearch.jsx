@@ -88,7 +88,7 @@ export default function FilterSearch({
               handleChangeFilter(e, "temperament", sortedAndFiltered)
             }
           >
-            <option id="allOption" name="all" value="all">
+            <option id="allOptionTemperament" name="all" value="all">
               All
             </option>
             {allTemperaments?.map((temperament) => (
@@ -111,7 +111,7 @@ export default function FilterSearch({
             value={filter.origin}
             onChange={(e) => handleChangeFilter(e, "origin", sortedAndFiltered)}
           >
-            <option id="allOption" value="all">
+            <option id="allOptionOrigin" value="all">
               All
             </option>
             <option id="DogsBDDOption" name="Dogs BDD" value="Dogs BDD">

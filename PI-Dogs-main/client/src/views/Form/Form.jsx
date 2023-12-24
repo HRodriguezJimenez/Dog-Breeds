@@ -42,15 +42,21 @@ const Form = () => {
   function handleChange(e) {
     const { name, value } = e.target;
 
+    // Convertir a número solo si el campo es numérico
+    const numericValue =
+      !isNaN(value) && !isNaN(parseInt(value, 10))
+        ? parseInt(value, 10)
+        : value;
+
     if (name === "temperaments") {
       // Para el campo de selección de temperamentos
-      setInput({ ...input, [name]: value });
+      setInput({ ...input, [name]: numericValue });
     } else {
       // Para otros campos
-      setInput({ ...input, [name]: value });
+      setInput({ ...input, [name]: numericValue });
     }
 
-    setErrors(validate({ ...input, [name]: value }));
+    setErrors(validate({ ...input, [name]: numericValue }));
   }
 
   const submitHandler = async (event) => {
@@ -125,7 +131,7 @@ const Form = () => {
             <label htmlFor="minHeight">Altura mínima</label>
             <input
               type="number"
-              value={input.value}
+              value={input.minHeight}
               name="minHeight"
               onChange={handleChange}
               id="minHeight"
@@ -137,7 +143,7 @@ const Form = () => {
             <label htmlFor="maxHeight">Altura máxima</label>
             <input
               type="number"
-              value={input.value}
+              value={input.maxHeight}
               name="maxHeight"
               onChange={handleChange}
               id="maxHeight"
@@ -149,7 +155,7 @@ const Form = () => {
             <label htmlFor="minWeight">Peso mínimo</label>
             <input
               type="number"
-              value={input.value}
+              value={input.minWeight}
               name="minWeight"
               onChange={handleChange}
               id="minWeight"
@@ -161,7 +167,7 @@ const Form = () => {
             <label htmlFor="maxWeight">Peso máximo</label>
             <input
               type="number"
-              value={input.value}
+              value={input.maxWeight}
               name="maxWeight"
               onChange={handleChange}
               id="maxWeight"
@@ -173,7 +179,7 @@ const Form = () => {
             <label htmlFor="minLifeSpan">Años de vida mínimo</label>
             <input
               type="number"
-              value={input.value}
+              value={input.minLifeSpan}
               name="minLifeSpan"
               onChange={handleChange}
               id="minLifeSpan"
@@ -185,7 +191,7 @@ const Form = () => {
             <label htmlFor="maxLifeSpan">Años de vida máximo</label>
             <input
               type="number"
-              value={input.value}
+              value={input.maxLifeSpan}
               name="maxLifeSpan"
               onChange={handleChange}
               id="maxLifeSpan"

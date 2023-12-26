@@ -50,7 +50,10 @@ const Form = () => {
 
     if (name === "temperaments") {
       // Para el campo de selección de temperamentos
-      setInput({ ...input, [name]: numericValue });
+      setInput((prevInput) => ({
+        ...prevInput,
+        [name]: [...prevInput[name], numericValue],
+      }));
     } else {
       // Para otros campos
       setInput({ ...input, [name]: numericValue });
@@ -97,6 +100,24 @@ const Form = () => {
     }
   };
 
+  const addTemperament = () => {
+    const selectedTemperamentID = input.temperaments;
+
+    const selectedTemperament = allTemperaments.find(
+      (temp) => temp.id === selectedTemperamentID
+    );
+
+    if (
+      selectedTemperament &&
+      !input.temperaments.includes(selectedTemperament)
+    ) {
+      setInput({
+        ...input,
+        temperaments: [...input.temperaments, selectedTemperament],
+      });
+    }
+  };
+  console.log(input.temperaments);
   return (
     <>
       <h1>Esta es la vista de Form</h1>
@@ -207,12 +228,32 @@ const Form = () => {
               value={input.temperaments}
               onChange={handleChange}
             >
+              <option value="" disabled>
+                Seleccione un temperamento
+              </option>
               {allTemperaments?.map((temperament) => (
-                <option key={temperament.id} value={temperament.id}>
+                <option
+                  key={temperament.id}
+                  id={temperament.id}
+                  value={temperament.id}
+                >
                   {temperament.name}
                 </option>
               ))}
             </select>
+            <button type="button" onClick={addTemperament}>
+              Agregar Temperamento
+            </button>
+            {input.temperaments.length > 0 && (
+              <div>
+                <h4>Temperamentos Seleccionados:</h4>
+                {input.temperaments.map((temperament) => (
+                  <div key={temperament.id}>
+                    <p>{temperament.name}</p>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
           {errors.name ||
           errors.image ||

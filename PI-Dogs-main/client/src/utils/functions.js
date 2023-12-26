@@ -50,9 +50,7 @@ export const validate = ({
 
   if (!image) {
     errors.image = "Si no provee una imagen se asignara una por defecto."
-  } else if (/^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/.test(image)) {
-    errors.image = "Debe ingresar una URL valida."
-  }
+  } 
 
   if (!minHeight) {
     errors.minHeight = "El campo no puede estar vacio."

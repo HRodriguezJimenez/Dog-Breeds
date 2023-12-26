@@ -101,10 +101,10 @@ const Form = () => {
   };
 
   const addTemperament = () => {
-    const selectedTemperamentID = input.temperaments;
-
+    const selectedTemperamentID =
+      input.temperaments[input.temperaments.length - 1];
     const selectedTemperament = allTemperaments.find(
-      (temp) => temp.id === selectedTemperamentID
+      (temp) => temp.name === selectedTemperamentID
     );
 
     if (
@@ -235,7 +235,7 @@ const Form = () => {
                 <option
                   key={temperament.id}
                   id={temperament.id}
-                  value={temperament.id}
+                  value={temperament.name}
                 >
                   {temperament.name}
                 </option>

@@ -44,7 +44,7 @@ const getDogByName = async (name) => {
       return dog.name.toLowerCase().includes(name.toLowerCase()); // Ignoramos mayúsculas y minúsculas.      
     });
   
-    if (!dogByName.length) throw new Error(`No existe la raza con el nombre: ${name}`);
+    if (!dogByName.length) throw new Error(`There is no breed with the name: ${name}`);
   
     return dogByName;
 };
@@ -57,7 +57,7 @@ const getDogById = async (id) => {
       return dog.id == id;
     });
   
-    if (!dogById.length) throw new Error(`No existe raza con el id: ${id}`);
+    if (!dogById.length) throw new Error(`There is no race with the ID: ${id}`);
   
     return dogById;
 }
@@ -82,7 +82,7 @@ const createDogDB = async (
         );
 
         if (breedByName) {
-            throw new Error(`Ya existe la raza con el nombre: ${name}`);
+            throw new Error(`The breed with the name already exists: ${name}`);
         }    
         const newDog = await Dog.create({
             name,

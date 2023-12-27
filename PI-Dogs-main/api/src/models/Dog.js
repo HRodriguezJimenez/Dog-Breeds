@@ -21,48 +21,48 @@ module.exports = (sequelize) => {
     minHeight: {
       type: DataTypes.INTEGER,
       validate: { // Estas validaciones aseguran que los valores esten entre los rangos especificos y generan mensajes personalizados si no se cumple la condición.
-        min: { args: 1, msg: "La altura mínima debe ser mayor o igual a 1" },
-        max: { args: 100, msg: "La altura mínima debe ser menor o igual a 100" },
+        min: { args: 1, msg: "The minimum height must be greater than or equal to 1" },
+        max: { args: 100, msg: "The minimum height must be less than or equal to 100" },
       },
       allowNull: false,
     },
     maxHeight: {
       type: DataTypes.INTEGER,
       validate: {
-        min: { args: 1, msg: "La altura máxima debe ser mayor o igual a 1" },
-        max: { args: 100, msg: "La altura máxima debe ser menor o igual a 100" },
+        min: { args: 1, msg: "The maximum height must be greater than or equal to 1" },
+        max: { args: 100, msg: "The maximum height must be less than or equal to 100" },
       },
       allowNull: false,
     },
     minWeight: {
       type: DataTypes.INTEGER,
       validate: {
-        min: { args: 1, msg: "El peso mínimo debe ser mayor o igual a 1" },
-        max: { args: 100, msg: "El peso mínimo debe ser menor o igual a 100" },
+        min: { args: 1, msg: "The minimum weight must be greater than or equal to 1" },
+        max: { args: 100, msg: "The minimum weight must be less than or equal to 100" },
       },
       allowNull: false,
     },
     maxWeight: {
       type: DataTypes.INTEGER,
       validate: {
-        min: { args: 1, msg: "El peso máximo debe ser mayor o igual a 1" },
-        max: { args: 100, msg: "El peso máximo debe ser menor o igual a 100" },
+        min: { args: 1, msg: "The maximum weight must be greater than or equal to 1" },
+        max: { args: 100, msg: "The maximum weight must be less than or equal to 100" },
       },
       allowNull: false,
     },
     minLifeSpan: {
       type: DataTypes.INTEGER,
       validate: {
-        min: { args: 1, msg: "La duración mínima de la vida debe ser mayor o igual a 1" },
-        max: { args: 20, msg: "La duración mínima de la vida debe ser menor o igual a 20" },
+        min: { args: 1, msg: "The minimum life span must be greater than or equal to 1" },
+        max: { args: 20, msg: "The minimum life span must be less than or equal to 20" },
       },
       allowNull: false,
     },
     maxLifeSpan: {
       type: DataTypes.INTEGER,
       validate: {
-        min: { args: 1, msg: "La duración máxima de la vida debe ser mayor o igual a 1" },
-        max: { args: 20, msg: "La duración máxima de la vida debe ser menor o igual a 20" },
+        min: { args: 1, msg: "The maximum lifetime must be greater than or equal to 1" },
+        max: { args: 20, msg: "The maximum life span must be less than or equal to 20" },
       },
       allowNull: false,
     },

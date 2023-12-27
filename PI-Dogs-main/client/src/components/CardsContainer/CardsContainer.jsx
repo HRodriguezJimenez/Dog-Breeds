@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux"; // "useSelector" nos per
 import { useEffect } from "react"; // Manejamos los efectos secundarios en el componente.
 
 import Card from "../Card/Card";
-import style from "./cardsContainer.module.css";
+import styles from "./cardsContainer.module.css";
 import { paginDogs } from "../../redux/actions"; // Actions para controlar al paginado de la app.
 
 const CardsContainer = ({ allDogs, isSearching }) => {
@@ -34,16 +34,24 @@ const CardsContainer = ({ allDogs, isSearching }) => {
   const pagin = dogs.slice(start, end); // Determinamos la cantidad de dogs que se muestra en la página actual.
 
   return (
-    <div className={style.CardsContainer}>
+    <div className={styles.divCards}>
       <div>
         {/*disabled lo usamos para deshabilitar los botones dependiendo de el número en el que se encuentre la página.*/}
-        <button onClick={prevPage} disabled={page === 1}>
+        <button
+          className={styles.botonCards}
+          onClick={prevPage}
+          disabled={page === 1}
+        >
           Anterior
         </button>
-        <button onClick={nextPage} disabled={page === totalPage}>
+        <button
+          className={styles.botonCards}
+          onClick={nextPage}
+          disabled={page === totalPage}
+        >
           Siguiente
         </button>
-        <div>
+        <div className={styles.pagin}>
           {page} 🐶 {totalPage}
         </div>
       </div>

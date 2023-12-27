@@ -1,0 +1,79 @@
+.divLanding {
+    margin: 0;
+    padding: 0;
+    background-image: url('https://img.freepik.com/vector-gratis/fondo-patron-huesos-huellas_1374-18.jpg?w=740&t=st=1703689396~exp=1703689996~hmac=a59250d6ddedd736864cb1b4eef9123584ed89f879b26318282ba30c7fd493c2');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #100101;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.5em;
+    max-width: 600px;
+    margin-bottom: 30px;
+}
+
+.divLink {
+    display: inline-block;
+    background-color: #345edb;
+    color: #fff;
+    padding: 15px 30px;
+    text-decoration: none;
+    font-size: 1.5em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    box-shadow: 5px 5px   50px rgb(4, 24, 246);
+    outline: 1px hidden rgb(4, 113, 246);
+}
+
+.divLink:hover {
+    background-color: #2980b9;
+}
+
+.img {
+    max-width: 20%; /* Ajusta según tus preferencias */
+    height: auto; /* Para mantener la proporción original de la imagen */
+    margin-bottom: 30px;
+    box-shadow: 5px 5px   50px rgb(4, 24, 246);
+    outline: 1px hidden rgb(4, 113, 246);
+    margin-bottom: 10px;
+    border-style: hidden;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 400px) {
+    .divLanding {
+        padding: 10% 5%; /* Ajusta según tus preferencias */
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    p {
+        font-size: 1em;
+        max-width: 100%;
+    }
+
+    .divLink {
+        padding: 5% 5%;
+        font-size: 0.8em; /* Ajusta según tus preferencias */
+    }
+
+    .img {
+        max-width: 100%;
+    }
+}

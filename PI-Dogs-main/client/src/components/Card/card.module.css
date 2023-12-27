@@ -1,19 +1,19 @@
-.cardContainer {
-  width: 30%;    
-  margin: 40px auto;
-  padding: 20px 6px 1px 20px;
-  border-style: inset;
-  border-color: lawngreen;
-  border-radius: 10px;
-  box-shadow: 5px 5px   10px rgb(4, 246, 24);
-  border-width: 5px;
-  outline: 1px solid greenyellow;
-  text-align: center;
-  transition: all 0.1s ease-in-out;
-  color: #000709;
-  text-shadow: 4px 4px 8px rgb(4, 117, 246);/* Sombra de texto */
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-size: 15px;
+.divCard {
+  display: flex;
+  flex-direction: column;
+  background-color: mediumseagreen;
+  border: 1px solid yellowgreen;
+  border-radius: 5px;
+  padding: 25px;
+  cursor: pointer;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: 0.25s ease-out;
+  color: black;
+}
+
+.divCard:hover {
+  transform: scale(1.05);
 }
 
 .imgCard {

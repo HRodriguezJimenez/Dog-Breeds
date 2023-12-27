@@ -54,49 +54,49 @@ export const validate = ({
 
   if (!minHeight) {
     errors.minHeight = "El campo no puede estar vacio."
-  } else if (minHeight < 1 || minHeight > 100) {
+  } else if (parseInt(minHeight) < 1 || parseInt(minHeight) > 100) {
     errors.minHeight = "Por favor ingrese un número entre 1 - 100"
-  } else if (minHeight >= maxHeight){
+  } else if (parseInt(minHeight) >= parseInt(maxHeight)){
     errors.minHeight = "La altura minima no puede ser mayor a la altura maxima. "
   }
 
   if (!maxHeight) {
     errors.maxHeight = "El campo no puede estar vacio."
-  } else if (maxHeight < 1 || maxHeight > 100) {
+  } else if (parseInt(maxHeight) < 1 || parseInt(maxHeight) > 100) {
     errors.maxHeight = "Por favor ingrese un número entre 1 - 100";
-  } else if (maxHeight <= minHeight) {
+  } else if (parseInt(maxHeight) <= parseInt(minHeight)) {
     errors.maxHeight = "La altura maxima no puede ser menor a la altura minima."
   }
 
   if (!minWeight) {
     errors.minWeight = "El campo no puede estar vacio."
-  } else if (minWeight < 1 || minWeight > 100) {
+  } else if (parseInt(minWeight) < 1 || parseInt(minWeight) > 100) {
     errors.minWeight = "Por favor ingrese un número entre 1 - 100"
-  } else if (minWeight >= maxWeight){
+  } else if (parseInt(minWeight) >= parseInt(maxWeight)){
     errors.minWeight = "El peso minimo no puede ser mayor al peso maximo. "
   }
 
   if (!maxWeight) {
     errors.maxWeight = "El campo no puede estar vacio."
-  } else if (maxWeight < 1 || maxWeight > 100) {
+  } else if (parseInt(maxWeight) < 1 || parseInt(maxWeight) > 100) {
     errors.maxWeight = "Por favor ingrese un número entre 1 - 100";
-  } else if (maxWeight <= minWeight) {
+  } else if (parseInt(maxWeight) <= parseInt(minWeight)) {
     errors.maxWeight = "El peso maximo no puede ser menor al peso minimo."
   }
 
   if (!minLifeSpan) {
     errors.minLifeSpan = "El campo no puede estar vacio."
-  } else if (minLifeSpan < 1 || minLifeSpan > 20) {
+  } else if (parseInt(minLifeSpan) < 1 || parseInt(minLifeSpan) > 20) {
     errors.minLifeSpan = "Por favor ingrese un número entre 1 - 20"
-  } else if (minLifeSpan >= maxLifeSpan){
+  } else if (parseInt(minLifeSpan) >= parseInt(maxLifeSpan)){
     errors.minLifeSpan = "La edad minima no puede ser mayor a la edad maxima."
   }
 
   if (!maxLifeSpan) {
     errors.maxLifeSpan = "El campo no puede estar vacio."
-  } else if (maxLifeSpan < 1 || maxLifeSpan > 20) {
+  } else if (parseInt(maxLifeSpan) < 1 || parseInt(maxLifeSpan) > 20) {
     errors.maxLifeSpan = "Por favor ingrese un número entre 1 - 20";
-  } else if (maxLifeSpan <= minLifeSpan) {
+  } else if (parseInt(maxLifeSpan) <= parseInt(minLifeSpan)) {
     errors.maxLifeSpan = "La edad maxima no puede ser menor a la edad minima."
   }
 

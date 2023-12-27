@@ -3,11 +3,16 @@ import { useSelector, useDispatch } from "react-redux";
 import { validate } from "../../utils/functions";
 import { getTemperaments } from "../../redux/actions";
 import axios from "axios";
+import style from "./form.module.css";
 
 const Form = () => {
   const allTemperaments = useSelector((state) => state.allTemperaments);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getTemperaments());
+  }, [dispatch]);
 
   // Creamos un estado local para que almacene los valores ingresados en el input del formulario.
   const [input, setInput] = useState({
@@ -35,32 +40,13 @@ const Form = () => {
     temperaments: "Seleccione un temperamento.",
   });
 
-  useEffect(() => {
-    dispatch(getTemperaments());
-  }, [dispatch]);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
 
-  function handleChange(e) {
-    const { name, value } = e.target;
-
-    // Convertir a número solo si el campo es numérico
-    const numericValue =
-      !isNaN(value) && !isNaN(parseInt(value, 10))
-        ? parseInt(value, 10)
-        : value;
-
-    if (name === "temperaments") {
-      // Para el campo de selección de temperamentos
-      setInput((prevInput) => ({
-        ...prevInput,
-        [name]: [...prevInput[name], numericValue],
-      }));
-    } else {
-      // Para otros campos
-      setInput({ ...input, [name]: numericValue });
-    }
-
-    setErrors(validate({ ...input, [name]: numericValue }));
-  }
+    const copyState = { ...input };
+    setErrors(validate({ ...copyState, [name]: value }));
+    setInput({ ...copyState, [name]: value });
+  };
 
   const submitHandler = async (event) => {
     event.preventDefault();
@@ -69,52 +55,45 @@ const Form = () => {
     try {
       const response = await axios.post(url, {
         ...input,
-        temperaments: input.temperaments,
+        temperaments: input.temperaments.map((temp) => temp.id),
       });
-
-      if (response.status === 200) {
-        window.alert("¡Éxito! El formulario se ha enviado correctamente.");
-        setInput({
-          name: "",
-          image: "",
-          minHeight: "",
-          maxHeight: "",
-          minWeight: "",
-          maxWeight: "",
-          minLifeSpan: "",
-          maxLifeSpan: "",
-          temperaments: [],
-        });
-      } else {
-        console.log(
-          "Respuesta exitosa, pero con un código diferente:",
-          response
-        );
+      if (response) {
+        window.alert("Formulario enviado con exito.");
       }
+      setInput({
+        name: "",
+        image: "",
+        minHeight: "",
+        maxHeight: "",
+        minWeight: "",
+        maxWeight: "",
+        minLifeSpan: "",
+        maxLifeSpan: "",
+        temperaments: [],
+      }); // Limpiar el formulario después de enviarlo
     } catch (error) {
       if (error.response && error.response.status === 400) {
-        window.alert("Error: " + error.response.data.error);
+        alert("Error: " + error.response.data.error);
       } else {
-        console.log(error);
+        console.error(error);
       }
     }
   };
 
-  const addTemperament = () => {
-    const selectedTemperamentID =
-      input.temperaments[input.temperaments.length - 1];
-    const selectedTemperament = allTemperaments.find(
-      (temp) => temp.name === selectedTemperamentID
-    );
+  const addTemperament = (event) => {
+    const { value } = event.target;
 
-    if (
-      selectedTemperament &&
-      !input.temperaments.includes(selectedTemperament)
-    ) {
-      setInput({
-        ...input,
-        temperaments: [...input.temperaments, selectedTemperament],
-      });
+    if (value && !input.temperaments.some((temp) => temp.name === value)) {
+      const selectedTemperamentName = value;
+      const TemperamentId = event.target.options[event.target.selectedIndex].id;
+      const copyState = { ...input };
+
+      copyState.temperaments = [
+        ...copyState.temperaments,
+        { id: TemperamentId, name: selectedTemperamentName },
+      ];
+      setErrors(validate(copyState));
+      setInput(copyState);
     }
   };
   console.log(input.temperaments);
@@ -127,26 +106,28 @@ const Form = () => {
             <label htmlFor="name">Nombre</label>
             <input
               type="text"
-              value={input.value}
+              value={input.name}
               name="name"
               onChange={handleChange}
               id="name"
               placeholder="Ingrese un nombre"
             />
-            {errors.name ? <p>{errors.name}</p> : null}
+            {errors.name ? <p className={style.errors}>{errors.name}</p> : null}
           </div>
           <div>
             <label htmlFor="image">Imagen</label>
             <input
               type="text"
-              value={input.value}
+              value={input.image}
               name="image"
               onChange={handleChange}
               id="image"
               placeholder="Ingrese una URL"
               pattern="https?://.+"
             />
-            {errors.image ? <p>{errors.image}</p> : null}
+            {errors.image ? (
+              <p className={style.errors}>{errors.image}</p>
+            ) : null}
           </div>
           <div>
             <label htmlFor="minHeight">Altura mínima</label>
@@ -158,7 +139,9 @@ const Form = () => {
               id="minHeight"
               placeholder="1 - 100"
             />
-            {errors.minHeight ? <p>{errors.minHeight}</p> : null}
+            {errors.minHeight ? (
+              <p className={style.errors}>{errors.minHeight}</p>
+            ) : null}
           </div>
           <div>
             <label htmlFor="maxHeight">Altura máxima</label>
@@ -170,7 +153,9 @@ const Form = () => {
               id="maxHeight"
               placeholder="1 - 100"
             />
-            {errors.maxHeight ? <p>{errors.maxHeight}</p> : null}
+            {errors.maxHeight ? (
+              <p className={style.errors}>{errors.maxHeight}</p>
+            ) : null}
           </div>
           <div>
             <label htmlFor="minWeight">Peso mínimo</label>
@@ -182,7 +167,9 @@ const Form = () => {
               id="minWeight"
               placeholder="1 - 100"
             />
-            {errors.minWeight ? <p>{errors.minWeight}</p> : null}
+            {errors.minWeight ? (
+              <p className={style.errors}>{errors.minWeight}</p>
+            ) : null}
           </div>
           <div>
             <label htmlFor="maxWeight">Peso máximo</label>
@@ -194,7 +181,9 @@ const Form = () => {
               id="maxWeight"
               placeholder="1 - 100"
             />
-            {errors.maxWeight ? <p>{errors.maxWeight}</p> : null}
+            {errors.maxWeight ? (
+              <p className={style.errors}>{errors.maxWeight}</p>
+            ) : null}
           </div>
           <div>
             <label htmlFor="minLifeSpan">Años de vida mínimo</label>
@@ -206,7 +195,9 @@ const Form = () => {
               id="minLifeSpan"
               placeholder="1 - 20"
             />
-            {errors.minLifeSpan ? <p>{errors.minLifeSpan}</p> : null}
+            {errors.minLifeSpan ? (
+              <p className={style.errors}>{errors.minLifeSpan}</p>
+            ) : null}
           </div>
           <div>
             <label htmlFor="maxLifeSpan">Años de vida máximo</label>
@@ -218,19 +209,16 @@ const Form = () => {
               id="maxLifeSpan"
               placeholder="1 - 20"
             />
-            {errors.maxLifeSpan ? <p>{errors.maxLifeSpan}</p> : null}
+            {errors.maxLifeSpan ? (
+              <p className={style.errors}>{errors.maxLifeSpan}</p>
+            ) : null}
           </div>
           <div>
-            <label htmlFor="temperaments">Temperamentos</label>
-            <select
-              id="temperaments"
-              name="temperaments"
-              value={input.temperaments}
-              onChange={handleChange}
-            >
-              <option value="" disabled>
-                Seleccione un temperamento
-              </option>
+            <label>Temperaments: </label>
+            <option value="" disabled>
+              Seleccione uno o varios temperamentos.
+            </option>
+            <select name="temperaments" onChange={addTemperament}>
               {allTemperaments?.map((temperament) => (
                 <option
                   key={temperament.id}
@@ -241,20 +229,20 @@ const Form = () => {
                 </option>
               ))}
             </select>
-            <button type="button" onClick={addTemperament}>
-              Agregar Temperamento
-            </button>
-            {input.temperaments.length > 0 && (
-              <div>
-                <h4>Temperamentos Seleccionados:</h4>
-                {input.temperaments.map((temperament) => (
-                  <div key={temperament.id}>
-                    <p>{temperament.name}</p>
-                  </div>
-                ))}
-              </div>
+
+            {errors.temperaments && (
+              <p className={style.errors}>{errors.temperaments}</p>
             )}
           </div>
+
+          <h4>Selected Temperaments:</h4>
+          <div>
+            {input.temperaments &&
+              input.temperaments.map((temperament) => (
+                <div>{temperament.name}</div>
+              ))}
+          </div>
+
           {errors.name ||
           errors.image ||
           errors.minHeight ||

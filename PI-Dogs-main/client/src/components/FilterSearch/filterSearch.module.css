@@ -10,26 +10,26 @@
     display: flex;
   justify-content: space-around;
   width: 100%;
-  max-width: 800px; /* ajusta según sea necesario */
+  max-width: 800px; 
   margin-top: 20px;
 }
 
 .select {
     border-radius: 10px;
-    border: none;/*sin borde para un aspecto más limpio. */
+    border: none;
     margin: 20px;
     background-color: #0b075d;
     color: #0666f6;
     font-size: 1.2em;
     font-family: fantasy;
-    padding: 10px 20px;/*espacio interno para el texto. */
-    transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
+    padding: 10px 20px;
+    transition: background-color 0.3s, color 0.3s;
     box-shadow: 2px 2px 5px rgb(3, 152, 244); 
 }
 
 .select:hover {
     background-color: #0666f6;
-    color: #0b075d; /* Cambia el color del texto al pasar el cursor */
+    color: #0b075d;
     cursor: pointer;
 }
 
@@ -54,6 +54,6 @@ h2 {
 
 .labelSearch:hover {
     background-color: #115d07;
-    color: #06f612; /* Cambia el color del texto al pasar el cursor */
+    color: #06f612; 
     cursor: pointer;
 }

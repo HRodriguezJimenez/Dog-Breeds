@@ -8,6 +8,7 @@ import {
 } from "../../redux/actions";
 
 import SearchBar from "../SearchBar/SearchBar";
+import styles from "./filterSearch.module.css";
 
 export default function FilterSearch({
   // Recibimos las funciones por props.
@@ -75,12 +76,15 @@ export default function FilterSearch({
   };
 
   return (
-    <div>
-      <h1>Aqui van los filtros</h1>
-      <div>
+    <div className={styles.divContainer}>
+      <h2>Filter and sort the dogs.</h2>
+      <div className={styles.divSelect}>
         <div>
-          <label htmlFor="temperaments">Temperaments: </label>
+          <label className={styles.label} htmlFor="temperaments">
+            Filter by temperament:{" "}
+          </label>
           <select
+            className={styles.select}
             id="temperaments"
             name="temperaments"
             value={filter.temperament}
@@ -104,8 +108,11 @@ export default function FilterSearch({
         </div>
 
         <div>
-          <label htmlFor="origin">Creation time: </label>
+          <label className={styles.label} htmlFor="origin">
+            Filter by origin :{" "}
+          </label>
           <select
+            className={styles.select}
             id="origin"
             name="origin"
             value={filter.origin}
@@ -124,24 +131,27 @@ export default function FilterSearch({
         </div>
 
         <div>
-          <label htmlFor="weight">Order:</label>
+          <label className={styles.label} htmlFor="weight">
+            Sort by:{" "}
+          </label>
           <select
+            className={styles.select}
             id="weight"
             name="weight"
             value={filter.order}
             onChange={(e) => handleChangeFilter(e, "order", sortedAndFiltered)}
           >
             <option id="LessOrMoreOption" name="LessOrMore" value="LessOrMore">
-              Less or More
+              Less or More.
             </option>
             <option id="MoreOrLessOption" name="MoreOrLess" value="MoreOrLess">
-              More or Less
+              More or Less.
             </option>
             <option id="AZOption" name="A-Z" value="A-Z">
-              A-Z
+              A - Z
             </option>
             <option id="ZAOption" name="Z-A" value="Z-A">
-              Z-A
+              Z - A
             </option>
             <option id="allOption" name="all" value="all">
               All
@@ -151,15 +161,13 @@ export default function FilterSearch({
 
         <button onClick={resetFilters}>Reset Filters</button>
       </div>
-
+      <br />
       <SearchBar
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         searchName={searchName}
+        handleResetSearch={handleResetSearch}
       />
-      {handleResetSearch && ( // Realizamos un renderizado condicional si la función "handleResetSearch" esta presente/activa.
-        <button onClick={handleResetSearch}>Mostrar Todos.</button>
-      )}
     </div>
   );
 }

@@ -56,7 +56,7 @@ p {
 
 @media screen and (max-width: 400px) {
     .divLanding {
-        padding: 10% 5%; /* Ajusta según tus preferencias */
+        padding: 10% 5%; 
     }
 
     h1 {
@@ -70,7 +70,7 @@ p {
 
     .divLink {
         padding: 5% 5%;
-        font-size: 0.8em; /* Ajusta según tus preferencias */
+        font-size: 0.8em;
     }
 
     .img {

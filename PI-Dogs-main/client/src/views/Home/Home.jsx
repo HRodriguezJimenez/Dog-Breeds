@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"; // "useDispatch" lo usam
 import FilterSearch from "../../components/FilterSearch/FilterSearch";
 import { getDogs, getDogByName } from "../../redux/actions";
 import CardsContainer from "../../components/CardsContainer/CardsContainer";
+import styles from "./home.module.css";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <div className={styles.divHome}>
       <FilterSearch
         handleChange={handleChange}
         handleSubmit={handleSubmit}
@@ -49,7 +50,7 @@ const Home = () => {
         searchName={searchName}
       />
       <CardsContainer allDogs={allDogs} isSearching={isSearching} />
-    </>
+    </div>
   );
 };
 

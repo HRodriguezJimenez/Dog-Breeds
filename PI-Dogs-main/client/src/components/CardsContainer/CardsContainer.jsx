@@ -42,14 +42,14 @@ const CardsContainer = ({ allDogs, isSearching }) => {
           onClick={prevPage}
           disabled={page === 1}
         >
-          Anterior
+          Previous
         </button>
         <button
           className={styles.botonCards}
           onClick={nextPage}
           disabled={page === totalPage}
         >
-          Siguiente
+          Next
         </button>
         <div className={styles.pagin}>
           {page} 🐶 {totalPage}

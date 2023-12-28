@@ -18,7 +18,7 @@ const Home = () => {
     if (isNaN(value)) {
       setSearchName(value);
     } else {
-      alert("No ingresar números.");
+      alert("Do not enter numbers.");
     }
   }
 

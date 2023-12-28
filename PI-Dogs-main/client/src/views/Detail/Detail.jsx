@@ -38,7 +38,7 @@ const Detail = () => {
     <>
       <div>
         <Link to="/home">
-          <button>Regresar</button>
+          <button>Go back</button>
         </Link>
       </div>
 

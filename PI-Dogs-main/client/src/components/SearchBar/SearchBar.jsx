@@ -11,9 +11,7 @@ export default function SearchBar({
     <div>
       <form>
         {isSearchDisabled && (
-          <p style={{ color: "black" }}>
-            Ingrese el nombre de una raza para realizar la búsqueda.
-          </p>
+          <p style={{ color: "black" }}>Enter a breed name to search.</p>
         )}
         <input
           type="search"
@@ -26,11 +24,11 @@ export default function SearchBar({
           onClick={handleSubmit}
           disabled={isSearchDisabled}
         >
-          Buscar
+          look for.
         </button>
         <br />
         {handleResetSearch && ( // Realizamos un renderizado condicional si la función "handleResetSearch" esta presente/activa.
-          <button onClick={handleResetSearch}>Mostrar Todos.</button>
+          <button onClick={handleResetSearch}>Show all.</button>
         )}
       </form>
     </div>

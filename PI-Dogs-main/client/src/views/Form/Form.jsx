@@ -103,7 +103,7 @@ const Form = () => {
       <div>
         <form onSubmit={submitHandler}>
           <div>
-            <label htmlFor="name">Nombre</label>
+            <label htmlFor="name">Name</label>
             <input
               type="text"
               value={input.name}
@@ -115,7 +115,7 @@ const Form = () => {
             {errors.name ? <p className={style.errors}>{errors.name}</p> : null}
           </div>
           <div>
-            <label htmlFor="image">Imagen</label>
+            <label htmlFor="image">Image</label>
             <input
               type="text"
               value={input.image}
@@ -130,7 +130,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <label htmlFor="minHeight">Altura mínima</label>
+            <label htmlFor="minHeight">Minimun height</label>
             <input
               type="number"
               value={input.minHeight}
@@ -144,7 +144,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <label htmlFor="maxHeight">Altura máxima</label>
+            <label htmlFor="maxHeight">Maximum height</label>
             <input
               type="number"
               value={input.maxHeight}
@@ -158,7 +158,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <label htmlFor="minWeight">Peso mínimo</label>
+            <label htmlFor="minWeight">Minimum weight</label>
             <input
               type="number"
               value={input.minWeight}
@@ -172,7 +172,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <label htmlFor="maxWeight">Peso máximo</label>
+            <label htmlFor="maxWeight">Maximum weight</label>
             <input
               type="number"
               value={input.maxWeight}
@@ -186,7 +186,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <label htmlFor="minLifeSpan">Años de vida mínimo</label>
+            <label htmlFor="minLifeSpan">Minimum years of life</label>
             <input
               type="number"
               value={input.minLifeSpan}
@@ -200,7 +200,7 @@ const Form = () => {
             ) : null}
           </div>
           <div>
-            <label htmlFor="maxLifeSpan">Años de vida máximo</label>
+            <label htmlFor="maxLifeSpan">Maximum life years</label>
             <input
               type="number"
               value={input.maxLifeSpan}
@@ -216,7 +216,7 @@ const Form = () => {
           <div>
             <label>Temperaments: </label>
             <option value="" disabled>
-              Seleccione uno o varios temperamentos.
+              Select one or more temperaments.
             </option>
             <select name="temperaments" onChange={addTemperament}>
               {allTemperaments?.map((temperament) => (
@@ -252,7 +252,7 @@ const Form = () => {
           errors.minLifeSpan ||
           errors.maxLifeSpan ||
           errors.temperaments ? null : (
-            <button type="submit">Enviar</button>
+            <button type="submit">Create</button>
           )}
         </form>
       </div>

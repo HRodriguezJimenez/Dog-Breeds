@@ -1,27 +1,60 @@
 .cardContainer {
-    width: 30%;    
-    margin: 40px auto;
-    padding: 20px 6px 1px 20px;
-    border-style: inset;
-    border-color: lawngreen;
-    border-radius: 10px;
-    box-shadow: 5px 5px   10px rgb(4, 246, 24);
-    border-width: 5px;
-    outline: 1px solid greenyellow;
-    text-align: center;
-    transition: all 0.1s ease-in-out;
-    color: #000709;
-    text-shadow: 4px 4px 8px rgb(4, 117, 246);
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 15px;
-  }
+    width: 100%;
+    height: auto;
+    display: -webkit-flex;
+    align-items: center;
+    justify-content: center;    
+    padding: auto;    
+    flex-direction: column; 
+}
+
+.button {
+    font-size: 20px;
+    font-family: fantasy;
+    outline: none;
+    padding: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    border: 2px dashed #04adf6;
+    border-radius: 15px;
+    background-color:  #067ef69e;
+    box-shadow: 0 0 0 4px rgb(27, 3, 242), 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    transition: .1s ease-in-out, .4s color;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #7ddcf9b0;
+}
   
-  .imgCard {
-      border-radius: 20px;
-      border-radius: 10px;
-      border-style: hidden;
-      max-width: 100%;
-      height: auto;
-      box-shadow: 5px 5px   10px rgb(4, 246, 24);
-      outline: 2px solid greenyellow;
-  }
+.imgCard {
+    margin-top: 10px;
+    border-radius: 10px;
+    border-style: hidden;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 5px 5px   10px rgb(4, 4, 246);
+    outline: 2px solid rgb(47, 231, 255);
+}
+
+.h3Detail {
+    text-align: center;
+    font-family: fantasy;
+    font-size: 30px;
+    text-shadow: 2px 2px 4px rgb(4, 0, 255);
+    margin-right: 40px;
+    border-style: hidden;    
+    box-shadow: 5px 5px   10px rgb(4, 16, 246);
+}
+
+.ulDatos {
+    border-style: hidden;    
+    box-shadow: 5px 5px   10px rgb(4, 16, 246);
+    text-shadow: 2px 2px 4px rgb(0, 0, 255);
+    font-size: 30px;
+    font-family: fantasy;
+    background-color: rgba(7, 19, 244, 0.222);
+}
+
+  
+

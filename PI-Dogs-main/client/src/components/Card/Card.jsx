@@ -9,7 +9,7 @@ const Card = (props) => {
     <div className={styles.divCard}>
       <Link to={`/home/${props.id}`}>
         <img className={styles.imgCard} src={props.image} alt="Not Found" />
-        <p>Name: {dogInfo.name}</p>
+        <h2>Name: {dogInfo.name}</h2>
         <p>
           Weight: min {dogInfo.minWeight} - max {dogInfo.maxWeight}
         </p>

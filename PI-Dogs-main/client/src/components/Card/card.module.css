@@ -1,8 +1,8 @@
 .divCard {
   display: flex;
   flex-direction: column;
-  background-color: mediumseagreen;
-  border: 1px solid yellowgreen;
+  background: linear-gradient(to bottom, #1100ff, #1447ff, #1489ff, #03acea, #02a59a, transparent);
+  border: 1px solid rgb(12, 4, 245);
   border-radius: 5px;
   padding: 25px;
   cursor: pointer;
@@ -22,6 +22,6 @@
     border-style: hidden;
     max-width: 100%;
     height: auto;
-    box-shadow: 5px 5px   10px rgb(4, 246, 24);
-    outline: 2px solid greenyellow;
+    box-shadow: 5px 5px   10px rgb(12, 4, 246);
+    outline: 2px solid rgb(47, 206, 255);
 }

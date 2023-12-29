@@ -10,20 +10,20 @@
 }
 
 .divContainer a {
-  text-decoration: none;
-  color: #0a0909; 
-  font-size: 1.2em;
-  padding: 8px 15px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, color 0.3s ease; 
-  border: dashed;
+    font-size: 20px;
+    font-family: fantasy;
+    outline: none;
+    padding: 1em;
+    padding-left: 3em;
+    padding-right: 3em;
+    border: 2px dashed #04adf6;
+    border-radius: 15px;
+    background-color:  #067ef69e;
+    box-shadow: 0 0 0 4px rgb(27, 3, 242), 2px 2px 4px 2px rgba(0, 0, 0, 0.5);
+    transition: .1s ease-in-out, .4s color;
+    cursor: pointer;
 }
 
 .divContainer a:hover {
-  background-color: #333; 
-  color: #fff; 
-}
-
-body {
-  margin: 0;
+  background-color: #7ddcf9b0; 
 }

@@ -34,40 +34,43 @@ const CardsContainer = ({ allDogs, isSearching }) => {
   const pagin = dogs.slice(start, end); // Determinamos la cantidad de dogs que se muestra en la página actual.
 
   return (
-    <div className={styles.divCards}>
-      <div>
+    <div>
+      <div className={styles.divButtons}>
         {/*disabled lo usamos para deshabilitar los botones dependiendo de el número en el que se encuentre la página.*/}
         <button
-          className={styles.botonCards}
+          className={styles.buttons}
           onClick={prevPage}
           disabled={page === 1}
         >
           Previous
         </button>
+        <div className={styles.pagin}>
+          Page {page} 🐶 of {totalPage}
+        </div>
         <button
-          className={styles.botonCards}
+          className={styles.buttons}
           onClick={nextPage}
           disabled={page === totalPage}
         >
           Next
         </button>
-        <div className={styles.pagin}>
-          {page} 🐶 {totalPage}
-        </div>
       </div>
-      {pagin.map((dog) => {
-        return (
-          <Card
-            key={dog.id}
-            id={dog.id}
-            name={dog.name}
-            image={dog.image}
-            minWeight={dog.minWeight}
-            maxWeight={dog.maxWeight}
-            Temperaments={dog.Temperaments}
-          />
-        );
-      })}
+      <div className={styles.divCards}>
+        {pagin.map((dog) => {
+          return (
+            <Card
+              className={styles.Card}
+              key={dog.id}
+              id={dog.id}
+              name={dog.name}
+              image={dog.image}
+              minWeight={dog.minWeight}
+              maxWeight={dog.maxWeight}
+              Temperaments={dog.Temperaments}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

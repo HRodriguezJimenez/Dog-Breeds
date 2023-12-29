@@ -4,7 +4,7 @@ import { getDogById } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-import style from "./detail.module.css";
+import styles from "./detail.module.css";
 
 const Detail = () => {
   const dispatch = useDispatch();
@@ -36,25 +36,30 @@ const Detail = () => {
 
   return (
     <>
-      <div>
+      <div className={styles.cardContainer}>
         <Link to="/home">
-          <button>Go back</button>
+          <button className={styles.button}>Go back</button>
         </Link>
-      </div>
-
-      <div className={style.cardContainer}>
-        <img className={style.imgCard} src={dogDetails.image} alt="Not found" />
-        <p>Name: {dogDetails.name}</p>
-        <p>
-          Weight: min {dogDetails.minWeight} - max {dogDetails.maxWeight}
-        </p>
-        <p>
-          Height: min {dogDetails.minHeight} - max {dogDetails.maxHeight}
-        </p>
-        <p>
-          LifeSpan: min {dogDetails.minLifeSpan} - max {dogDetails.maxLifeSpan}
-        </p>
-        <p>Temperaments: {verificarTemp(dogDetails)}</p>
+        <img
+          className={styles.imgCard}
+          src={dogDetails.image}
+          alt={dogDetails.name}
+        />
+        <ul className={styles.ulDatos}>
+          <h3 className={styles.h3Detail}>Información</h3>
+          <li>Name: {dogDetails.name}</li>
+          <li>
+            Weight: min {dogDetails.minWeight} - max {dogDetails.maxWeight}
+          </li>
+          <li>
+            Height: min {dogDetails.minHeight} - max {dogDetails.maxHeight}
+          </li>
+          <li>
+            LifeSpan: min {dogDetails.minLifeSpan} - max{" "}
+            {dogDetails.maxLifeSpan}
+          </li>
+          <li>Temperaments: {verificarTemp(dogDetails)}</li>
+        </ul>
       </div>
     </>
   );

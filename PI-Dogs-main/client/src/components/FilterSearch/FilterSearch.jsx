@@ -60,7 +60,6 @@ export default function FilterSearch({
 
     setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));
     setConfigs(auxConfigs);
-    console.log("Configs after dispatch:", auxConfigs);
 
     dispatch(sortedAndFiltered(auxConfigs));
     dispatch(action(auxConfigs));

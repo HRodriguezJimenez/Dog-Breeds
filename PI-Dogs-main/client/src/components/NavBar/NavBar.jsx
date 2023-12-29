@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 
-import style from "./navbar.module.css";
+import styles from "./navbar.module.css";
 
 const NavBar = () => {
   return (
-    <div className={style.divContainer}>
-      <Link to="/home">HOME</Link>
-      <Link to="/create">CREATE</Link>
+    <div>
+      <div className={styles.navBackground}></div>
+      <div className={styles.divContainer}>
+        <Link to="/home">HOME</Link>
+        <Link to="/create">CREATE</Link>
+      </div>
     </div>
   );
 };

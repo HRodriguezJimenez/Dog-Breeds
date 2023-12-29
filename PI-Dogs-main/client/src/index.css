@@ -1,13 +1,22 @@
-/* body {
+body {
+  width: 100;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
+  
+  background-image: url(https://play-lh.googleusercontent.com/inb5vJW-uvVglot49yb9veFURekZOLEVQqbxRTiBD7j1vvpUQ0mLw3tAZOVlW36Ndw=w526-h296-rw);
+  background-position: center bottom;/*Controla la posición vertical de la imagen */   
+  background-size: cover;/*se lo agregamos para que la img se ajusta al tamaño de la pantalla*/
+  background-repeat: no-repeat;/*con esto evitamos que la imagen se repita.*/ 
+  background-attachment: fixed;/*fijamos la img para que no se desplace con el contenido.*/ 
+}  
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-} */
+}
+

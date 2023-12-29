@@ -75,9 +75,9 @@ export default function FilterSearch({
   };
 
   return (
-    <div className={styles.divContainer}>
-      <h2>Filter and sort the dogs.</h2>
-      <div className={styles.divSelect}>
+    <div>
+      <h2 className={styles.h2}>Filter and sort the dogs.</h2>
+      <div className={styles.divContainer}>
         <div>
           <label className={styles.label} htmlFor="temperaments">
             Filter by temperament:{" "}
@@ -158,9 +158,11 @@ export default function FilterSearch({
           </select>
         </div>
 
-        <button onClick={resetFilters}>Reset Filters</button>
+        <button className={styles.buttonReset} onClick={resetFilters}>
+          Reset Filters
+        </button>
       </div>
-      <br />
+
       <SearchBar
         handleChange={handleChange}
         handleSubmit={handleSubmit}

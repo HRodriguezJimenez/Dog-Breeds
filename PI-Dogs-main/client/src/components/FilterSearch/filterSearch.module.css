@@ -1,23 +1,13 @@
 .divContainer {
-    background-color: green;
     display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.divSelect {
-    background-color: aqua;
-    display: flex;
-  justify-content: space-around;
-  width: 100%;
-  max-width: 800px; 
-  margin-top: 20px;
+    flex-direction: row;
+    justify-content: space-around;
 }
 
 .select {
     border-radius: 10px;
     border: none;
-    margin: 20px;
+    margin: 10px;
     background-color: #0b075d;
     color: #0666f6;
     font-size: 1.2em;
@@ -25,6 +15,7 @@
     padding: 10px 20px;
     transition: background-color 0.3s, color 0.3s;
     box-shadow: 2px 2px 5px rgb(3, 152, 244); 
+    flex: 1;
 }
 
 .select:hover {
@@ -33,10 +24,10 @@
     cursor: pointer;
 }
 
-h2 {
+.h2 {
     font-size: 2em;
     border: hidden;
-    
+    align-items: center;
 }
 
 .label {
@@ -56,4 +47,54 @@ h2 {
     background-color: #115d07;
     color: #06f612; 
     cursor: pointer;
+}
+
+.buttonReset {
+    border: none;/*sin borde para un aspecto más limpio. */
+    margin: 10px;
+    background-color: #0b075d;
+    color: #0666f6;
+    font-size: 25px;
+    font-family: fantasy;
+    padding: 10px 20px;/*espacio interno para el texto. */
+    transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
+    box-shadow: 2px 2px 5px rgb(4, 169, 246); 
+    border-radius: 10px;
+    flex: 1;
+}
+ 
+.buttonReset:hover {
+    background-color: #0666f6;
+    color: #0b075d; /* Cambia el color del texto al pasar el cursor */
+    cursor: pointer;
+}
+
+@media screen and (width<= 1400px) {
+
+    .divContainer {
+      flex-direction: column;
+      align-items:center;
+      justify-content: center;
+      margin-top: 20px;
+  
+    }
+  
+    .label {
+      font-size: 20px;
+    }
+  
+    .select {
+      font-size: 15px;
+      border-radius: 10px;
+      background-color: rgba(142, 230, 246, 0.505);
+    }
+  
+    .buttonReset {
+      font-size: 12px;
+      padding: 0.5em;
+      border: 2px solid #1595cb;
+      border-radius: 15px;
+      margin-top: 1em;
+      margin-bottom: 1em;
+    }
 }

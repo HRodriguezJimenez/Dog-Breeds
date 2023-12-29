@@ -4,12 +4,9 @@
   flex-direction: row;
   justify-content: space-around;
   align-items: center; 
-  border: 1px solid #333; 
   padding: 10px; 
-  background: url("../../images/imageNavBar.jpg");
-  background-size: cover;
   width: 100%;
-  position: fixed;
+  position: relative;
 }
 
 .divContainer a {

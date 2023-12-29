@@ -1,4 +1,5 @@
 // En este componente usamos las funciones para que esten pendientes de los cambios, cuando el usuario escribe en el campo de búsqueda se activa la función "handleChange" y al hacer click en el boton de búsqueda activa la función "hadleSubmit".
+import styles from "./searchBar.module.css";
 
 export default function SearchBar({
   handleChange,
@@ -8,29 +9,30 @@ export default function SearchBar({
 }) {
   const isSearchDisabled = !searchName.trim(); // Si despues que eliminamos los espacios en blanco está vacío, entonces isSearchDisabled será true. Esto lo usamos para que "disabled" este en true y deshabilite el boton de buscar.
   return (
-    <div>
-      <form>
-        {isSearchDisabled && (
-          <p style={{ color: "black" }}>Enter a breed name to search.</p>
-        )}
-        <input
-          type="search"
-          placeholder="Busqueda"
-          value={searchName}
-          onChange={handleChange}
-        />
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          disabled={isSearchDisabled}
-        >
-          look for.
+    <div className={styles.divSearch}>
+      {isSearchDisabled && (
+        <p className={styles.p}>Enter a breed name to search.</p>
+      )}
+      <input
+        type="search"
+        placeholder="Search"
+        value={searchName}
+        onChange={handleChange}
+        className={styles.inputSearch}
+      />
+      <button
+        type="submit"
+        onClick={handleSubmit}
+        disabled={isSearchDisabled}
+        className={styles.botonSearch}
+      >
+        look for.
+      </button>
+      {handleResetSearch && ( // Realizamos un renderizado condicional si la función "handleResetSearch" esta presente/activa.
+        <button onClick={handleResetSearch} className={styles.botonSearch}>
+          Show all.
         </button>
-        <br />
-        {handleResetSearch && ( // Realizamos un renderizado condicional si la función "handleResetSearch" esta presente/activa.
-          <button onClick={handleResetSearch}>Show all.</button>
-        )}
-      </form>
+      )}
     </div>
   );
 }

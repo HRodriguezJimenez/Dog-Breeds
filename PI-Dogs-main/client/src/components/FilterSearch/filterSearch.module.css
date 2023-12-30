@@ -69,7 +69,7 @@
     cursor: pointer;
 }
 
-@media screen and (width<= 1400px) {
+@media screen and (width <= 1000px) {
 
     .divContainer {
       flex-direction: column;

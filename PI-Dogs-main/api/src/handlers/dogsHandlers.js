@@ -28,7 +28,7 @@ const getDetailHandler = async (req, res) => {
     }
 }
 
-// ".body" Este Handler creara un nuevo dog con la información que envian en la solicitud por en el body.
+// ".body" Este Handler creara un nuevo dog con la información que envian en la solicitud en el body.
 const createDogHandler = async (req, res) => {
     const {
       name,

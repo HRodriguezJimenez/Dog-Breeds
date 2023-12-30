@@ -1,14 +1,10 @@
-const { Router } = require('express');
-// Importar todos los routers;
-// Ejemplo: const authRouter = require('./auth.js');
+const { Router } = require('express'); // Método de express que nos permite manejar el enrutado del servidor.
 const dogsRouter = require("./dogsRouter");
 const temperamentsRouter = require("./temperamentsRouter")
 
 
 const mainRouter = Router();
 
-// Configurar los routers
-// Ejemplo: router.use('/auth', authRouter);
 mainRouter.use("/dogs", dogsRouter)
 mainRouter.use("/temperaments", temperamentsRouter)
 

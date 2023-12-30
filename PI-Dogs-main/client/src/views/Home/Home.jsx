@@ -31,7 +31,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    // Lo usamos para despachar una actions si no se esta realizando una busqueda.
+    // Lo usamos para despachar la actions getDogs() si no se esta realizando una busqueda.
     if (!isSearching) {
       dispatch(getDogs());
     }

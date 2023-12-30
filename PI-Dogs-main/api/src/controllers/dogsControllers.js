@@ -49,7 +49,7 @@ const getDogByName = async (name) => {
     return dogByName;
 };
 
-//* Controller para buscar un Dog en especifico por su id.
+// Controller para buscar un Dog en especifico por su id.
 const getDogById = async (id) => {
     const allDogs = await getAllDogs();
 
@@ -99,7 +99,7 @@ const createDogDB = async (
         newDog.addTemperaments(temperaments);
 
         const dogDB = await Dog.findByPk(newDog.id);
-        const temperamentsDogDB = await dogDB.getTemperaments() // Función que crea sequelize en el momento que creamos la relación muchos a muchos entre los modelos.
+        const temperamentsDogDB = await dogDB.getTemperaments() // Función que crea sequelize en el momento que creamos la relación muchos a muchos entre los modelos, obtiene una lista con los temperamentos asociados al perro que acabamos de crear.
         const temperamentsByName = temperamentsDogDB.map((temp) => temp.name)
 
         return {...dogDB.toJSON(), temperaments: temperamentsByName } // "toJSON" es un método proporcionado por Sequelize que convierte un elemento en un objeto.

@@ -107,7 +107,7 @@ const Form = () => {
   return (
     <>
       <div className={styles.divForm}>
-        <h4>Create your own dog breed.</h4>
+        <h4 className={styles.h4}>Create your own dog breed.</h4>
         <div className={styles.dataForm}>
           <form onSubmit={submitHandler}>
             <div>

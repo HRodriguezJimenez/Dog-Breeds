@@ -7,8 +7,10 @@
     float: right;
     display: flex; /* Hace que los elementos hijos se muestren en línea uno al lado del otro */
     align-items: flex-start; 
-    margin: 1%;
+    width: 100%;
+    margin: 1% auto;
     padding: 1%;
+    box-sizing: border-box;
 
 }
 

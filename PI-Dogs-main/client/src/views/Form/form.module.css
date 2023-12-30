@@ -4,9 +4,13 @@
     text-shadow: 4px 4px 8px rgb(8, 8, 8);
 }
 
+.h4 {
+    margin-bottom: 5px;
+}
+
 .divForm {
     width: 50%;    
-    margin: 30px auto;
+    margin: 10px auto;
     padding: 10px ;
     border-style: hidden;
     border-radius: 10px;
@@ -27,22 +31,24 @@
     border-radius: 5px;
     text-shadow: 4px 4px 8px rgb(4, 141, 246);
     font-family: fantasy;
-    padding: 10px;
+    padding: 5px;
 }
 
 .labelsForm {
-    font-size: 14px;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
 .inputsForm {
     background-color: rgb(4, 4, 169);
     color: rgb(14, 248, 5);
-    font-size: 15px;
+    font-size: 10px;
     border-radius: 5px;    
     border: 1px solid #03f9d9;
     box-shadow: 10px 10px 10px rgb(3, 85, 166); 
-    font-size: 14px;
+    font-size: 12px;
     padding: 8px;
+    margin-bottom: 10px;
 }
 
 .button {
@@ -56,7 +62,7 @@
     border-color: rgb(25, 0, 255);
     border-radius: 5px;
     box-shadow: 5px 5px 5px rgb(4, 186, 246);
-
+    margin-top: 10px;
 }
 
 .button:hover {

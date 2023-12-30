@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { validate } from "../../utils/functions";
 import { getTemperaments } from "../../redux/actions";
 import axios from "axios";
-import style from "./form.module.css";
+import styles from "./form.module.css";
 
 const Form = () => {
   const allTemperaments = useSelector((state) => state.allTemperaments);
@@ -29,15 +29,15 @@ const Form = () => {
 
   // Estado local que nos permitira ir almacenando en tiempo real los errores que se vayan generando al ingresar los datos en el formulario.
   const [errors, setErrors] = useState({
-    name: "Ingrese un nombre.",
-    image: "Ingrese una URL.",
-    minHeight: "Ingrese un valor entre 1 - 100",
-    maxHeight: "Ingrese un valor entre 1 - 100",
-    minWeight: "Ingrese un valor entre 1 - 100",
-    maxWeight: "Ingrese un valor entre 1 - 100",
-    minLifeSpan: "Ingrese un valor entre 1 - 20",
-    maxLifeSpan: "Ingrese un valor entre 1 - 20",
-    temperaments: "Seleccione un temperamento.",
+    name: "Enter a name.",
+    image: "Enter a URL.",
+    minHeight: "Enter a value between 1 - 100.",
+    maxHeight: "Enter a value between 1 - 100.",
+    minWeight: "Enter a value between 1 - 100.",
+    maxWeight: "Enter a value between 1 - 100.",
+    minLifeSpan: "Enter a value between 1 - 20.",
+    maxLifeSpan: "Enter a value between 1 - 20.",
+    temperaments: "Select one or more temperaments.",
   });
 
   const handleChange = (event) => {
@@ -52,13 +52,20 @@ const Form = () => {
     event.preventDefault();
     const url = "http://localhost:3001/dogs";
 
+    // Verificar si el campo de la imagen está vacío
+    if (!input.image) {
+      // Asignar una URL de imagen por defecto
+      input.image =
+        "https://img.freepik.com/vector-premium/blanco-negro-cabeza-perro_200180-247.jpg?w=360";
+    }
+
     try {
       const response = await axios.post(url, {
         ...input,
         temperaments: input.temperaments.map((temp) => temp.id),
       });
       if (response) {
-        window.alert("Formulario enviado con exito.");
+        window.alert("Successfully created breed.");
       }
       setInput({
         name: "",
@@ -99,162 +106,196 @@ const Form = () => {
   console.log(input.temperaments);
   return (
     <>
-      <h1>Esta es la vista de Form</h1>
-      <div>
-        <form onSubmit={submitHandler}>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              value={input.name}
-              name="name"
-              onChange={handleChange}
-              id="name"
-              placeholder="Ingrese un nombre"
-            />
-            {errors.name ? <p className={style.errors}>{errors.name}</p> : null}
-          </div>
-          <div>
-            <label htmlFor="image">Image</label>
-            <input
-              type="text"
-              value={input.image}
-              name="image"
-              onChange={handleChange}
-              id="image"
-              placeholder="Ingrese una URL"
-              pattern="https?://.+"
-            />
-            {errors.image ? (
-              <p className={style.errors}>{errors.image}</p>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="minHeight">Minimun height</label>
-            <input
-              type="number"
-              value={input.minHeight}
-              name="minHeight"
-              onChange={handleChange}
-              id="minHeight"
-              placeholder="1 - 100"
-            />
-            {errors.minHeight ? (
-              <p className={style.errors}>{errors.minHeight}</p>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="maxHeight">Maximum height</label>
-            <input
-              type="number"
-              value={input.maxHeight}
-              name="maxHeight"
-              onChange={handleChange}
-              id="maxHeight"
-              placeholder="1 - 100"
-            />
-            {errors.maxHeight ? (
-              <p className={style.errors}>{errors.maxHeight}</p>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="minWeight">Minimum weight</label>
-            <input
-              type="number"
-              value={input.minWeight}
-              name="minWeight"
-              onChange={handleChange}
-              id="minWeight"
-              placeholder="1 - 100"
-            />
-            {errors.minWeight ? (
-              <p className={style.errors}>{errors.minWeight}</p>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="maxWeight">Maximum weight</label>
-            <input
-              type="number"
-              value={input.maxWeight}
-              name="maxWeight"
-              onChange={handleChange}
-              id="maxWeight"
-              placeholder="1 - 100"
-            />
-            {errors.maxWeight ? (
-              <p className={style.errors}>{errors.maxWeight}</p>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="minLifeSpan">Minimum years of life</label>
-            <input
-              type="number"
-              value={input.minLifeSpan}
-              name="minLifeSpan"
-              onChange={handleChange}
-              id="minLifeSpan"
-              placeholder="1 - 20"
-            />
-            {errors.minLifeSpan ? (
-              <p className={style.errors}>{errors.minLifeSpan}</p>
-            ) : null}
-          </div>
-          <div>
-            <label htmlFor="maxLifeSpan">Maximum life years</label>
-            <input
-              type="number"
-              value={input.maxLifeSpan}
-              name="maxLifeSpan"
-              onChange={handleChange}
-              id="maxLifeSpan"
-              placeholder="1 - 20"
-            />
-            {errors.maxLifeSpan ? (
-              <p className={style.errors}>{errors.maxLifeSpan}</p>
-            ) : null}
-          </div>
-          <div>
-            <label>Temperaments: </label>
-            <option value="" disabled>
-              Select one or more temperaments.
-            </option>
-            <select name="temperaments" onChange={addTemperament}>
-              {allTemperaments?.map((temperament) => (
-                <option
-                  key={temperament.id}
-                  id={temperament.id}
-                  value={temperament.name}
-                >
-                  {temperament.name}
-                </option>
-              ))}
-            </select>
+      <div className={styles.divForm}>
+        <h4>Create your own dog breed.</h4>
+        <div className={styles.dataForm}>
+          <form onSubmit={submitHandler}>
+            <div>
+              <label className={styles.labelsForm} htmlFor="name">
+                Name
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="text"
+                value={input.name}
+                name="name"
+                onChange={handleChange}
+                id="name"
+                placeholder="Enter a name."
+              />
+              {errors.name ? (
+                <h6 className={styles.errors}>{errors.name}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="image">
+                Image
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="text"
+                value={input.image}
+                name="image"
+                onChange={handleChange}
+                id="image"
+                placeholder="Entar a URL."
+                pattern="https?://.+"
+              />
+              {errors.image ? (
+                <h6 className={styles.errors}>{errors.image}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="minHeight">
+                Minimun height
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="number"
+                value={input.minHeight}
+                name="minHeight"
+                onChange={handleChange}
+                id="minHeight"
+                placeholder="1 - 100"
+              />
+              {errors.minHeight ? (
+                <h6 className={styles.errors}>{errors.minHeight}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="maxHeight">
+                Maximum height
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="number"
+                value={input.maxHeight}
+                name="maxHeight"
+                onChange={handleChange}
+                id="maxHeight"
+                placeholder="1 - 100"
+              />
+              {errors.maxHeight ? (
+                <h6 className={styles.errors}>{errors.maxHeight}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="minWeight">
+                Minimum weight
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="number"
+                value={input.minWeight}
+                name="minWeight"
+                onChange={handleChange}
+                id="minWeight"
+                placeholder="1 - 100"
+              />
+              {errors.minWeight ? (
+                <h6 className={styles.errors}>{errors.minWeight}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="maxWeight">
+                Maximum weight
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="number"
+                value={input.maxWeight}
+                name="maxWeight"
+                onChange={handleChange}
+                id="maxWeight"
+                placeholder="1 - 100"
+              />
+              {errors.maxWeight ? (
+                <h6 className={styles.errors}>{errors.maxWeight}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="minLifeSpan">
+                Minimum years of life
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="number"
+                value={input.minLifeSpan}
+                name="minLifeSpan"
+                onChange={handleChange}
+                id="minLifeSpan"
+                placeholder="1 - 20"
+              />
+              {errors.minLifeSpan ? (
+                <h6 className={styles.errors}>{errors.minLifeSpan}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="maxLifeSpan">
+                Maximum life years
+              </label>
+              <input
+                className={styles.inputsForm}
+                type="number"
+                value={input.maxLifeSpan}
+                name="maxLifeSpan"
+                onChange={handleChange}
+                id="maxLifeSpan"
+                placeholder="1 - 20"
+              />
+              {errors.maxLifeSpan ? (
+                <h6 className={styles.errors}>{errors.maxLifeSpan}</h6>
+              ) : null}
+            </div>
+            <div>
+              <label className={styles.labelsForm} htmlFor="temperaments">
+                Temperaments:{" "}
+              </label>
 
-            {errors.temperaments && (
-              <p className={style.errors}>{errors.temperaments}</p>
+              <select
+                className={styles.select}
+                name="temperaments"
+                onChange={addTemperament}
+              >
+                <option value="">Select one or more temperaments.</option>
+                {allTemperaments?.map((temperament) => (
+                  <option
+                    key={temperament.id}
+                    id={temperament.id}
+                    value={temperament.name}
+                  >
+                    {temperament.name}
+                  </option>
+                ))}
+              </select>
+
+              {errors.temperaments && (
+                <h6 className={styles.errors}>{errors.temperaments}</h6>
+              )}
+            </div>
+
+            <h4>Selected Temperaments:</h4>
+            <div>
+              {input.temperaments &&
+                input.temperaments.map((temperament) => (
+                  <div>{temperament.name}</div>
+                ))}
+            </div>
+
+            {errors.name ||
+            errors.minHeight ||
+            errors.maxHeight ||
+            errors.minWeight ||
+            errors.maxWeight ||
+            errors.minLifeSpan ||
+            errors.maxLifeSpan ||
+            errors.temperaments ? null : (
+              <button className={styles.button} type="submit">
+                Create
+              </button>
             )}
-          </div>
-
-          <h4>Selected Temperaments:</h4>
-          <div>
-            {input.temperaments &&
-              input.temperaments.map((temperament) => (
-                <div>{temperament.name}</div>
-              ))}
-          </div>
-
-          {errors.name ||
-          errors.image ||
-          errors.minHeight ||
-          errors.maxHeight ||
-          errors.minWeight ||
-          errors.maxWeight ||
-          errors.minLifeSpan ||
-          errors.maxLifeSpan ||
-          errors.temperaments ? null : (
-            <button type="submit">Create</button>
-          )}
-        </form>
+          </form>
+        </div>
       </div>
     </>
   );

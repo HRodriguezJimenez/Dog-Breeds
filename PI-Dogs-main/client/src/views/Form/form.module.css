@@ -1,3 +1,66 @@
 .errors {
-    color: blue;
+    color: rgb(0, 13, 255);
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-shadow: 4px 4px 8px rgb(8, 8, 8);
+}
+
+.divForm {
+    width: 50%;    
+    margin: 30px auto;
+    padding: 10px ;
+    border-style: hidden;
+    border-radius: 10px;
+    box-shadow: 5px 5px 100px rgb(4, 145, 246);
+    outline: 1px solid rgb(51, 4, 239);
+    text-align: center;
+    transition: all 0.5s ease-in-out;
+    color: rgb(0, 0, 0);
+    text-shadow: 4px 4px 8px rgb(4, 141, 246);
+    font-family: fantasy;
+    font-size: 30px;    
+
+}
+
+.dataForm {
+    box-shadow: 5px 5px 1000px rgb(4, 145, 246);
+    outline: 1px solid rgb(51, 4, 239);
+    border-radius: 5px;
+    text-shadow: 4px 4px 8px rgb(4, 141, 246);
+    font-family: fantasy;
+    padding: 10px;
+}
+
+.labelsForm {
+    font-size: 14px;
+}
+
+.inputsForm {
+    background-color: rgb(4, 4, 169);
+    color: rgb(14, 248, 5);
+    font-size: 15px;
+    border-radius: 5px;    
+    border: 1px solid #03f9d9;
+    box-shadow: 10px 10px 10px rgb(3, 85, 166); 
+    font-size: 14px;
+    padding: 8px;
+}
+
+.button {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+    font-family: fantasy;
+    padding: 2% 5%;
+    margin: 3%;
+    border: solid;
+    border-color: rgb(25, 0, 255);
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(4, 186, 246);
+
+}
+
+.button:hover {
+    background-color: black;
+    color: white; /* Cambia el color del texto al pasar el cursor */
+    cursor: pointer;
 }

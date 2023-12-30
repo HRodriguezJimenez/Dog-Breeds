@@ -43,65 +43,65 @@ export const validate = ({
   const errors = {};
 
   if (!name) {
-    errors.name = "El campo no puede estar vacio."
+    errors.name = "The field cannot be empty."
   } else if (/^\d+$/.test(name)) {
-    errors.name = "El nombre no puede ser un número.";
+    errors.name = "The name cannot be a number.";
   }
 
   if (!image) {
-    errors.image = "Si no provee una imagen se asignara una por defecto."
+    errors.image = "If you do not provide an image, one will be assigned by default."
   } 
 
   if (!minHeight) {
-    errors.minHeight = "El campo no puede estar vacio."
+    errors.minHeight = "The field cannot be empty."
   } else if (parseInt(minHeight) < 1 || parseInt(minHeight) > 100) {
-    errors.minHeight = "Por favor ingrese un número entre 1 - 100"
+    errors.minHeight = "Please enter a number between 1 - 100."
   } else if (parseInt(minHeight) >= parseInt(maxHeight)){
-    errors.minHeight = "La altura minima no puede ser mayor a la altura maxima. "
+    errors.minHeight = "The minimum height cannot be greater than the maximum height."
   }
 
   if (!maxHeight) {
-    errors.maxHeight = "El campo no puede estar vacio."
+    errors.maxHeight = "The field cannot be empty."
   } else if (parseInt(maxHeight) < 1 || parseInt(maxHeight) > 100) {
-    errors.maxHeight = "Por favor ingrese un número entre 1 - 100";
+    errors.maxHeight = "Please enter a number between 1 - 100.";
   } else if (parseInt(maxHeight) <= parseInt(minHeight)) {
-    errors.maxHeight = "La altura maxima no puede ser menor a la altura minima."
+    errors.maxHeight = "The maximum height cannot be less than the minimum height."
   }
 
   if (!minWeight) {
-    errors.minWeight = "El campo no puede estar vacio."
+    errors.minWeight = "The field cannot be empty."
   } else if (parseInt(minWeight) < 1 || parseInt(minWeight) > 100) {
-    errors.minWeight = "Por favor ingrese un número entre 1 - 100"
+    errors.minWeight = "Please enter a number between 1 - 100."
   } else if (parseInt(minWeight) >= parseInt(maxWeight)){
-    errors.minWeight = "El peso minimo no puede ser mayor al peso maximo. "
+    errors.minWeight = "The minimum weight cannot be greater than the maximum weight."
   }
 
   if (!maxWeight) {
-    errors.maxWeight = "El campo no puede estar vacio."
+    errors.maxWeight = "The field cannot be empty."
   } else if (parseInt(maxWeight) < 1 || parseInt(maxWeight) > 100) {
-    errors.maxWeight = "Por favor ingrese un número entre 1 - 100";
+    errors.maxWeight = "Please enter a number between 1 - 100.";
   } else if (parseInt(maxWeight) <= parseInt(minWeight)) {
-    errors.maxWeight = "El peso maximo no puede ser menor al peso minimo."
+    errors.maxWeight = "The maximum weight cannot be less than the minimum weight."
   }
 
   if (!minLifeSpan) {
-    errors.minLifeSpan = "El campo no puede estar vacio."
+    errors.minLifeSpan = "The field cannot be empty."
   } else if (parseInt(minLifeSpan) < 1 || parseInt(minLifeSpan) > 20) {
-    errors.minLifeSpan = "Por favor ingrese un número entre 1 - 20"
+    errors.minLifeSpan = "Please enter a number between 1 - 20."
   } else if (parseInt(minLifeSpan) >= parseInt(maxLifeSpan)){
-    errors.minLifeSpan = "La edad minima no puede ser mayor a la edad maxima."
+    errors.minLifeSpan = "The minimum age cannot be higher than the maximum age."
   }
 
   if (!maxLifeSpan) {
-    errors.maxLifeSpan = "El campo no puede estar vacio."
+    errors.maxLifeSpan = "The field cannot be empty."
   } else if (parseInt(maxLifeSpan) < 1 || parseInt(maxLifeSpan) > 20) {
-    errors.maxLifeSpan = "Por favor ingrese un número entre 1 - 20";
+    errors.maxLifeSpan = "Please enter a number between 1 - 20.";
   } else if (parseInt(maxLifeSpan) <= parseInt(minLifeSpan)) {
-    errors.maxLifeSpan = "La edad maxima no puede ser menor a la edad minima."
+    errors.maxLifeSpan = "The maximum age cannot be less than the minimum age."
   }
 
   if (!temperaments) {
-    errors.temperaments = "Por favor seleccione un temperamento."
+    errors.temperaments = "Please select a temperament."
   }
 
   return errors;

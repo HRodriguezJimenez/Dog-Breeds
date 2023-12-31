@@ -54,15 +54,18 @@ export const paginDogs = (value) => {
     return async function (dispatch, getState) {
         try {
             const state = getState(); // getState es una función que devuelve el estado actual del store. Nos permite acceder al estado actual antes de realizar los cambios.
-            const { page, allDogs } = state;
+            const { page, sortedAndFiltered } = state;
+            console.log( "Lo que llega de value a la action", value);
+            console.log("El estado page en la action", page);
     
             let newPage = page;
     
-            if (value === "next" && page < Math.ceil(allDogs.length / 8)) {
+            if (value === "next" && page < Math.ceil(sortedAndFiltered.length / 8)) {
                 newPage += 1;
             } else if (value === "prev" && page > 1) {
                 newPage -= 1;
             }
+            console.log("newPage en la action antes del dispatch", newPage);
     
             dispatch({
                 type: PAGIN_DOGS,

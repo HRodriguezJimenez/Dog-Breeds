@@ -8,6 +8,7 @@ import styles from "./home.module.css";
 const Home = () => {
   const dispatch = useDispatch();
   const allDogs = useSelector((state) => state.sortedAndFiltered);
+  const page = useSelector((state) => state.page);
   const [searchName, setSearchName] = useState(""); // Estado local que usamos para almacenar el nombre utilizado en la busqueda.
   const [isSearching, setIsSearching] = useState(false); // Estado local donde indicamos si actualmente se esta realizando una busqueda.
 
@@ -49,7 +50,7 @@ const Home = () => {
         handleResetSearch={handleResetSearch}
         searchName={searchName}
       />
-      <CardsContainer allDogs={allDogs} isSearching={isSearching} />
+      <CardsContainer page={page} allDogs={allDogs} isSearching={isSearching} />
     </div>
   );
 };

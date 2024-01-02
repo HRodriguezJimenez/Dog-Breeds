@@ -20,6 +20,7 @@ export default function FilterSearch({
   const dispatch = useDispatch();
   //const allDogs = useSelector((state) => state.sortedAndFiltered);
   const allTemperaments = useSelector((state) => state.allTemperaments);
+  // Si guarda los cambios.
 
   useEffect(() => {
     dispatch(getTemperaments());

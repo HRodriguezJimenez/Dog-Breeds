@@ -28,7 +28,7 @@ export const renderDogInfo = (dog) => {
   }
 };
   
-
+// Función que creamos para validar los datos que envian en la solicitud para crear un nuevo dog y almacenarlo en nuestra base de datos. Creamos una variable "errors" para que almacene los errores dependiendo del dato que lo genere.
 export const validate = ({
   name,
   image,

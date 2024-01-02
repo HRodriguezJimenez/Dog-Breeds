@@ -54,7 +54,7 @@ export const paginDogs = (value) => {
     return async function (dispatch, getState) {
         try {
             const state = getState(); // getState es una función que devuelve el estado actual del store. Nos permite acceder al estado actual antes de realizar los cambios.
-            const { page, sortedAndFiltered } = state;
+            const { page, sortedAndFiltered } = state; // Extraemos los estados que necesitamos.
             console.log( "Lo que llega de value a la action", value);
             console.log("El estado page en la action", page);
     
@@ -114,7 +114,7 @@ export const sortedAndFiltered = (configs) => {
     return function (dispatch, getState) {
             const state = getState(); // getState es una función que devuelve el estado actual del store. Nos permite acceder al estado actual antes de realizar los cambios.
             
-        const allDogs = state.allDogs; 
+        const allDogs = state.allDogs; // Accedemos al estado allDogs del reducer.
 
         
         

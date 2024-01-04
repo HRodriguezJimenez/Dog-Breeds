@@ -12,6 +12,7 @@ body {
   background-size: cover;/*se lo agregamos para que la img se ajusta al tamaño de la pantalla*/
   background-repeat: no-repeat;/*con esto evitamos que la imagen se repita.*/ 
   background-attachment: fixed;/*fijamos la img para que no se desplace con el contenido.*/ 
+  background-color: aqua;
 }  
 
 

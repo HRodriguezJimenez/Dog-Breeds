@@ -40,27 +40,30 @@ const Form = () => {
     temperaments: "Select one or more temperaments.",
   });
 
+  // Esta función maneja los cambios en el formulario, usamos una propiedad dinamica para actualizar el formulario dependiendo del campo en el que se genere el cambio.
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target; // Destructuramos las propiedades name y value del objeto event.target.
 
     const copyState = { ...input };
-    setErrors(validate({ ...copyState, [name]: value }));
+    setErrors(validate({ ...copyState, [name]: value })); // Capturamos los errores usando la función validate, agregamos una propiedad dinámica para que cambie con el nombre del campo del folmulario al que se le va agregando información.
     setInput({ ...copyState, [name]: value });
   };
 
+  // Esta función es la encargada de enviar la solicitud con la información que contiene el formulario a nuestro servidor para la creación de un nuevo dog y almacenarlo en la base de datos.
   const submitHandler = async (event) => {
     event.preventDefault();
     const url = "http://localhost:3001/dogs";
 
-    // Verificar si el campo de la imagen está vacío
+    // Verificamos si el campo de la imagen está vacío.
     if (!input.image) {
-      // Asignar una URL de imagen por defecto
+      // Asignamos una URL de imagen por defecto para el formulario.
       input.image =
         "https://img.freepik.com/vector-premium/blanco-negro-cabeza-perro_200180-247.jpg?w=360";
     }
 
     try {
       const response = await axios.post(url, {
+        // Enviamos en el cuerpo de la solicitud una copia del estado inputs y un mapeo de la propiedad temperaments solo con los temperamentos seleccionados por su id.
         ...input,
         temperaments: input.temperaments.map((temp) => temp.id),
       });
@@ -68,6 +71,7 @@ const Form = () => {
         window.alert("Successfully created breed.");
       }
       setInput({
+        // Limpiamos el formulario después de enviarlo.
         name: "",
         image: "",
         minHeight: "",
@@ -77,7 +81,7 @@ const Form = () => {
         minLifeSpan: "",
         maxLifeSpan: "",
         temperaments: [],
-      }); // Limpiar el formulario después de enviarlo
+      });
     } catch (error) {
       if (error.response && error.response.status === 400) {
         alert("Error: " + error.response.data.error);
@@ -90,15 +94,21 @@ const Form = () => {
   const addTemperament = (event) => {
     const { value } = event.target;
 
+    // Verificamos que el valor no este vacío y que el temperamento no este duplicado.
     if (value && !input.temperaments.some((temp) => temp.name === value)) {
       const selectedTemperamentName = value;
+
+      // Obtenemos el id del temperamento seleccionado en las opciones del select.
       const TemperamentId = event.target.options[event.target.selectedIndex].id;
       const copyState = { ...input };
 
+      // Agregamos el nuevo temperamento a la lista de temperamentos en la copia del estado.
       copyState.temperaments = [
         ...copyState.temperaments,
         { id: TemperamentId, name: selectedTemperamentName },
       ];
+
+      // Validamos y actulizamos los errores en el estado.
       setErrors(validate(copyState));
       setInput(copyState);
     }
@@ -281,7 +291,7 @@ const Form = () => {
                   <div>{temperament.name}</div>
                 ))}
             </div>
-
+            {/*Creamos un renderizado condicional para controlar el renderizado del boton de Crear, que depende si encuentra errores en alguno de los campos del formulario.*/}
             {errors.name ||
             errors.minHeight ||
             errors.maxHeight ||

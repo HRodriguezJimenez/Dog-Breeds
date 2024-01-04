@@ -23,21 +23,22 @@ const Home = () => {
     }
   }
 
+  // Esta función se activa en el momento que se envía la búsqueda configuramos "isSearching" como true y despacha una actions para buscar un dog por su nombre.
   function handleSubmit(e) {
-    // Se activa en el momento que se envía la búsqueda configuramos "isSearching" como true y despacha una actions para buscar un dog por su nombre.
     e.preventDefault();
     setIsSearching(true);
     dispatch(getDogByName(searchName));
     setSearchName(""); // limpiamos el input despues de la búsqueda.
   }
 
+  // Lo usamos para despachar la actions getDogs() si no se esta realizando una busqueda.
   useEffect(() => {
-    // Lo usamos para despachar la actions getDogs() si no se esta realizando una busqueda.
     if (!isSearching) {
       dispatch(getDogs());
     }
   }, [dispatch, isSearching]);
 
+  // Esta función se usa para setear el estado de isSearching como false para volver a mostrar todos los dogs en la app y la enviamos por props.
   const handleResetSearch = () => {
     setIsSearching(false);
   };

@@ -18,7 +18,6 @@ export default function FilterSearch({
   searchName,
 }) {
   const dispatch = useDispatch();
-  //const allDogs = useSelector((state) => state.sortedAndFiltered);
   const allTemperaments = useSelector((state) => state.allTemperaments);
 
   useEffect(() => {
@@ -31,7 +30,7 @@ export default function FilterSearch({
     origin: "all",
   };
 
-  const [filter, setFilter] = useState(initialFilterState);
+  const [filter, setFilter] = useState(initialFilterState); // Estado inicial para realizar los filtros.
 
   const initialConfigsState = {
     temperament: { active: false, value: "" },
@@ -39,8 +38,9 @@ export default function FilterSearch({
     order: { active: false, type: "", value: "" },
   };
 
-  const [configs, setConfigs] = useState(initialConfigsState);
+  const [configs, setConfigs] = useState(initialConfigsState); // Estado inicial para controlar que filtros se estan aplicando y de esta manera controlar el renderizado de la información.
 
+  // Esta es la función encargada de generar y manejar los cambios en los filtros, "filterKey" la usamos como una variable dinámica de una propiedad del objeto configs para que su valor cambie dependiendo del valor que se active el cambio.
   const handleChangeFilter = (event, filterKey, action) => {
     const value = event.target.value;
     const auxConfigs = {
@@ -58,6 +58,7 @@ export default function FilterSearch({
           : { active: false, value: "", type: "" },
     };
 
+    // Modificamos los estados, "prevFilter" refleja el estado actual de filter antes de agregar los cambios y se modifica con lo que en ese momento tenga "filterKey" y setConfigs lo seteamos con el resultado de los cambios que se generan en auxConfitgs.
     setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));
     setConfigs(auxConfigs);
 
@@ -66,6 +67,7 @@ export default function FilterSearch({
     dispatch(paginDogs(value));
   };
 
+  // Función para resetear los filtros esta se activa al hacer click en el boton asociado.
   const resetFilters = () => {
     setFilter(initialFilterState);
     setConfigs(initialConfigsState);

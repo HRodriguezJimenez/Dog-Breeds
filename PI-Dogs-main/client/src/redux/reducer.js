@@ -35,7 +35,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 sortedAndFiltered: action.payload,
-                page: 1, // Reiniciamos la página a 1.
+                page: 1, // Seteamos el valor en 1 para que se muestren los resulatados desde la pagína 1.
             }
 
         case GET_DOG_BY_ID:
@@ -55,7 +55,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 sortedAndFiltered: action.payload,
-                page: 1,
+                page: 1, // Seteamos el valor en 1 para que se muestren los resulatados desde la pagína 1.
             }
     
         default:

@@ -19,7 +19,7 @@ const CardsContainer = ({ allDogs, isSearching, page }) => {
     }
   }, [isSearching, dispatch, page, allDogs]);
 
-  // Con estas funciones despachamos la actions con el argumento correspondiente para cambiar la página.
+  // Con estas funciones despachamos la actions con el valor correspondiente para cambiar la página.
   const nextPage = (value) => {
     dispatch(paginDogs(value));
   };

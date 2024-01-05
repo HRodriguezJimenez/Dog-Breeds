@@ -6,6 +6,7 @@ export default function SearchBar({
   handleSubmit,
   searchName,
   handleResetSearch,
+  handleKeyPress,
 }) {
   const isSearchDisabled = !searchName.trim(); // Si despues que eliminamos los espacios en blanco está vacío, entonces isSearchDisabled será true. Esto lo usamos para que "disabled" este en true y deshabilite el boton de buscar.
   return (
@@ -19,6 +20,7 @@ export default function SearchBar({
         value={searchName}
         onChange={handleChange}
         className={styles.inputSearch}
+        onKeyDown={handleKeyPress}
       />
       <button
         type="submit"

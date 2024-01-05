@@ -1,7 +1,8 @@
 .errors {
-    color: rgb(0, 13, 255);
+    color: rgb(255, 64, 0);
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    text-shadow: 4px 4px 8px rgb(8, 8, 8);
+    text-shadow: 4px 4px 8px rgb(8, 4, 248);
+    font-size: smaller;
 }
 
 .h4 {
@@ -21,8 +22,7 @@
     color: rgb(0, 0, 0);
     text-shadow: 4px 4px 8px rgb(4, 141, 246);
     font-family: fantasy;
-    font-size: 30px;    
-
+    font-size: 30px; 
 }
 
 .dataForm {
@@ -35,9 +35,9 @@
 }
 
 .labelsForm {
-    font-size: 20px;
+    font-size: 25px;
     margin-bottom: 5px;
-    width: 70%;
+    max-width: 100%;
 }
 
 .inputsForm {
@@ -50,7 +50,7 @@
     font-size: 12px;
     padding: 8px;
     margin-bottom: 10px;
-width: 80%;
+    width: 90%;
 }
 
 .button {

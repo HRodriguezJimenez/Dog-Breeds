@@ -14,12 +14,11 @@ const Home = () => {
 
   function handleChange(e) {
     // Esta función se activa en el momento que el usuario escribe en el campo de búsqueda y actualiza el estado.
-
     const { value } = e.target;
-    if (isNaN(value)) {
+    if (isNaN(value) || value === "") {
       setSearchName(value);
     } else {
-      alert("No introduzcas números.");
+      alert("El nombre no puede ser un número.");
     }
   }
 
@@ -38,6 +37,12 @@ const Home = () => {
     }
   }, [dispatch, isSearching]);
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit(e);
+    }
+  };
+
   // Esta función se usa para setear el estado de isSearching como false para volver a mostrar todos los dogs en la app y la enviamos por props.
   const handleResetSearch = () => {
     setIsSearching(false);
@@ -50,6 +55,7 @@ const Home = () => {
         handleSubmit={handleSubmit}
         handleResetSearch={handleResetSearch}
         searchName={searchName}
+        handleKeyPress={handleKeyPress}
       />
       <CardsContainer page={page} allDogs={allDogs} isSearching={isSearching} />
     </div>

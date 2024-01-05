@@ -57,48 +57,62 @@ export const validate = ({
     errors.minHeight = "El campo no puede estar vacío."
   } else if (parseInt(minHeight) < 1 || parseInt(minHeight) > 100) {
     errors.minHeight = "Introduzca un número entre 1 y 100."
-  } else if (parseInt(minHeight) >= parseInt(maxHeight)){
+  } else if (parseInt(minHeight) > parseInt(maxHeight)){
     errors.minHeight = "La altura mínima no puede ser mayor que la altura máxima."
+  } else if (parseInt(minHeight) === parseInt(maxHeight)){
+    errors.minHeight = "La altura mínima no puede ser igual que la altura máxima."
   }
+
+
 
   if (!maxHeight) {
     errors.maxHeight = "El campo no puede estar vacío."
   } else if (parseInt(maxHeight) < 1 || parseInt(maxHeight) > 100) {
     errors.maxHeight = "Introduzca un número entre 1 y 100.";
-  } else if (parseInt(maxHeight) <= parseInt(minHeight)) {
+  } else if (parseInt(maxHeight) < parseInt(minHeight)) {
     errors.maxHeight = "La altura máxima no puede ser inferior a la altura mínima."
+  } else if (parseInt(maxHeight) === parseInt(minHeight)) {
+    errors.maxHeight = "La altura máxima no puede ser igual a la altura mínima."
   }
 
   if (!minWeight) {
     errors.minWeight = "El campo no puede estar vacío."
   } else if (parseInt(minWeight) < 1 || parseInt(minWeight) > 100) {
     errors.minWeight = "Introduzca un número entre 1 y 100."
-  } else if (parseInt(minWeight) >= parseInt(maxWeight)){
+  } else if (parseInt(minWeight) > parseInt(maxWeight)){
     errors.minWeight = "El peso mínimo no puede ser mayor que el peso máximo."
+  } else if (parseInt(minWeight) === parseInt(maxWeight)){
+    errors.minWeight = "El peso mínimo no puede ser igual que el peso máximo."
   }
 
   if (!maxWeight) {
     errors.maxWeight = "El campo no puede estar vacío."
   } else if (parseInt(maxWeight) < 1 || parseInt(maxWeight) > 100) {
     errors.maxWeight = "Introduzca un número entre 1 y 100.";
-  } else if (parseInt(maxWeight) <= parseInt(minWeight)) {
+  } else if (parseInt(maxWeight) < parseInt(minWeight)) {
     errors.maxWeight = "El peso máximo no puede ser inferior al peso mínimo."
+  } else if (parseInt(maxWeight) === parseInt(minWeight)) {
+    errors.maxWeight = "El peso máximo no puede ser igual al peso mínimo."
   }
 
   if (!minLifeSpan) {
     errors.minLifeSpan = "El campo no puede estar vacío."
   } else if (parseInt(minLifeSpan) < 1 || parseInt(minLifeSpan) > 20) {
     errors.minLifeSpan = "Introduzca un número entre 1 y 20."
-  } else if (parseInt(minLifeSpan) >= parseInt(maxLifeSpan)){
+  } else if (parseInt(minLifeSpan) > parseInt(maxLifeSpan)){
     errors.minLifeSpan = "La edad mínima no puede ser superior a la edad máxima."
+  } else if (parseInt(minLifeSpan) === parseInt(maxLifeSpan)){
+    errors.minLifeSpan = "La edad mínima no puede ser igual a la edad máxima."
   }
 
   if (!maxLifeSpan) {
     errors.maxLifeSpan = "El campo no puede estar vacío."
   } else if (parseInt(maxLifeSpan) < 1 || parseInt(maxLifeSpan) > 20) {
     errors.maxLifeSpan = "Introduzca un número entre 1 y 20.";
-  } else if (parseInt(maxLifeSpan) <= parseInt(minLifeSpan)) {
+  } else if (parseInt(maxLifeSpan) < parseInt(minLifeSpan)) {
     errors.maxLifeSpan = "La edad máxima no puede ser inferior a la edad mínima."
+  } else if (parseInt(maxLifeSpan) === parseInt(minLifeSpan)) {
+    errors.maxLifeSpan = "La edad máxima no puede ser igual a la edad mínima."
   }
 
   if (!temperaments) {

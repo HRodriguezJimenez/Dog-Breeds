@@ -16,6 +16,7 @@ export default function FilterSearch({
   handleSubmit,
   handleResetSearch,
   searchName,
+  handleKeyPress,
 }) {
   const dispatch = useDispatch();
   const allTemperaments = useSelector((state) => state.allTemperaments);
@@ -170,6 +171,7 @@ export default function FilterSearch({
         handleSubmit={handleSubmit}
         searchName={searchName}
         handleResetSearch={handleResetSearch}
+        handleKeyPress={handleKeyPress}
       />
     </div>
   );

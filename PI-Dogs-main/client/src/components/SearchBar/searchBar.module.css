@@ -52,3 +52,19 @@
     font-size: 2em;
     text-shadow: black;
 }
+
+@media (max-width: 768px) {
+    .botonSearch,
+    .inputSearch {
+      font-size: 14px; /* Ajusta según sea necesario */
+    }
+  
+    .p {
+      font-size: 1.5em; /* Ajusta según sea necesario */
+    }
+
+    .divSearch {
+        width: 100%;
+    }
+  }
+  

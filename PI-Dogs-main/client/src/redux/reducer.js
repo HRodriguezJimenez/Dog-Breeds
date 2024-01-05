@@ -22,7 +22,7 @@ const rootReducer = (state = initialState, action) => {
             return {
                 ...state,
                 allDogs: action.payload,
-                sortedAndFiltered: action.payload,
+                sortedAndFiltered: state.sortedAndFiltered.length === 0 ? action.payload : state.sortedAndFiltered,
             }
 
         case GET_TEMPERAMENTS:

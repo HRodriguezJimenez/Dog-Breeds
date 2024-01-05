@@ -11,11 +11,11 @@ export default function SearchBar({
   return (
     <div className={styles.divSearch}>
       {isSearchDisabled && (
-        <p className={styles.p}>Enter a breed name to search.</p>
+        <p className={styles.p}>Ingrese el nombre de una raza para buscar.</p>
       )}
       <input
         type="search"
-        placeholder="Search"
+        placeholder="Busqueda"
         value={searchName}
         onChange={handleChange}
         className={styles.inputSearch}
@@ -26,11 +26,11 @@ export default function SearchBar({
         disabled={isSearchDisabled}
         className={styles.botonSearch}
       >
-        look for.
+        Buscar
       </button>
       {handleResetSearch && ( // Realizamos un renderizado condicional si la función "handleResetSearch" esta presente/activa.
         <button onClick={handleResetSearch} className={styles.botonSearch}>
-          Show all.
+          Mostrar todo
         </button>
       )}
     </div>

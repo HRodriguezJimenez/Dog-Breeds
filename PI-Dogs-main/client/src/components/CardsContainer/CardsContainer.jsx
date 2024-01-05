@@ -8,13 +8,11 @@ import { paginDogs } from "../../redux/actions"; // Actions para controlar al pa
 const CardsContainer = ({ allDogs, isSearching, page }) => {
   // "allDogs" contiene el resultado de la búsqueda y "isSearching" indica si se esta realizando una búsqueda.
   const dispatch = useDispatch();
-  console.log("state que llega a cardsContainer", page);
   const dogs = allDogs;
 
   // Inicia un efecto que se ejecuta cuando "isSearching" cambia o cuando el componente se monta. Despacha una actions con el número de página actual si no estamos realizando una búsqueda.
   useEffect(() => {
     if (!isSearching) {
-      console.log("page en el useEffect", page);
       dispatch(paginDogs(page));
     }
   }, [isSearching, dispatch, page, allDogs]);
@@ -34,9 +32,6 @@ const CardsContainer = ({ allDogs, isSearching, page }) => {
   const end = start + dogsByPage;
   const pagin = dogs.slice(start, end); // Determinamos la cantidad de dogs que se muestra en la página actual.
 
-  console.log("page antes de renderizar el componente", page);
-  console.log("total page antes de renderizar el componente", totalPage);
-
   return (
     <div>
       <div className={styles.divButtons}>
@@ -47,10 +42,10 @@ const CardsContainer = ({ allDogs, isSearching, page }) => {
           disabled={page === 1}
           value={prevPage}
         >
-          Previous
+          Anterior
         </button>
         <div className={styles.pagin}>
-          Page {page} 🐶 of {totalPage}
+          Pagína {page} 🐶 de {totalPage}
         </div>
         <button
           className={styles.buttons}
@@ -58,7 +53,7 @@ const CardsContainer = ({ allDogs, isSearching, page }) => {
           disabled={page === totalPage}
           value={nextPage}
         >
-          Next
+          Siguiente
         </button>
       </div>
       <div className={styles.divCards}>

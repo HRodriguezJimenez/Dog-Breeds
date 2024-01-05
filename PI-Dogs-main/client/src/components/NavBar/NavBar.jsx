@@ -5,10 +5,9 @@ import styles from "./navbar.module.css";
 const NavBar = () => {
   return (
     <div>
-      <div className={styles.navBackground}></div>
       <div className={styles.divContainer}>
-        <Link to="/home">HOME</Link>
-        <Link to="/create">CREATE</Link>
+        <Link to="/home">INICIO</Link>
+        <Link to="/create">CREAR</Link>
       </div>
     </div>
   );

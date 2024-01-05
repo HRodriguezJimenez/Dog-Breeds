@@ -10,12 +10,12 @@
 }
 
 .divContainer a {
-    font-size: 20px;
+    font-size: 22px;
     font-family: fantasy;
     outline: none;
-    padding: 1em;
-    padding-left: 3em;
-    padding-right: 3em;
+    padding: 0.5em 1em;
+    padding-left: 1em;
+    padding-right: 1em;
     border: 2px dashed #04adf6;
     border-radius: 15px;
     background-color:  #067ef69e;
@@ -26,4 +26,16 @@
 
 .divContainer a:hover {
   background-color: #7ddcf9b0; 
+}
+
+@media (max-width: 300px) {
+  .divContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .divContainer a {
+    margin-top: 10px; /* Espacio entre los botones en dispositivos pequeños */
+    padding: 0.5em 1em;
+  }
 }

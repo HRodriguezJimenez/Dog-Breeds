@@ -37,6 +37,7 @@
 .labelsForm {
     font-size: 20px;
     margin-bottom: 5px;
+    width: 70%;
 }
 
 .inputsForm {
@@ -49,6 +50,7 @@
     font-size: 12px;
     padding: 8px;
     margin-bottom: 10px;
+width: 80%;
 }
 
 .button {
@@ -70,3 +72,18 @@
     color: white; /* Cambia el color del texto al pasar el cursor */
     cursor: pointer;
 }
+
+.select {
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    .divForm {
+      width: 80%; /* Ajusta el ancho del formulario en pantallas más pequeñas */
+    }
+  
+    .h4 {
+      font-size: 24px; /* Ajusta el tamaño del encabezado "Temperamentos seleccionados" */
+    }
+}
+  

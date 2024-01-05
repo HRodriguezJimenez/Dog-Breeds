@@ -56,7 +56,7 @@
     color: #0666f6;
     font-size: 25px;
     font-family: fantasy;
-    padding: 10px 20px;/*espacio interno para el texto. */
+    padding: 0.5em 1em;
     transition: background-color 0.3s, color 0.3s; /* Agrega una transición suave */
     box-shadow: 2px 2px 5px rgb(4, 169, 246); 
     border-radius: 10px;

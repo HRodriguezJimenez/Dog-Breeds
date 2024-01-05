@@ -45,7 +45,6 @@ const rootReducer = (state = initialState, action) => {
             }
     
         case PAGIN_DOGS:
-            console.log("action.payload en el reducer", action.payload);
             return {
                 ...state,
                 page: action.payload,

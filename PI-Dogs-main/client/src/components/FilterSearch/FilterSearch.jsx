@@ -78,11 +78,11 @@ export default function FilterSearch({
 
   return (
     <div>
-      <h2 className={styles.h2}>Filter and sort the dogs.</h2>
+      <h2 className={styles.h2}>Filtrar y ordenar los perros.</h2>
       <div className={styles.divContainer}>
         <div>
           <label className={styles.label} htmlFor="temperaments">
-            Filter by temperament:{" "}
+            Filtrar por temperamento:{" "}
           </label>
           <select
             className={styles.select}
@@ -94,7 +94,7 @@ export default function FilterSearch({
             }
           >
             <option id="allOptionTemperament" name="all" value="all">
-              All
+              Todos
             </option>
             {allTemperaments?.map((temperament) => (
               <option
@@ -110,7 +110,7 @@ export default function FilterSearch({
 
         <div>
           <label className={styles.label} htmlFor="origin">
-            Filter by origin :{" "}
+            Filtrar por origen :{" "}
           </label>
           <select
             className={styles.select}
@@ -120,20 +120,20 @@ export default function FilterSearch({
             onChange={(e) => handleChangeFilter(e, "origin", sortedAndFiltered)}
           >
             <option id="allOptionOrigin" value="all">
-              All
+              Todo
             </option>
             <option id="DogsBDDOption" name="Dogs BDD" value="Dogs BDD">
-              New breeds
+              Nuevas razas
             </option>
             <option id="DogsAPIOption" name="Dogs API" value="Dogs API">
-              Other breeds
+              Otras razas
             </option>
           </select>
         </div>
 
         <div>
           <label className={styles.label} htmlFor="weight">
-            Sort by:{" "}
+            Ordenar por:{" "}
           </label>
           <select
             className={styles.select}
@@ -143,10 +143,10 @@ export default function FilterSearch({
             onChange={(e) => handleChangeFilter(e, "order", sortedAndFiltered)}
           >
             <option id="LessOrMoreOption" name="LessOrMore" value="LessOrMore">
-              Less or More.
+              Menos o Más
             </option>
             <option id="MoreOrLessOption" name="MoreOrLess" value="MoreOrLess">
-              More or Less.
+              Más o menos
             </option>
             <option id="AZOption" name="A-Z" value="A-Z">
               A - Z
@@ -155,13 +155,13 @@ export default function FilterSearch({
               Z - A
             </option>
             <option id="allOption" name="all" value="all">
-              All
+              Todo
             </option>
           </select>
         </div>
 
         <button className={styles.buttonReset} onClick={resetFilters}>
-          Reset Filters
+          Restablecer filtros
         </button>
       </div>
 

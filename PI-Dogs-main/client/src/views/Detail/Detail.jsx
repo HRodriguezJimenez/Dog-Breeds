@@ -10,7 +10,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const dogById = useSelector((state) => state.dogById);
   const { id } = useParams(); // "useParams" lo usamos para extraer el parámetro "id" de la URL.
-  console.log(dogById);
+
   // Llamamos a la función getDogById cuando el componente se monta o cuando el id cambia.
   useEffect(() => {
     dispatch(getDogById(id));
@@ -18,7 +18,7 @@ const Detail = () => {
 
   // Mostramos un mensaje "Loading..." si la información se demora en cargarse en la página.
   if (!dogById.length) {
-    return <div>Loading...</div>;
+    return <div>Cargando...</div>;
   }
 
   const dogDetails = dogById[0];
@@ -27,10 +27,16 @@ const Detail = () => {
   const verificarTemp = (dogDetails) => {
     if (dogDetails.created) {
       // Si es de la BDD accedemos a la primera posición del array y a la propiedad nombre.
-      return dogDetails.Temperaments[0]?.name || "No Temperament";
+      return (
+        dogDetails.Temperaments?.map((temp) => temp.name).join(", ") ||
+        "No tiene temperamentos asociados."
+      );
     } else {
       // Si es de la API concatenamos todo separado por "," .
-      return dogDetails.Temperaments?.join(", ") || "No Temperaments";
+      return (
+        dogDetails.Temperaments?.join(", ") ||
+        "No tiene temperamentos asociados."
+      );
     }
   };
 
@@ -38,7 +44,7 @@ const Detail = () => {
     <>
       <div className={styles.cardContainer}>
         <Link to="/home">
-          <button className={styles.button}>Go back</button>
+          <button className={styles.button}>Regresar</button>
         </Link>
         <img
           className={styles.imgCard}
@@ -47,18 +53,18 @@ const Detail = () => {
         />
         <ul className={styles.ulDatos}>
           <h3 className={styles.h3Detail}>Información</h3>
-          <li>Name: {dogDetails.name}</li>
+          <li>Nombre: {dogDetails.name}</li>
           <li>
-            Weight: min {dogDetails.minWeight} - max {dogDetails.maxWeight}
+            Peso: min {dogDetails.minWeight} - max {dogDetails.maxWeight}
           </li>
           <li>
-            Height: min {dogDetails.minHeight} - max {dogDetails.maxHeight}
+            Altura: min {dogDetails.minHeight} - max {dogDetails.maxHeight}
           </li>
           <li>
-            LifeSpan: min {dogDetails.minLifeSpan} - max{" "}
+            Expectativa de vida: min {dogDetails.minLifeSpan} - max{" "}
             {dogDetails.maxLifeSpan}
           </li>
-          <li>Temperaments: {verificarTemp(dogDetails)}</li>
+          <li>Temperamentos: {verificarTemp(dogDetails)}</li>
         </ul>
       </div>
     </>

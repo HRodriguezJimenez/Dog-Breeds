@@ -23,7 +23,8 @@ export const renderDogInfo = (dog) => {
       maxWeight: dog.maxWeight,
       minLifeSpan: dog.minLifeSpan,
       maxLifeSpan: dog.maxLifeSpan,
-      temperaments: dog.Temperaments ? dog.Temperaments.map(temp => (typeof temp === 'object' ? temp.name : temp)).join(", ") : "", // Verificamos la propiedad "Temperaments" y confirmamos si es un objeto antes de extraer el nombre.
+      temperaments: dog.Temperaments ? dog.Temperaments.map(temp => 
+        (typeof temp === 'object' ? temp.name : temp)).join(", ") : "", // Verificamos la propiedad "Temperaments" y confirmamos si es un objeto antes de extraer el nombre.
     };
   }
 };
@@ -43,65 +44,65 @@ export const validate = ({
   const errors = {};
 
   if (!name) {
-    errors.name = "The field cannot be empty."
+    errors.name = "El campo no puede estar vacío."
   } else if (/^\d+$/.test(name)) {
-    errors.name = "The name cannot be a number.";
+    errors.name = "El nombre no puede ser un número.";
   }
 
   if (!image) {
-    errors.image = "If you do not provide an image, one will be assigned by default."
+    errors.image = "Si no proporciona una imagen, se asignará una por defecto."
   } 
 
   if (!minHeight) {
-    errors.minHeight = "The field cannot be empty."
+    errors.minHeight = "El campo no puede estar vacío."
   } else if (parseInt(minHeight) < 1 || parseInt(minHeight) > 100) {
-    errors.minHeight = "Please enter a number between 1 - 100."
+    errors.minHeight = "Introduzca un número entre 1 y 100."
   } else if (parseInt(minHeight) >= parseInt(maxHeight)){
-    errors.minHeight = "The minimum height cannot be greater than the maximum height."
+    errors.minHeight = "La altura mínima no puede ser mayor que la altura máxima."
   }
 
   if (!maxHeight) {
-    errors.maxHeight = "The field cannot be empty."
+    errors.maxHeight = "El campo no puede estar vacío."
   } else if (parseInt(maxHeight) < 1 || parseInt(maxHeight) > 100) {
-    errors.maxHeight = "Please enter a number between 1 - 100.";
+    errors.maxHeight = "Introduzca un número entre 1 y 100.";
   } else if (parseInt(maxHeight) <= parseInt(minHeight)) {
-    errors.maxHeight = "The maximum height cannot be less than the minimum height."
+    errors.maxHeight = "La altura máxima no puede ser inferior a la altura mínima."
   }
 
   if (!minWeight) {
-    errors.minWeight = "The field cannot be empty."
+    errors.minWeight = "El campo no puede estar vacío."
   } else if (parseInt(minWeight) < 1 || parseInt(minWeight) > 100) {
-    errors.minWeight = "Please enter a number between 1 - 100."
+    errors.minWeight = "Introduzca un número entre 1 y 100."
   } else if (parseInt(minWeight) >= parseInt(maxWeight)){
-    errors.minWeight = "The minimum weight cannot be greater than the maximum weight."
+    errors.minWeight = "El peso mínimo no puede ser mayor que el peso máximo."
   }
 
   if (!maxWeight) {
-    errors.maxWeight = "The field cannot be empty."
+    errors.maxWeight = "El campo no puede estar vacío."
   } else if (parseInt(maxWeight) < 1 || parseInt(maxWeight) > 100) {
-    errors.maxWeight = "Please enter a number between 1 - 100.";
+    errors.maxWeight = "Introduzca un número entre 1 y 100.";
   } else if (parseInt(maxWeight) <= parseInt(minWeight)) {
-    errors.maxWeight = "The maximum weight cannot be less than the minimum weight."
+    errors.maxWeight = "El peso máximo no puede ser inferior al peso mínimo."
   }
 
   if (!minLifeSpan) {
-    errors.minLifeSpan = "The field cannot be empty."
+    errors.minLifeSpan = "El campo no puede estar vacío."
   } else if (parseInt(minLifeSpan) < 1 || parseInt(minLifeSpan) > 20) {
-    errors.minLifeSpan = "Please enter a number between 1 - 20."
+    errors.minLifeSpan = "Introduzca un número entre 1 y 20."
   } else if (parseInt(minLifeSpan) >= parseInt(maxLifeSpan)){
-    errors.minLifeSpan = "The minimum age cannot be higher than the maximum age."
+    errors.minLifeSpan = "La edad mínima no puede ser superior a la edad máxima."
   }
 
   if (!maxLifeSpan) {
-    errors.maxLifeSpan = "The field cannot be empty."
+    errors.maxLifeSpan = "El campo no puede estar vacío."
   } else if (parseInt(maxLifeSpan) < 1 || parseInt(maxLifeSpan) > 20) {
-    errors.maxLifeSpan = "Please enter a number between 1 - 20.";
+    errors.maxLifeSpan = "Introduzca un número entre 1 y 20.";
   } else if (parseInt(maxLifeSpan) <= parseInt(minLifeSpan)) {
-    errors.maxLifeSpan = "The maximum age cannot be less than the minimum age."
+    errors.maxLifeSpan = "La edad máxima no puede ser inferior a la edad mínima."
   }
 
   if (!temperaments) {
-    errors.temperaments = "Please select a temperament."
+    errors.temperaments = "Por favor seleccione uno o varios temperamentos."
   }
 
   return errors;

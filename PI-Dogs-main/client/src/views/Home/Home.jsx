@@ -14,12 +14,12 @@ const Home = () => {
 
   function handleChange(e) {
     // Esta función se activa en el momento que el usuario escribe en el campo de búsqueda y actualiza el estado.
-    e.preventDefault();
+
     const { value } = e.target;
     if (isNaN(value)) {
       setSearchName(value);
     } else {
-      alert("Do not enter numbers.");
+      alert("No introduzcas números.");
     }
   }
 

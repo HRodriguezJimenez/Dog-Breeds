@@ -29,15 +29,15 @@ const Form = () => {
 
   // Estado local que nos permitira ir almacenando en tiempo real los errores que se vayan generando al ingresar los datos en el formulario.
   const [errors, setErrors] = useState({
-    name: "Enter a name.",
-    image: "Enter a URL.",
-    minHeight: "Enter a value between 1 - 100.",
-    maxHeight: "Enter a value between 1 - 100.",
-    minWeight: "Enter a value between 1 - 100.",
-    maxWeight: "Enter a value between 1 - 100.",
-    minLifeSpan: "Enter a value between 1 - 20.",
-    maxLifeSpan: "Enter a value between 1 - 20.",
-    temperaments: "Select one or more temperaments.",
+    name: "",
+    image: "",
+    minHeight: "",
+    maxHeight: "",
+    minWeight: "",
+    maxWeight: "",
+    minLifeSpan: "",
+    maxLifeSpan: "",
+    temperaments: "",
   });
 
   // Esta función maneja los cambios en el formulario, usamos una propiedad dinamica para actualizar el formulario dependiendo del campo en el que se genere el cambio.
@@ -68,7 +68,7 @@ const Form = () => {
         temperaments: input.temperaments.map((temp) => temp.id),
       });
       if (response) {
-        window.alert("Successfully created breed.");
+        window.alert("Raza creada con éxito.");
       }
       setInput({
         // Limpiamos el formulario después de enviarlo.
@@ -113,16 +113,16 @@ const Form = () => {
       setInput(copyState);
     }
   };
-  console.log(input.temperaments);
+
   return (
     <>
       <div className={styles.divForm}>
-        <h4 className={styles.h4}>Create your own dog breed.</h4>
+        <h4 className={styles.h4}>Crea tu propia raza de perro.</h4>
         <div className={styles.dataForm}>
           <form onSubmit={submitHandler}>
             <div>
               <label className={styles.labelsForm} htmlFor="name">
-                Name
+                Nombre
               </label>
               <input
                 className={styles.inputsForm}
@@ -131,7 +131,8 @@ const Form = () => {
                 name="name"
                 onChange={handleChange}
                 id="name"
-                placeholder="Enter a name."
+                placeholder="Ingrese un nombre."
+                autoComplete="off"
               />
               {errors.name ? (
                 <h6 className={styles.errors}>{errors.name}</h6>
@@ -139,7 +140,7 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="image">
-                Image
+                Imagen
               </label>
               <input
                 className={styles.inputsForm}
@@ -148,7 +149,7 @@ const Form = () => {
                 name="image"
                 onChange={handleChange}
                 id="image"
-                placeholder="Entar a URL."
+                placeholder="Ingrese una URL."
                 pattern="https?://.+"
               />
               {errors.image ? (
@@ -157,7 +158,7 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="minHeight">
-                Minimun height
+                Altura mínima
               </label>
               <input
                 className={styles.inputsForm}
@@ -174,7 +175,7 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="maxHeight">
-                Maximum height
+                Altura máxima
               </label>
               <input
                 className={styles.inputsForm}
@@ -191,7 +192,7 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="minWeight">
-                Minimum weight
+                Peso mínimo
               </label>
               <input
                 className={styles.inputsForm}
@@ -208,7 +209,7 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="maxWeight">
-                Maximum weight
+                Peso máximo
               </label>
               <input
                 className={styles.inputsForm}
@@ -225,7 +226,7 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="minLifeSpan">
-                Minimum years of life
+                Mínimo de expectativa de vida
               </label>
               <input
                 className={styles.inputsForm}
@@ -242,7 +243,7 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="maxLifeSpan">
-                Maximum life years
+                Máximo de expectativa de vida
               </label>
               <input
                 className={styles.inputsForm}
@@ -259,15 +260,16 @@ const Form = () => {
             </div>
             <div>
               <label className={styles.labelsForm} htmlFor="temperaments">
-                Temperaments:{" "}
+                Temperamentos{" "}
               </label>
 
               <select
                 className={styles.select}
                 name="temperaments"
+                id="temperaments"
                 onChange={addTemperament}
               >
-                <option value="">Select one or more temperaments.</option>
+                <option value="">Seleccione uno o mas temperamentos.</option>
                 {allTemperaments?.map((temperament) => (
                   <option
                     key={temperament.id}
@@ -283,8 +285,8 @@ const Form = () => {
                 <h6 className={styles.errors}>{errors.temperaments}</h6>
               )}
             </div>
+            <h4 className={styles.h4}>Temperamentos seleccionados</h4>
 
-            <h4>Selected Temperaments:</h4>
             <div>
               {input.temperaments &&
                 input.temperaments.map((temperament) => (
@@ -301,7 +303,7 @@ const Form = () => {
             errors.maxLifeSpan ||
             errors.temperaments ? null : (
               <button className={styles.button} type="submit">
-                Create
+                Crear
               </button>
             )}
           </form>

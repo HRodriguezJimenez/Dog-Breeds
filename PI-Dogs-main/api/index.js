@@ -21,7 +21,7 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ alter: true}).then(() => { // con "alter: true" se guardan los cambios que se vayan agregando a la base de datos.
+conn.sync({ alter: true }).then(() => { // con "alter: true" se guardan los cambios que se vayan agregando a la base de datos.
   server.listen(3001, () => {
     console.log('%s listening at 3001'); // eslint-disable-line no-console
   });

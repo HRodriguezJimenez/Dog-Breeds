@@ -63,10 +63,25 @@ export default function FilterSearch({
     setFilter((prevFilter) => ({ ...prevFilter, [filterKey]: value }));
     setConfigs(auxConfigs);
 
+    localStorage.setItem(filterKey, value); // Guardamos el valor de filterKey en el localStorage con la función setItem().
+
     dispatch(sortedAndFiltered(auxConfigs));
     dispatch(action(auxConfigs));
     dispatch(paginDogs(value));
   };
+
+  useEffect(() => {
+    // Accedemos a lo que guardamos en el localStorage con la función getItem() y le pasamos el valor que deseamos recuperar.
+    const storedTemperament = localStorage.getItem("temperament");
+    const storedOrigin = localStorage.getItem("origin");
+    const storedOrder = localStorage.getItem("order");
+
+    setFilter({
+      temperament: storedTemperament || "all",
+      origin: storedOrigin || "all",
+      order: storedOrder || "all",
+    });
+  }, []);
 
   // Función para resetear los filtros esta se activa al hacer click en el boton asociado.
   const resetFilters = () => {
@@ -75,6 +90,11 @@ export default function FilterSearch({
     dispatch(paginDogs(1));
     dispatch(getDogs());
     dispatch(sortedAndFiltered({}));
+
+    // Usamos la función removeItem() para borrar los valores seleccionados al resetear los filtros.
+    localStorage.removeItem("temperament");
+    localStorage.removeItem("origin");
+    localStorage.removeItem("order");
   };
 
   return (

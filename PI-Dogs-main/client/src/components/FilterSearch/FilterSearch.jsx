@@ -14,7 +14,6 @@ export default function FilterSearch({
   // Recibimos las funciones por props.
   handleChange,
   handleSubmit,
-  handleResetSearch,
   searchName,
   handleKeyPress,
 }) {
@@ -182,7 +181,7 @@ export default function FilterSearch({
         </div>
 
         <button className={styles.buttonReset} onClick={resetFilters}>
-          Restablecer filtros
+          Mostrar todos
         </button>
       </div>
 
@@ -190,7 +189,6 @@ export default function FilterSearch({
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         searchName={searchName}
-        handleResetSearch={handleResetSearch}
         handleKeyPress={handleKeyPress}
       />
     </div>

@@ -43,17 +43,11 @@ const Home = () => {
     }
   };
 
-  // Esta función se usa para setear el estado de isSearching como false para volver a mostrar todos los dogs en la app y la enviamos por props.
-  const handleResetSearch = () => {
-    setIsSearching(false);
-  };
-
   return (
     <div className={styles.divHome}>
       <FilterSearch
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        handleResetSearch={handleResetSearch}
         searchName={searchName}
         handleKeyPress={handleKeyPress}
       />

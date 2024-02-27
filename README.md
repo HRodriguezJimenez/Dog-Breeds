@@ -1,3 +1,13 @@
-### Dog Breeds
+![HenryLogo](https://d31uz8lwfmyn8g.cloudfront.net/Assets/logo-henry-white-lg.png)
 
-Este proyecto es realizado como un proyecto individual como requerimiento para aprobar una etapa en el BootCamp de programación I just love <strong>bold text</strong>.
+# **DOG BREEDS** | Proyecto Individual
+
+## **📌 OBJETIVOS**
+
+-  Construir una Single Page Application utlizando las tecnologías: **React**, **Redux**, **Node**, **Express** y **Sequelize**.
+-  Poner en práctica recursos básicos de estilos y diseño (UX : UI).
+-  Afirmar y conectar los conceptos aprendidos en la carrera.
+-  Aprender mejores prácticas.
+
+<br />
+

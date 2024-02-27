@@ -9,7 +9,7 @@
 -  Afirmar y conectar los conceptos aprendidos en la carrera.
 -  Aprender mejores prácticas.
  
-### Lo que puedes encontrar en la app.
+> ### Lo que puedes encontrar en la app.
 
 > En la pagina los usuarios tienen la posibilidad de ver una gran variedad de razas de perros que se muestran por medio de tarjetas con la información de cada perro como su peso, su altura, los temperamentos que puede tener cada raza. También puede acceder a una información detallada de cada perro donde va a encontrar datos específicos de la raza.
 >
